@@ -1025,7 +1025,10 @@ footer {
   overflow: hidden;
   transition: max-height 0.4s ease;
 }
-.tool-disclosure.open .tool-disclosure-body { max-height: 360px; }
+.tool-disclosure.open .tool-disclosure-body { max-height: 420px; }
+@media (max-width: 768px) {
+  .tool-disclosure.open .tool-disclosure-body { max-height: 600px; }
+}
 .tool-disclosure-inner {
   padding: 0 20px 18px;
   border-top: 1px solid var(--gold-pale);
