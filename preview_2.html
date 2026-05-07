@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Infographic 2: The AI Review Crisis | DMGC 699</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --white: #FFFFFF;
+  --off-white: #F7F8FA;
+  --border: #E2E6ED;
+  --ink: #111827;
+  --ink-mid: #374151;
+  --ink-light: #6B7280;
+  --navy: #1E3A5F;
+  --navy-mid: #2D5282;
+  --navy-light: #EBF0F7;
+  --gold: #B07D2A;
+  --gold-light: #FDF6E3;
+  --danger: #DC2626;
+  --danger-light: #FEF2F2;
+  --warn: #D97706;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  background: var(--white);
+  color: var(--ink);
+  line-height: 1.6;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+.ig-header {
+  border-top: 4px solid var(--danger);
+  padding-top: 32px;
+  margin-bottom: 48px;
+}
+
+.ig-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 16px;
+}
+
+.ig-title {
+  font-family: 'Lora', serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.ig-title em { font-style: italic; color: var(--danger); }
+
+.ig-subtitle {
+  font-size: 17px;
+  color: var(--ink-mid);
+  max-width: 620px;
+  margin-bottom: 24px;
+}
+
+.ig-source-note {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-light);
+  letter-spacing: 1px;
+  border-left: 3px solid var(--danger);
+  padding-left: 12px;
+}
+
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* STAT HERO STRIP */
+.stat-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-bottom: 48px;
+}
+
+.stat-block {
+  background: var(--white);
+  padding: 24px 20px;
+  text-align: center;
+}
+
+.stat-number {
+  font-family: 'Lora', serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.stat-danger { color: var(--danger); }
+.stat-navy { color: var(--navy); }
+.stat-warn { color: var(--warn); }
+.stat-gold { color: var(--gold); }
+
+.stat-label {
+  font-size: 13px;
+  color: var(--ink-mid);
+  line-height: 1.4;
+}
+
+.stat-source {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--ink-light);
+  letter-spacing: 0.5px;
+  margin-top: 6px;
+}
+
+/* MAIN CHART */
+.chart-container {
+  margin-bottom: 48px;
+}
+
+.chart-intro {
+  font-size: 15px;
+  color: var(--ink-mid);
+  margin-bottom: 24px;
+  max-width: 680px;
+}
+
+.chart-wrap {
+  border: 1px solid var(--border);
+  padding: 32px 24px 24px;
+  background: var(--off-white);
+}
+
+.chart-title {
+  font-family: 'Lora', serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+
+.chart-subtitle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-light);
+  letter-spacing: 1px;
+  margin-bottom: 28px;
+}
+
+.bar-chart-main {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 56px 1fr 80px;
+  align-items: center;
+  gap: 16px;
+}
+
+.bar-year {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--ink-mid);
+  font-weight: 500;
+  text-align: right;
+}
+
+.bar-track {
+  height: 32px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 0;
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+  min-width: 0;
+}
+
+.bar-actual { background: var(--navy); }
+.bar-estimate { background: var(--ink-light); }
+.bar-spike { background: var(--danger); }
+
+.bar-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--navy);
+  font-weight: 500;
+}
+
+.bar-meta.spike { color: var(--danger); font-weight: 700; }
+
+.chart-legend {
+  display: flex;
+  gap: 24px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--ink-mid);
+}
+
+.legend-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.chart-note {
+  font-size: 12px;
+  color: var(--ink-light);
+  font-style: italic;
+  margin-top: 16px;
+  line-height: 1.6;
+}
+
+/* CHATGPT MARKER */
+.gpt-marker {
+  background: #FEF3C7;
+  border: 1px solid #FCD34D;
+  padding: 10px 16px;
+  margin: 16px 0;
+  font-size: 13px;
+  color: #92400E;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* REMOVAL BREAKDOWN */
+.removal-section {
+  margin-bottom: 48px;
+}
+
+.removal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.removal-card {
+  border: 1px solid var(--border);
+  padding: 24px;
+}
+
+.removal-title {
+  font-family: 'Lora', serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 16px;
+}
+
+.donut-text-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.donut-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.donut-row-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.donut-label {
+  font-size: 13px;
+  color: var(--ink-mid);
+}
+
+.donut-pct {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--navy);
+}
+
+.donut-bar {
+  height: 8px;
+  background: var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.donut-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 1.2s ease;
+  width: 0;
+}
+
+.fill-boosting { background: var(--danger); }
+.fill-ai { background: var(--navy); }
+.fill-other { background: var(--ink-light); }
+
+/* TIMELINE */
+.timeline-section {
+  margin-bottom: 48px;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 24px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+
+.timeline-item {
+  position: relative;
+  padding: 0 0 24px 24px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -18px;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--navy);
+  border: 2px solid var(--white);
+  box-shadow: 0 0 0 2px var(--navy);
+}
+
+.timeline-item.danger::before { background: var(--danger); box-shadow: 0 0 0 2px var(--danger); }
+
+.timeline-year {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-light);
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.timeline-event {
+  font-size: 14px;
+  color: var(--ink-mid);
+  line-height: 1.5;
+}
+
+.timeline-event strong { color: var(--navy); }
+
+/* CONSUMER IMPACT */
+.impact-section {
+  margin-bottom: 48px;
+}
+
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.impact-card {
+  background: var(--white);
+  padding: 20px;
+}
+
+.impact-icon {
+  font-size: 24px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.impact-title {
+  font-family: 'Lora', serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.impact-text {
+  font-size: 13px;
+  color: var(--ink-mid);
+  line-height: 1.5;
+}
+
+/* TAKEAWAY */
+.takeaway-box {
+  border: 2px solid var(--danger);
+  padding: 24px 32px;
+  margin-bottom: 48px;
+  position: relative;
+}
+
+.takeaway-label {
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  background: var(--white);
+  padding: 0 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--danger);
+  font-weight: 500;
+}
+
+.takeaway-text {
+  font-family: 'Lora', serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+.takeaway-text em { color: var(--navy); font-style: italic; }
+
+/* FOOTER */
+.ig-footer {
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.ig-footer-left {
+  font-size: 12px;
+  color: var(--ink-light);
+  line-height: 1.8;
+}
+
+.ig-footer-right {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-light);
+  text-align: right;
+  letter-spacing: 0.5px;
+}
+
+.ref-list {
+  font-size: 12px;
+  color: var(--ink-light);
+  margin-top: 24px;
+  line-height: 1.8;
+}
+
+.ref-list a { color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--border); }
+
+.a11y-note {
+  background: var(--navy-light);
+  border-left: 3px solid var(--navy);
+  padding: 12px 16px;
+  font-size: 12px;
+  color: var(--ink-mid);
+  margin-bottom: 32px;
+}
+
+@media (max-width: 700px) {
+  .stat-strip { grid-template-columns: repeat(2, 1fr); }
+  .removal-grid { grid-template-columns: 1fr; }
+  .impact-grid { grid-template-columns: 1fr; }
+  .ig-title { font-size: 26px; }
+  .bar-row { grid-template-columns: 44px 1fr 64px; }
+}
+</style>
+</head>
+<body>
+
+<a href="#main-content" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;" id="skip-link">Skip to main content</a>
+
+<main id="main-content">
+
+<!-- HEADER -->
+<header class="ig-header" role="banner" style="position:relative;">
+  <!-- PREVIOUS INFOGRAPHIC BUTTON -->
+  <a href="preview_1.html" id="previous-infographic-btn" style="
+    position:absolute;
+    top:38px;
+    right:0;
+    padding:10px 18px;
+    background:#1E3A5F;
+    color:#FFFFFF;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    text-decoration:none;
+    border-radius:4px;
+  ">
+    ← Previous
+  </a>
+  <p class="ig-eyebrow">DMGC 699 Capstone · Spring 2026 · Multimedia Deliverable 2 · Infographic 2 of 2</p>
+  <h1 class="ig-title">The <em>AI Review Crisis</em> on TripAdvisor</h1>
+  <p class="ig-subtitle">From 4.49% in 2019 to 10.7% in 2024 — how likely AI-generated reviews may challenge the trust infrastructure of hospitality platforms.</p>
+  <p class="ig-source-note">Primary sources: Originality.AI (2024) · TripAdvisor Transparency Report (2025) · Wu et al. (2020) · Pena-Garcia et al. (2024)</p>
+</header>
+
+<!-- ACCESSIBILITY NOTE -->
+<aside class="a11y-note" aria-label="Accessibility information">
+  All chart data is presented in text form. High-contrast colours and semantic headings are used throughout. Screen readers will find all numerical data in descriptive labels.
+</aside>
+
+<!-- STAT STRIP -->
+<section aria-labelledby="stats-heading">
+  <p style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--navy);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;font-weight:600;">Addresses Sub-Question 2 — AI-Generated &amp; Fraudulent Reviews</p>
+  <p class="section-label" id="stats-heading">Key Statistics at a Glance</p>
+  <div class="stat-strip" role="list">
+    <div class="stat-block" role="listitem">
+      <p class="stat-number stat-danger">137%</p>
+      <p class="stat-label">Estimated increase in likely AI reviews on TripAdvisor, 2019–2024</p>
+      <p class="stat-source">Originality.AI (2024)</p>
+    </div>
+    <div class="stat-block" role="listitem">
+      <p class="stat-number stat-navy">2.7M</p>
+      <p class="stat-label">Fake reviews removed by TripAdvisor in 2024</p>
+      <p class="stat-source">TripAdvisor (2025)</p>
+    </div>
+    <div class="stat-block" role="listitem">
+      <p class="stat-number stat-warn">214K</p>
+      <p class="stat-label">Reviews removed specifically for being AI-generated (2024)</p>
+      <p class="stat-source">TripAdvisor (2025)</p>
+    </div>
+    <div class="stat-block" role="listitem">
+      <p class="stat-number stat-gold">1 in 10</p>
+      <p class="stat-label">TripAdvisor reviews in 2024 were flagged as likely AI-generated</p>
+      <p class="stat-source">Originality.AI (2024)</p>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN CHART -->
+<section class="chart-container" aria-labelledby="chart-heading">
+  <p class="section-label" id="chart-heading">AI-Generated Review Rate on TripAdvisor (2019–2024)</p>
+  <p class="chart-intro">
+    Originality.AI (2024) analysed TripAdvisor reviews using its proprietary AI detection tool across 20 major North American cities and five business categories. The data show a non-linear pattern: a dip following 2019, a modest recovery through 2022, then a sharp 2024 increase that coincides with the wider adoption of generative AI tools.
+  </p>
+
+  <div class="chart-wrap" role="img" aria-label="Bar chart: AI-generated review rate on TripAdvisor by year. 2019: 4.49% (reported by Originality.AI). 2020: approximately 3.50% (estimated from source graph, not explicitly reported). 2021: approximately 3.80% (estimated from source graph, not explicitly reported). 2022: 5.57% (reported by Originality.AI — peak before 2024 spike). 2023: 4.68% (reported by Originality.AI — dip, then dramatic rise). 2024: 10.70% (reported by Originality.AI — record high). Overall increase 2019 to 2024: 137%.">
+    <h2 class="chart-title">Likely AI Review Rate on TripAdvisor by Year</h2>
+    <p class="chart-subtitle">Percentage of reviews flagged as likely AI-generated · Source: Originality.AI (2024)</p>
+
+    <div class="bar-chart-main" aria-hidden="true">
+      <div class="bar-row">
+        <span class="bar-year">2019</span>
+        <div class="bar-track">
+          <div class="bar-fill bar-actual" data-width="42" style="width:0%"></div>
+        </div>
+        <span class="bar-meta">4.49%</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-year">2020</span>
+        <div class="bar-track">
+          <div class="bar-fill bar-estimate" data-width="33" style="width:0%"></div>
+        </div>
+        <span class="bar-meta">~3.50%</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-year">2021</span>
+        <div class="bar-track">
+          <div class="bar-fill bar-estimate" data-width="36" style="width:0%"></div>
+        </div>
+        <span class="bar-meta">~3.80%</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-year">2022</span>
+        <div class="bar-track">
+          <div class="bar-fill bar-actual" data-width="52" style="width:0%"></div>
+        </div>
+        <span class="bar-meta">5.57%</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-year">2023</span>
+        <div class="bar-track">
+          <div class="bar-fill bar-actual" data-width="44" style="width:0%"></div>
+        </div>
+        <span class="bar-meta">4.68%</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-year">2024</span>
+        <div class="bar-track">
+          <div class="bar-fill bar-spike" data-width="100" style="width:0%"></div>
+        </div>
+        <span class="bar-meta spike">10.70%</span>
+      </div>
+    </div>
+
+    <div class="gpt-marker" role="note" aria-label="Context note: ChatGPT launched in November 2022, contributing to the acceleration of AI-generated content after 2022">
+      <span aria-hidden="true">💬</span>
+      <span><strong>Context:</strong> ChatGPT launched in November 2022. The later 2024 increase coincides with wider public access to generative AI tools.</span>
+    </div>
+
+    <div class="chart-legend">
+      <div class="legend-item">
+        <div class="legend-dot" style="background:var(--navy);"></div>
+        <span>Explicitly reported value (Originality.AI, 2024)</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background:var(--ink-light);"></div>
+        <span>Estimated from source graph (2020 &amp; 2021 not explicitly published)</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background:var(--danger);"></div>
+        <span>Record high</span>
+      </div>
+    </div>
+
+    <p class="chart-note">Note: 2020 and 2021 values are estimated from the Originality.AI (2024) source graph; these years were not explicitly reported in the published data. All other values are directly reported. The 2023 dip may reflect temporary changes in content generation trends, detection, or industry behaviour; the source does not establish a single cause (Originality.AI, 2024).</p>
+  </div>
+</section>
+
+<!-- REMOVAL BREAKDOWN -->
+<section class="removal-section" aria-labelledby="removal-heading">
+  <p class="section-label" id="removal-heading">TripAdvisor Fake Review Removals (2024)</p>
+  <div class="removal-grid">
+
+    <div class="removal-card" aria-label="Breakdown of 2.7 million fake reviews removed by TripAdvisor in 2024">
+      <h2 class="removal-title">What Was Removed &amp; Why</h2>
+      <p style="font-size:13px;color:var(--ink-mid);margin-bottom:16px;">Of 2.7 million fraudulent reviews removed in 2024 (TripAdvisor, 2025):</p>
+      <div class="donut-text-chart">
+        <div class="donut-row">
+          <div class="donut-row-header">
+            <span class="donut-label">Review boosting (businesses inflating own ratings)</span>
+            <span class="donut-pct">54%</span>
+          </div>
+          <div class="donut-bar"><div class="donut-fill fill-boosting" data-width="54" style="width:0%"></div></div>
+        </div>
+        <div class="donut-row">
+          <div class="donut-row-header">
+            <span class="donut-label">AI-generated content (214,000 reviews)</span>
+            <span class="donut-pct">~8%</span>
+          </div>
+          <div class="donut-bar"><div class="donut-fill fill-ai" data-width="8" style="width:0%"></div></div>
+        </div>
+        <div class="donut-row">
+          <div class="donut-row-header">
+            <span class="donut-label">Other fraudulent activity (paid reviews, sabotage)</span>
+            <span class="donut-pct">~38%</span>
+          </div>
+          <div class="donut-bar"><div class="donut-fill fill-other" data-width="38" style="width:0%"></div></div>
+        </div>
+      </div>
+      <p style="font-size:11px;color:var(--ink-light);margin-top:12px;font-style:italic;">Source: TripAdvisor Transparency Report (2025). AI % is approximate — 214,000 of 2.7M total.</p>
+    </div>
+
+    <div class="removal-card" aria-label="Industry response to fake reviews">
+      <h2 class="removal-title">Industry Response</h2>
+      <div class="timeline" role="list">
+        <div class="timeline-item" role="listitem">
+          <p class="timeline-year">2022</p>
+          <p class="timeline-event">ChatGPT launches — accessible AI lowered the barrier to generating realistic review-style text at scale.</p>
+        </div>
+        <div class="timeline-item" role="listitem">
+          <p class="timeline-year">2023</p>
+          <p class="timeline-event"><strong>Coalition for Trusted Reviews</strong> formed — TripAdvisor, Booking.com, Amazon, Expedia, Glassdoor, and Trustpilot define best practices, share fake-review detection methods, and support stronger review integrity efforts (TripAdvisor, 2025).</p>
+        </div>
+        <div class="timeline-item" role="listitem">
+          <p class="timeline-year">2024</p>
+          <p class="timeline-event">TripAdvisor removes <strong>2.7 million</strong> fraudulent reviews — up from 2 million the year before. AI-generated removals reach 214,000.</p>
+        </div>
+        <div class="timeline-item danger" role="listitem">
+          <p class="timeline-year">2025+</p>
+          <p class="timeline-event">Detection remains difficult. Wu et al. (2020) note that detection methods can report high accuracy, yet their real-world effect on reducing fake reviews remains limited.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONSUMER IMPACT -->
+<section class="impact-section" aria-labelledby="impact-heading">
+  <p class="section-label" id="impact-heading">How Fake Reviews Affect Consumer Trust</p>
+  <div class="impact-grid" role="list">
+    <div class="impact-card" role="listitem">
+      <span class="impact-icon" aria-hidden="true">🔍</span>
+      <h3 class="impact-title">Platform-Level Trust Erosion</h3>
+      <p class="impact-text">When consumers detect or suspect fake reviews, trust does not fall only for the fraudulent item — it degrades across the entire platform. A spillover effect undermines authentic reviews alongside fabricated ones (Pena-Garcia et al., 2024).</p>
+    </div>
+    <div class="impact-card" role="listitem">
+      <span class="impact-icon" aria-hidden="true">⚖️</span>
+      <h3 class="impact-title">Review Adoption Breakdown</h3>
+      <p class="impact-text">Filieri et al. (2015) found that perceived platform trustworthiness is a precondition for acting on reviews. Once that trust falls below a threshold, consumers become reluctant to rely on any review — real or fabricated.</p>
+    </div>
+    <div class="impact-card" role="listitem">
+      <span class="impact-icon" aria-hidden="true">🏨</span>
+      <h3 class="impact-title">Hotelier Reputation Risk</h3>
+      <p class="impact-text">Both competitor sabotage (negative fake reviews) and review boosting (inflated positive reviews) distort the information environment, creating unfair competitive conditions and undermining the credibility of the entire sector (Wu et al., 2020).</p>
+    </div>
+  </div>
+</section>
+
+<!-- TAKEAWAY -->
+<section aria-labelledby="takeaway-heading">
+  <div class="takeaway-box">
+    <span class="takeaway-label" id="takeaway-heading">Research Synthesis</span>
+    <p class="takeaway-text">
+      The proliferation of AI-generated reviews is not merely a volume problem — it is a <em>trust infrastructure problem</em>. Wu et al. (2020) documented that many detection methods report high accuracy, but their real-world effect on reducing fake reviews remains limited. Pena-Garcia et al. (2024) confirmed the downstream consequence: when consumers perceive fakeness, trust can decline for rating systems and the platforms hosting them. The 137% estimated increase documented by Originality.AI (2024) suggests this risk may grow, making platform-level transparency and consumer media literacy increasingly critical.
+    </p>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section aria-labelledby="refs-heading">
+  <p class="section-label" id="refs-heading">Sources</p>
+  <div class="ref-list">
+    <p>Filieri, R., Alguezaui, S., &amp; McLeay, F. (2015). Why do travelers trust TripAdvisor? <em>Tourism Management, 51</em>, 174–185. <a href="https://doi.org/10.1016/j.tourman.2015.05.007" rel="noopener" target="_blank">https://doi.org/10.1016/j.tourman.2015.05.007</a></p>
+    <p>Originality.AI. (2024). Fake AI TripAdvisor reviews increased by 137% from 2019 to 2024. <a href="https://originality.ai/blog/ai-tripadvisor-reviews-study" rel="noopener" target="_blank">https://originality.ai/blog/ai-tripadvisor-reviews-study</a></p>
+    <p>Pena-Garcia, N., Losada-Otalora, M., Auza, D. P., &amp; Cruz, M. P. (2024). Reviews, trust, and customer experience in online marketplaces. <em>Frontiers in Communication, 9</em>, Article 1460321. <a href="https://doi.org/10.3389/fcomm.2024.1460321" rel="noopener" target="_blank">https://doi.org/10.3389/fcomm.2024.1460321</a></p>
+    <p>TripAdvisor. (2025). <em>Tripadvisor transparency report 2025.</em> <a href="https://www.tripadvisor.com/TransparencyReport2025" rel="noopener" target="_blank">https://www.tripadvisor.com/TransparencyReport2025</a></p>
+    <p>Wu, Y., Ngai, E. W., Wu, P., &amp; Wu, C. (2020). Fake online reviews: Literature review, synthesis, and directions for future research. <em>Decision Support Systems, 132</em>, 113280. <a href="https://doi.org/10.1016/j.dss.2020.113280" rel="noopener" target="_blank">https://doi.org/10.1016/j.dss.2020.113280</a></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="ig-footer" role="contentinfo">
+  <div class="ig-footer-left">
+    <strong>Md Ashikur Rahman</strong> · NF1000759<br>
+    MA Digital Media and Global Communications · University of Niagara Falls Canada<br>
+    DMGC 699 Capstone · Spring 2026 · Supervised by Raquel Benitez Rojas
+  </div>
+  <div class="ig-footer-right">
+    Infographic 2 of 2<br>
+    Rahman_Ashikur_DMGC699_Assignment2
+  </div>
+</footer>
+
+</main>
+
+<script>
+// Animate bars on scroll
+const allBars = document.querySelectorAll('.bar-fill, .donut-fill');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      el.style.width = el.getAttribute('data-width') + '%';
+      obs.unobserve(el);
+    }
+  });
+}, { threshold: 0.2 });
+allBars.forEach(b => obs.observe(b));
+
+// Skip link
+const skip = document.getElementById('skip-link');
+skip.addEventListener('focus', function() {
+  this.style.cssText = 'position:static;width:auto;height:auto;overflow:visible;padding:8px 16px;background:var(--navy);color:white;z-index:9999;display:inline-block;';
+});
+skip.addEventListener('blur', function() {
+  this.style.cssText = 'position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;';
+});
+</script>
+</body>
+</html>

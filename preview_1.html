@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Infographic 1: Platform Structure & Rating Divergence | DMGC 699</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --white: #FFFFFF;
+  --off-white: #F7F8FA;
+  --border: #E2E6ED;
+  --ink: #111827;
+  --ink-mid: #374151;
+  --ink-light: #6B7280;
+  --navy: #1E3A5F;
+  --navy-mid: #2D5282;
+  --navy-light: #EBF0F7;
+  --gold: #B07D2A;
+  --gold-light: #FDF6E3;
+  --tripadvisor: #00AA6C;
+  --booking: #003580;
+  --google: #EA4335;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  background: var(--white);
+  color: var(--ink);
+  line-height: 1.6;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+/* HEADER */
+.ig-header {
+  border-top: 4px solid var(--navy);
+  padding-top: 32px;
+  margin-bottom: 48px;
+}
+
+.ig-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 16px;
+}
+
+.ig-title {
+  font-family: 'Lora', serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.ig-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.ig-subtitle {
+  font-size: 17px;
+  color: var(--ink-mid);
+  max-width: 600px;
+  margin-bottom: 24px;
+}
+
+.ig-source-note {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-light);
+  letter-spacing: 1px;
+  border-left: 3px solid var(--gold);
+  padding-left: 12px;
+}
+
+/* KEY FINDING BANNER */
+.key-finding {
+  background: var(--navy);
+  color: var(--white);
+  padding: 24px 32px;
+  margin-bottom: 48px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.key-finding-icon {
+  font-size: 36px;
+  flex-shrink: 0;
+}
+
+.key-finding-text {
+  font-family: 'Lora', serif;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.key-finding-text strong {
+  color: #F5D78E;
+}
+
+/* PLATFORM CARDS */
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.platform-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  margin-bottom: 48px;
+  border: 1px solid var(--border);
+}
+
+.platform-card {
+  background: var(--white);
+  padding: 28px 24px;
+}
+
+.platform-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  border-radius: 2px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.badge-open { background: #DCFCE7; color: #166534; }
+.badge-closed { background: #DBEAFE; color: #1E40AF; }
+.badge-semi { background: #FEF9C3; color: #854D0E; }
+
+.platform-name {
+  font-family: 'Lora', serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.platform-name.ta { color: var(--tripadvisor); }
+.platform-name.bk { color: var(--booking); }
+.platform-name.gg { color: var(--google); }
+
+.platform-scale {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-light);
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.platform-desc {
+  font-size: 14px;
+  color: var(--ink-mid);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.platform-stat {
+  background: var(--off-white);
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: var(--ink-mid);
+  border-left: 3px solid var(--border);
+}
+
+.platform-stat strong {
+  color: var(--navy);
+  display: block;
+  font-size: 11px;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.stat-ta { border-left-color: var(--tripadvisor); }
+.stat-bk { border-left-color: var(--booking); }
+.stat-gg { border-left-color: var(--google); }
+
+/* DIVERGENCE VISUALISATION */
+.divergence-section {
+  margin-bottom: 48px;
+}
+
+.divergence-intro {
+  font-size: 15px;
+  color: var(--ink-mid);
+  margin-bottom: 24px;
+  max-width: 680px;
+}
+
+.hotel-example {
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  padding: 24px;
+  margin-bottom: 16px;
+}
+
+.hotel-name {
+  font-family: 'Lora', serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 16px;
+  font-style: italic;
+}
+
+.rating-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rating-row {
+  display: grid;
+  grid-template-columns: 120px 1fr 60px;
+  align-items: center;
+  gap: 12px;
+}
+
+.rating-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-mid);
+  letter-spacing: 0.5px;
+}
+
+.rating-bar-track {
+  height: 20px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.rating-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 0;
+}
+
+.fill-ta { background: var(--tripadvisor); }
+.fill-bk { background: var(--booking); }
+.fill-gg { background: var(--google); }
+
+.rating-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--navy);
+  text-align: right;
+}
+
+.divergence-note {
+  font-size: 12px;
+  color: var(--ink-light);
+  font-style: italic;
+  margin-top: 8px;
+}
+
+/* DISTRIBUTION TYPES */
+.distribution-section {
+  margin-bottom: 48px;
+}
+
+.dist-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.dist-card {
+  border: 1px solid var(--border);
+  padding: 24px;
+}
+
+.dist-title {
+  font-family: 'Lora', serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.dist-subtitle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-light);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.dist-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 80px;
+  margin-bottom: 12px;
+}
+
+.dist-bar {
+  flex: 1;
+  border-radius: 2px 2px 0 0;
+  min-height: 4px;
+  transition: height 0.8s ease;
+}
+
+.dist-labels {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--ink-light);
+  margin-bottom: 12px;
+}
+
+.dist-desc {
+  font-size: 13px;
+  color: var(--ink-mid);
+  line-height: 1.5;
+}
+
+/* KEY FACTORS TABLE */
+.factors-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 48px;
+  font-size: 14px;
+}
+
+.factors-table th {
+  background: var(--navy);
+  color: var(--white);
+  padding: 12px 16px;
+  text-align: left;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.factors-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--ink-mid);
+  vertical-align: top;
+}
+
+.factors-table tr:nth-child(even) td { background: var(--off-white); }
+
+.td-factor {
+  font-weight: 600;
+  color: var(--navy);
+  width: 180px;
+}
+
+.check { color: var(--tripadvisor); font-weight: 700; }
+.cross { color: #DC2626; font-weight: 700; }
+.partial { color: var(--gold); font-weight: 700; }
+
+/* TAKEAWAY */
+.takeaway-box {
+  border: 2px solid var(--navy);
+  padding: 24px 32px;
+  margin-bottom: 48px;
+  position: relative;
+}
+
+.takeaway-label {
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  background: var(--white);
+  padding: 0 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--navy);
+  font-weight: 500;
+}
+
+.takeaway-text {
+  font-family: 'Lora', serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+.takeaway-text em { color: var(--navy); font-style: italic; }
+
+/* FOOTER */
+.ig-footer {
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.ig-footer-left {
+  font-size: 12px;
+  color: var(--ink-light);
+  line-height: 1.8;
+}
+
+.ig-footer-right {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-faint);
+  text-align: right;
+  letter-spacing: 0.5px;
+}
+
+.ref-list {
+  font-size: 12px;
+  color: var(--ink-light);
+  margin-top: 24px;
+  line-height: 1.8;
+}
+
+.ref-list a {
+  color: var(--navy);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ACCESSIBILITY NOTE */
+.a11y-note {
+  background: var(--navy-light);
+  border-left: 3px solid var(--navy);
+  padding: 12px 16px;
+  font-size: 12px;
+  color: var(--ink-mid);
+  margin-bottom: 32px;
+}
+
+@media (max-width: 700px) {
+  .platform-grid { grid-template-columns: 1fr; }
+  .dist-grid { grid-template-columns: 1fr; }
+  .rating-row { grid-template-columns: 90px 1fr 48px; }
+  .ig-title { font-size: 26px; }
+}
+</style>
+</head>
+<body>
+
+<!-- SKIP LINK -->
+<a href="#main-content" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;focus:position:static;width:auto;height:auto;" id="skip-link">Skip to main content</a>
+
+<main id="main-content">
+
+
+<!-- HEADER -->
+
+<header class="ig-header" role="banner" style="position:relative;">
+  <a href="preview_2.html" id="next-infographic-btn" style="
+    position:absolute;
+    top:38px;
+    right:0;
+    padding:10px 18px;
+    background:#1E3A5F;
+    color:#FFFFFF;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    text-decoration:none;
+    border-radius:4px;
+  ">
+    Next →
+  </a>
+  <p class="ig-eyebrow">DMGC 699 Capstone · Spring 2026 · Multimedia Deliverable 2 · Infographic 1 of 2</p>
+  <h1 class="ig-title">Platform Structure &amp; <em>Rating Divergence</em></h1>
+  <p class="ig-subtitle">Why the same hotel earns different scores on TripAdvisor, Booking.com, and Google Reviews — and what that means for consumer trust.</p>
+  <p class="ig-source-note">Primary sources: Xiang et al. (2017) · Kirilenko et al. (2024) · TripAdvisor Transparency Report (2025)</p>
+</header>
+
+<!-- ACCESSIBILITY NOTE -->
+<aside class="a11y-note" aria-label="Accessibility information">
+  This infographic uses high-contrast colours, semantic headings, and text alternatives for all visual elements. All data is also presented in text form.
+</aside>
+
+<!-- KEY FINDING -->
+<section aria-labelledby="finding-heading">
+  <div class="key-finding" role="note">
+    <span class="key-finding-icon" aria-hidden="true">⚠</span>
+    <p class="key-finding-text" id="finding-heading">
+      <strong>Key Finding:</strong> The same hotel can receive meaningfully different star ratings across platforms — not because the hotel changed, but because each platform's architecture, audience, and verification model shapes the reviews it receives (Kirilenko et al., 2024).
+    </p>
+  </div>
+</section>
+
+<!-- PLATFORM CARDS -->
+<section aria-labelledby="platforms-heading">
+  <p style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--navy);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;font-weight:600;">Addresses Sub-Question 1 — Structural &amp; Algorithmic Factors</p>
+  <p class="section-label" id="platforms-heading">How Each Platform Works</p>
+
+  <div class="platform-grid" role="list">
+
+    <article class="platform-card" role="listitem" aria-label="TripAdvisor platform overview">
+      <span class="platform-badge badge-open">Open Platform</span>
+      <h2 class="platform-name ta">TripAdvisor</h2>
+      <p class="platform-scale">Rating scale: 1–5 bubbles</p>
+      <p class="platform-desc">Any registered user may submit a review regardless of whether a stay was verified. Drives high review volume and breadth, but creates significant vulnerability to manipulation and extreme-rating bias.</p>
+      <div class="platform-stat stat-ta">
+        <strong>Review Access</strong>
+        Any registered user — no booking verification required
+      </div>
+      <div class="platform-stat stat-ta">
+        <strong>Rating Distribution</strong>
+        Bimodal — extreme scores (1★ and 5★) overrepresented (Kirilenko et al., 2024)
+      </div>
+      <div class="platform-stat stat-ta">
+        <strong>Fake Review Removal (2024)</strong>
+        2.7 million total; 214,000 AI-generated (TripAdvisor, 2025)
+      </div>
+      <div class="platform-stat stat-ta">
+        <strong>Review Boosting</strong>
+        Accounts for 54% of all removals (TripAdvisor, 2025)
+      </div>
+    </article>
+
+    <article class="platform-card" role="listitem" aria-label="Booking.com platform overview">
+      <span class="platform-badge badge-closed">Closed Platform</span>
+      <h2 class="platform-name bk">Booking.com</h2>
+      <p class="platform-scale">Rating scale: 1–10 numeric</p>
+      <p class="platform-desc">Reviews restricted to guests who completed a verified booking through the platform. This adds a verification layer that moderates rating distributions and reduces — but does not eliminate — fake content.</p>
+      <div class="platform-stat stat-bk">
+        <strong>Review Access</strong>
+        Verified booking through Booking.com required
+      </div>
+      <div class="platform-stat stat-bk">
+        <strong>Rating Distribution</strong>
+        More moderate — fewer extreme scores due to verification barrier
+      </div>
+      <div class="platform-stat stat-bk">
+        <strong>Management Response</strong>
+        Appears directly beneath verified review — carries additional credibility weight (Kirilenko et al., 2024)
+      </div>
+    </article>
+
+    <article class="platform-card" role="listitem" aria-label="Google Reviews platform overview">
+      <span class="platform-badge badge-semi">Semi-Open Platform</span>
+      <h2 class="platform-name gg">Google Reviews</h2>
+      <p class="platform-scale">Rating scale: 1–5 stars</p>
+      <p class="platform-desc">Accessible to any Google account holder, loosely tied to location check-ins and local search behaviour. Sits between open and closed models in both verification stringency and rating patterns.</p>
+      <div class="platform-stat stat-gg">
+        <strong>Review Access</strong>
+        Any Google account holder — loose location check-in tie
+      </div>
+      <div class="platform-stat stat-gg">
+        <strong>Rating Distribution</strong>
+        Intermediate — between TripAdvisor and Booking.com patterns
+      </div>
+      <div class="platform-stat stat-gg">
+        <strong>Integration</strong>
+        Tied to local search; high visibility for non-travel-specific consumers
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- RATING DIVERGENCE VISUALISATION -->
+<section aria-labelledby="divergence-heading">
+  <p class="section-label" id="divergence-heading">Rating Divergence in Practice</p>
+  <p class="divergence-intro">
+    Kirilenko et al. (2024) found systematic divergence in star ratings, sentiment, and topic focus across platforms for the same hotels — particularly between open and closed review systems. The examples below illustrate the scale of discrepancy that can exist for a single property.
+  </p>
+
+  <!-- Hypothetical illustrative examples based on Kirilenko et al. (2024) patterns -->
+  <div role="img" aria-label="Bar chart showing illustrative rating divergence for three hypothetical hotel types. A budget hotel shows TripAdvisor 3.6, Booking.com 7.4 of 10 (equivalent 3.7 of 5), Google 3.9. A mid-range hotel shows TripAdvisor 4.0, Booking.com 8.2 of 10 (equivalent 4.1 of 5), Google 4.2. A luxury hotel shows TripAdvisor 4.3, Booking.com 9.0 of 10 (equivalent 4.5 of 5), Google 4.4. Data patterns consistent with Kirilenko et al. 2024.">
+
+    <div class="hotel-example">
+      <p class="hotel-name">Illustrative Example A — Budget Property</p>
+      <div class="rating-bars">
+        <div class="rating-row">
+          <span class="rating-label">TripAdvisor</span>
+          <div class="rating-bar-track"><div class="rating-bar-fill fill-ta" data-width="72" style="width:0%"></div></div>
+          <span class="rating-value">3.6 / 5</span>
+        </div>
+        <div class="rating-row">
+          <span class="rating-label">Booking.com</span>
+          <div class="rating-bar-track"><div class="rating-bar-fill fill-bk" data-width="74" style="width:0%"></div></div>
+          <span class="rating-value">7.4 / 10</span>
+        </div>
+        <div class="rating-row">
+          <span class="rating-label">Google</span>
+          <div class="rating-bar-track"><div class="rating-bar-fill fill-gg" data-width="78" style="width:0%"></div></div>
+          <span class="rating-value">3.9 / 5</span>
+        </div>
+      </div>
+      <p class="divergence-note">Illustrative only — consistent with divergence patterns documented by Kirilenko et al. (2024). Not from a real property.</p>
+    </div>
+
+    <div class="hotel-example">
+      <p class="hotel-name">Illustrative Example B — Mid-Range Property</p>
+      <div class="rating-bars">
+        <div class="rating-row">
+          <span class="rating-label">TripAdvisor</span>
+          <div class="rating-bar-track"><div class="rating-bar-fill fill-ta" data-width="80" style="width:0%"></div></div>
+          <span class="rating-value">4.0 / 5</span>
+        </div>
+        <div class="rating-row">
+          <span class="rating-label">Booking.com</span>
+          <div class="rating-bar-track"><div class="rating-bar-fill fill-bk" data-width="84" style="width:0%"></div></div>
+          <span class="rating-value">8.4 / 10</span>
+        </div>
+        <div class="rating-row">
+          <span class="rating-label">Google</span>
+          <div class="rating-bar-track"><div class="rating-bar-fill fill-gg" data-width="84" style="width:0%"></div></div>
+          <span class="rating-value">4.2 / 5</span>
+        </div>
+      </div>
+      <p class="divergence-note">Illustrative only — consistent with divergence patterns documented by Kirilenko et al. (2024). Not from a real property.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- RATING DISTRIBUTION TYPES -->
+<section aria-labelledby="dist-heading" style="margin-top:40px; margin-bottom:48px;">
+  <p class="section-label" id="dist-heading">Rating Distribution Patterns by Platform Type</p>
+  <div class="dist-grid">
+
+    <div class="dist-card" aria-label="Open platform bimodal distribution chart. High bars at 1 star and 5 stars, low bars in the middle. Represents TripAdvisor-type platforms.">
+      <h3 class="dist-title">Open Platforms</h3>
+      <p class="dist-subtitle">e.g. TripAdvisor</p>
+      <div class="dist-chart" aria-hidden="true">
+        <div class="dist-bar" style="height:75%; background:#00AA6C; opacity:0.9;"></div>
+        <div class="dist-bar" style="height:20%; background:#00AA6C; opacity:0.5;"></div>
+        <div class="dist-bar" style="height:15%; background:#00AA6C; opacity:0.5;"></div>
+        <div class="dist-bar" style="height:18%; background:#00AA6C; opacity:0.5;"></div>
+        <div class="dist-bar" style="height:80%; background:#00AA6C; opacity:0.9;"></div>
+      </div>
+      <div class="dist-labels" aria-hidden="true">
+        <span>1★</span><span>2★</span><span>3★</span><span>4★</span><span>5★</span>
+      </div>
+      <p class="dist-desc"><strong>Bimodal distribution.</strong> Extreme ratings (1★ and 5★) are overrepresented. Highly motivated reviewers — those with strong positive or negative experiences — disproportionately shape the overall picture. Over time, a U-shape emerges (Kirilenko et al., 2024).</p>
+    </div>
+
+    <div class="dist-card" aria-label="Closed platform moderate distribution chart. Bars form a bell-curve shape centred on 4 stars. Represents Booking.com-type platforms.">
+      <h3 class="dist-title">Closed Platforms</h3>
+      <p class="dist-subtitle">e.g. Booking.com</p>
+      <div class="dist-chart" aria-hidden="true">
+        <div class="dist-bar" style="height:15%; background:#003580; opacity:0.6;"></div>
+        <div class="dist-bar" style="height:30%; background:#003580; opacity:0.7;"></div>
+        <div class="dist-bar" style="height:55%; background:#003580; opacity:0.8;"></div>
+        <div class="dist-bar" style="height:75%; background:#003580; opacity:0.9;"></div>
+        <div class="dist-bar" style="height:45%; background:#003580; opacity:0.75;"></div>
+      </div>
+      <div class="dist-labels" aria-hidden="true">
+        <span>1★</span><span>2★</span><span>3★</span><span>4★</span><span>5★</span>
+      </div>
+      <p class="dist-desc"><strong>More moderate distribution.</strong> Verification requirement filters out the least engaged and most adversarial reviewers. Ratings cluster more toward the middle-to-upper range. Platform credibility is higher but volume is lower (Kirilenko et al., 2024).</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section aria-labelledby="table-heading">
+  <p class="section-label" id="table-heading">Structural Factor Comparison</p>
+  <table class="factors-table" aria-label="Comparison of structural factors across TripAdvisor, Booking.com, and Google Reviews">
+    <thead>
+      <tr>
+        <th scope="col">Factor</th>
+        <th scope="col">TripAdvisor</th>
+        <th scope="col">Booking.com</th>
+        <th scope="col">Google Reviews</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="td-factor">Booking verification required</td>
+        <td><span class="cross">✗ No</span></td>
+        <td><span class="check">✓ Yes</span></td>
+        <td><span class="partial">~ Loose</span></td>
+      </tr>
+      <tr>
+        <td class="td-factor">Rating scale</td>
+        <td>1–5 bubbles</td>
+        <td>1–10 numeric</td>
+        <td>1–5 stars</td>
+      </tr>
+      <tr>
+        <td class="td-factor">Distribution type</td>
+        <td>Bimodal (U-shaped)</td>
+        <td>Moderate (bell-shaped)</td>
+        <td>Intermediate</td>
+      </tr>
+      <tr>
+        <td class="td-factor">Vulnerability to manipulation</td>
+        <td><span class="cross">High</span></td>
+        <td><span class="check">Lower</span></td>
+        <td><span class="partial">Moderate</span></td>
+      </tr>
+      <tr>
+        <td class="td-factor">Management response visibility</td>
+        <td>Visible</td>
+        <td>Below verified review</td>
+        <td>Public</td>
+      </tr>
+      <tr>
+        <td class="td-factor">Primary audience</td>
+        <td>Travel community</td>
+        <td>Booking-intent consumers</td>
+        <td>General public / search</td>
+      </tr>
+      <tr>
+        <td class="td-factor">Scale differences affect comparison</td>
+        <td colspan="3" style="text-align:center; font-style:italic; color:var(--ink-light);">Yes — Booking.com's 1–10 scale is not directly comparable to 1–5 scales. Xiang et al. (2017) caution against treating data from different platforms as equivalent.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- TAKEAWAY -->
+<section aria-labelledby="takeaway-heading">
+  <div class="takeaway-box">
+    <span class="takeaway-label" id="takeaway-heading">Research Synthesis</span>
+    <p class="takeaway-text">
+      Treating review data from different platforms as equivalent is <em>methodologically and practically unjustified</em> (Xiang et al., 2017). While Xiang et al. established that platforms differ in linguistic characteristics, sentiment, and topic focus, Kirilenko et al. (2024) extended this finding temporally — showing that divergence is not static but shifts as platforms update their algorithms. For consumers navigating multiple platforms simultaneously, this creates an interpretive challenge that can erode trust in the review process itself, not just in individual properties.
+    </p>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section aria-labelledby="refs-heading">
+  <p class="section-label" id="refs-heading">Sources</p>
+  <div class="ref-list">
+    <p>Kirilenko, A., Stepchenkova, S., Gromoll, R., &amp; Jo, Y. (2024). Comprehensive examination of online reviews divergence over time and platform types. <em>International Journal of Hospitality Management, 117</em>(103647). <a href="https://doi.org/10.1016/j.ijhm.2023.103647" rel="noopener" target="_blank">https://doi.org/10.1016/j.ijhm.2023.103647</a></p>
+    <p>TripAdvisor. (2025). <em>Tripadvisor transparency report 2025.</em> <a href="https://www.tripadvisor.com/TransparencyReport2025" rel="noopener" target="_blank">https://www.tripadvisor.com/TransparencyReport2025</a></p>
+    <p>Xiang, Z., Du, Q., Ma, Y., &amp; Fan, W. (2017). A comparative analysis of major online review platforms: Implications for social media analytics in hospitality and tourism. <em>Tourism Management, 58</em>, 51–65. <a href="https://doi.org/10.1016/j.tourman.2016.10.001" rel="noopener" target="_blank">https://doi.org/10.1016/j.tourman.2016.10.001</a></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="ig-footer" role="contentinfo">
+  <div class="ig-footer-left">
+    <strong>Md Ashikur Rahman</strong> · NF1000759<br>
+    MA Digital Media and Global Communications · University of Niagara Falls Canada<br>
+    DMGC 699 Capstone · Spring 2026 · Supervised by Raquel Benitez Rojas
+  </div>
+  <div class="ig-footer-right">
+    Infographic 1 of 2<br>
+    Rahman_Ashikur_DMGC699_Assignment2
+  </div>
+</footer>
+
+</main>
+
+<script>
+// Animate rating bars on scroll
+const bars = document.querySelectorAll('.rating-bar-fill');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const bar = entry.target;
+      const w = bar.getAttribute('data-width');
+      bar.style.width = w + '%';
+      observer.unobserve(bar);
+    }
+  });
+}, { threshold: 0.3 });
+bars.forEach(b => observer.observe(b));
+
+// Skip link focus fix
+document.getElementById('skip-link').addEventListener('focus', function() {
+  this.style.cssText = 'position:static;width:auto;height:auto;overflow:visible;padding:8px 16px;background:var(--navy);color:white;z-index:9999;';
+});
+document.getElementById('skip-link').addEventListener('blur', function() {
+  this.style.cssText = 'position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;';
+});
+</script>
+</body>
+</html>
