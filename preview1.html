@@ -248,7 +248,7 @@ body {
 
 .rating-row {
   display: grid;
-  grid-template-columns: 120px 1fr 60px;
+  grid-template-columns: 120px 1fr 88px;
   align-items: center;
   gap: 12px;
 }
@@ -285,6 +285,7 @@ body {
   font-weight: 500;
   color: var(--navy);
   text-align: right;
+  white-space: nowrap;
 }
 
 .divergence-note {
@@ -475,10 +476,17 @@ body {
   margin-bottom: 32px;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .bar-fill, .rating-bar-fill, .donut-fill {
+    transition: none;
+    width: var(--final-width, 0%);
+  }
+}
+
 @media (max-width: 700px) {
   .platform-grid { grid-template-columns: 1fr; }
   .dist-grid { grid-template-columns: 1fr; }
-  .rating-row { grid-template-columns: 90px 1fr 48px; }
+  .rating-row { grid-template-columns: 90px 1fr 76px; }
   .ig-title { font-size: 26px; }
 }
 </style>
@@ -532,6 +540,10 @@ body {
 </section>
 
 <!-- PLATFORM CARDS -->
+<div style="border-left:3px solid var(--navy);padding:12px 20px;margin-bottom:24px;background:var(--navy-light);">
+  <p style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-light);margin-bottom:6px;">Central Research Question</p>
+  <p style="font-family:'Lora',serif;font-size:14px;color:var(--navy);font-style:italic;line-height:1.6;">To what extent do multi-platform rating discrepancies function as a barrier to consumer trust, and how does the presence of synthetic (AI) content complicate the user's interpretive framework?</p>
+</div>
 <section aria-labelledby="platforms-heading">
   <p style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--navy);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;font-weight:600;">Addresses Sub-Question 1 — Structural &amp; Algorithmic Factors</p>
   <p class="section-label" id="platforms-heading">How Each Platform Works</p>
@@ -775,6 +787,23 @@ body {
     <p>Xiang, Z., Du, Q., Ma, Y., &amp; Fan, W. (2017). A comparative analysis of major online review platforms: Implications for social media analytics in hospitality and tourism. <em>Tourism Management, 58</em>, 51–65. <a href="https://doi.org/10.1016/j.tourman.2016.10.001" rel="noopener" target="_blank">https://doi.org/10.1016/j.tourman.2016.10.001</a></p>
   </div>
 </section>
+
+<div style="border-top:1px solid var(--border); padding-top:24px; margin-top:40px; margin-bottom:32px; display:flex; justify-content:flex-end;">
+  <a href="preview2.html" aria-label="Continue to Infographic 2" style="
+    display:inline-block;
+    padding:10px 18px;
+    background:#1E3A5F;
+    color:#FFFFFF;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    text-decoration:none;
+    border-radius:4px;
+  ">
+    Continue to Infographic 2 &rarr;
+  </a>
+</div>
 
 <!-- FOOTER -->
 <footer class="ig-footer" role="contentinfo">
