@@ -513,6 +513,13 @@ body {
   margin-bottom: 32px;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .bar-fill, .rating-bar-fill, .donut-fill {
+    transition: none;
+    width: var(--final-width, 0%);
+  }
+}
+
 @media (max-width: 700px) {
   .stat-strip { grid-template-columns: repeat(2, 1fr); }
   .removal-grid { grid-template-columns: 1fr; }
@@ -768,6 +775,23 @@ body {
     <p>Wu, Y., Ngai, E. W., Wu, P., &amp; Wu, C. (2020). Fake online reviews: Literature review, synthesis, and directions for future research. <em>Decision Support Systems, 132</em>, 113280. <a href="https://doi.org/10.1016/j.dss.2020.113280" rel="noopener" target="_blank">https://doi.org/10.1016/j.dss.2020.113280</a></p>
   </div>
 </section>
+
+<div style="border-top:1px solid var(--border); padding-top:24px; margin-top:40px; margin-bottom:32px; display:flex; justify-content:flex-end;">
+  <a href="preview1.html" aria-label="Return to Infographic 1" style="
+    display:inline-block;
+    padding:10px 18px;
+    background:#1E3A5F;
+    color:#FFFFFF;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    text-decoration:none;
+    border-radius:4px;
+  ">
+    &larr; Return to Infographic 1
+  </a>
+</div>
 
 <!-- FOOTER -->
 <footer class="ig-footer" role="contentinfo">
