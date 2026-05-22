@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Read Beyond the Stars | Social Media Posts Series / Campaign</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+:root{
+  --white:#FFFFFF;--off:#F7F8FA;--border:#E2E6ED;--border2:#C8D0DB;
+  --ink:#111827;--mid:#374151;--light:#6B7280;--faint:#9CA3AF;
+  --navy:#1E3A5F;--navy2:#2D5282;--navyl:#EBF0F7;
+  --gold:#B07D2A;--goldl:#FDF6E3;--danger:#DC2626;--dangerl:#FEF2F2;
+  --green:#047857;--greenl:#ECFDF5;--blue:#0A66C2;
+  --post-h:520px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Source Sans 3",sans-serif;background:var(--white);color:var(--ink);line-height:1.6;max-width:1200px;margin:0 auto;padding:40px 24px 80px}
+.skip{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip:focus{position:static;width:auto;height:auto;padding:8px 16px;background:var(--navy);color:white;display:inline-block;margin-bottom:12px}
+.header{border-top:4px solid var(--navy);padding-top:32px;margin-bottom:40px}
+.eyebrow{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--light);margin-bottom:16px}
+h1{font-family:"Lora",serif;font-size:42px;line-height:1.15;color:var(--navy);margin-bottom:12px}
+h1 em{color:var(--gold);font-style:italic}
+.subtitle{font-size:18px;color:var(--mid);max-width:760px;margin-bottom:24px}
+.source-note{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--light);letter-spacing:1px;border-left:3px solid var(--gold);padding-left:12px}
+.section-label{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--light);margin:48px 0 20px;display:flex;align-items:center;gap:12px}
+.section-label::after{content:"";flex:1;height:1px;background:var(--border)}
+.campaign-box{background:var(--navyl);border-left:4px solid var(--navy);padding:20px 24px;margin-bottom:32px}
+.campaign-box h2{font-family:"Lora",serif;color:var(--navy);font-size:20px;margin-bottom:8px}
+.campaign-box p{color:var(--mid);font-size:15px}
+.strategy-grid,.access-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:24px}
+.strategy-card,.access-card{background:white;padding:22px 20px}
+.strategy-card strong,.access-card h3{display:block;color:var(--navy);font-family:"Lora",serif;font-size:16px;margin-bottom:6px}
+.strategy-card p,.access-card p{font-size:13px;color:var(--mid)}
+.post-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:stretch}
+.asset-card{display:flex;flex-direction:column;gap:12px}
+.download-btn{border:0;background:var(--navy);color:#fff;padding:10px 14px;border-radius:8px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;cursor:pointer}
+.download-btn:hover,.download-btn:focus{background:#142D4A;outline:3px solid var(--goldl)}
+
+/* Device shell */
+.device-shell{border:1px solid #0F172A;border-radius:34px;padding:14px;background:#111827;box-shadow:0 18px 42px rgba(17,24,39,.16);height:100%}
+.ig-post{background:white;border-radius:22px;overflow:hidden;color:var(--ink);height:100%;display:flex;flex-direction:column}
+.ig-status{height:24px;padding:5px 16px 0;display:flex;justify-content:space-between;align-items:center;font-family:"JetBrains Mono",monospace;font-size:9px;color:#111827;flex-shrink:0}
+.ig-status-icons{letter-spacing:2px}
+.ig-profile{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--border);flex-shrink:0}
+.ig-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--gold));display:flex;align-items:center;justify-content:center;color:white;font-family:"Lora",serif;font-weight:700;font-size:13px;flex-shrink:0}
+.ig-meta{flex:1}.ig-handle{font-weight:700;font-size:13px;color:var(--ink);line-height:1.1}.ig-location{font-size:11px;color:var(--light);line-height:1.1}.ig-menu{font-weight:700;color:var(--light)}
+.ig-creative{height:var(--post-h);padding:22px;display:flex;flex-direction:column;justify-content:flex-start;position:relative;overflow:hidden;flex-shrink:0}
+.visual-navy{background:linear-gradient(145deg,#EBF0F7,#DDEAF8)}
+.visual-danger{background:linear-gradient(145deg,#FEF2F2,#FFE4E4)}
+.visual-gold{background:linear-gradient(145deg,#FDF6E3,#FAF0C8)}
+.visual-green{background:linear-gradient(145deg,#ECFDF5,#D1FAE5)}
+.visual-dark{background:linear-gradient(145deg,#1E3A5F,#0F2040)}
+
+/* Post number badge */
+.post-badge{position:absolute;top:14px;left:14px;background:var(--navy);color:white;font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:1px;padding:3px 8px;border-radius:20px;z-index:10;text-transform:uppercase}
+.visual-dark .post-badge{background:rgba(255,255,255,.15);color:rgba(255,255,255,.9)}
+
+.post-title{font-family:"Lora",serif;color:var(--navy);font-size:22px;line-height:1.15;margin-bottom:10px;position:relative;z-index:2;margin-top:28px}
+.visual-dark .post-title{color:white}
+.post-title .gold{color:var(--gold)}
+.post-title .red{color:var(--danger)}
+.post-copy{color:var(--mid);font-size:13px;line-height:1.4;position:relative;z-index:2;margin-bottom:10px}
+.visual-dark .post-copy{color:rgba(255,255,255,.75)}
+
+.ig-actions{display:flex;justify-content:space-between;align-items:center;padding:10px 14px 2px;font-size:20px;flex-shrink:0}
+.ig-left-actions{display:flex;gap:13px}.ig-likes{padding:0 14px;font-size:13px;font-weight:700;color:var(--ink);flex-shrink:0}
+.ig-caption{padding:5px 14px 12px;font-size:12px;color:var(--mid);line-height:1.35;flex-shrink:0}
+.ig-caption strong{color:var(--ink)}.ig-tags{color:var(--navy)}
+
+/* Alt text */
+.alt-text{background:var(--off);border:1px solid var(--border);padding:12px;font-size:12px;color:var(--mid);border-radius:8px}
+.alt-text strong{display:block;font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:1.5px;color:var(--navy);text-transform:uppercase;margin-bottom:4px}
+
+/* LinkedIn */
+.linkedin-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.linkedin-frame{border:1px solid var(--border);background:#F3F2EF;border-radius:14px;padding:18px;box-shadow:0 16px 38px rgba(17,24,39,.10);height:100%}
+.linkedin-post{background:white;border:1px solid #D6D9DC;border-radius:12px;overflow:hidden;height:100%;display:flex;flex-direction:column}
+.li-header{display:flex;align-items:center;gap:12px;padding:16px 18px 8px;position:relative}
+.li-avatar{width:48px;height:48px;border-radius:50%;background:var(--blue);color:white;display:flex;align-items:center;justify-content:center;font-family:"Lora",serif;font-weight:700;flex-shrink:0}
+.li-meta{flex:1}.li-name{font-weight:700;color:var(--ink);line-height:1.15}.li-role,.li-time{font-size:12px;color:var(--light);line-height:1.2}.li-menu{font-weight:700;color:var(--light)}
+.li-post-badge{background:var(--navy);color:white;font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:1px;padding:3px 8px;border-radius:20px;text-transform:uppercase;white-space:nowrap}
+.li-body{padding:8px 18px 14px}.li-body p{font-size:14px;color:var(--ink);margin-bottom:10px;line-height:1.45}
+.li-visual{margin:0 18px 14px;border:1px solid var(--border);border-radius:10px;padding:16px;background:linear-gradient(145deg,#EBF0F7,#DDEAF8);position:relative;overflow:hidden;min-height:180px}
+.li-visual h3{font-family:"Lora",serif;color:var(--navy);font-size:18px;line-height:1.2;margin-bottom:8px;position:relative;z-index:2}
+.li-visual p{position:relative;z-index:2;font-size:13px;color:var(--mid)}
+.li-callout{border-left:3px solid var(--gold);background:var(--goldl);padding:10px 12px;color:#5F3B05;font-size:13px;margin-top:10px;position:relative;z-index:2;border-radius:0 6px 6px 0}
+.li-engagement{display:flex;justify-content:space-between;border-top:1px solid var(--border);padding:8px 18px;color:var(--light);font-size:12px;margin-top:auto}
+.li-actions{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);color:var(--mid);font-size:13px;text-align:center}
+.li-actions span{padding:10px 4px}
+
+/* SVG charts shared */
+svg{display:block;position:relative;z-index:2}
+
+/* accessibility */
+.access-grid{grid-template-columns:repeat(3,1fr)}
+.refs{font-size:12px;color:var(--light);line-height:1.8}
+.footer{border-top:1px solid var(--border);margin-top:52px;padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--light);font-size:12px}
+
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+@media(max-width:980px){.strategy-grid,.post-grid,.linkedin-grid,.access-grid{grid-template-columns:1fr}h1{font-size:32px}.device-shell{max-width:420px;margin:0 auto;width:100%}}
+
+/* FINAL ALIGNMENT + COLOR CLEANUP */
+.post-grid { align-items: stretch; }
+.asset-card { height: 100%; }
+.device-shell { height: 810px; display: flex; }
+.ig-post { height: 100%; width: 100%; }
+.ig-creative { height: 520px; }
+.ig-caption { min-height: 92px; }
+.download-btn { margin-top: auto; width: 100%; }
+.ig-actions, .ig-actions span {
+  color: var(--navy) !important;
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 600;
+}
+.ig-actions .bookmark-icon { margin-left: auto; }
+.action-icon {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  align-items: center;
+  justify-content: center;
+  color: var(--navy);
+  line-height: 1;
+}
+.action-icon.comment-icon {
+  border: 1.8px solid var(--navy);
+  border-radius: 50%;
+  font-size: 0;
+  position: relative;
+}
+.action-icon.comment-icon::after {
+  content: "";
+  position: absolute;
+  right: 2px;
+  bottom: 1px;
+  width: 6px;
+  height: 6px;
+  border-right: 1.8px solid var(--navy);
+  border-bottom: 1.8px solid var(--navy);
+  transform: rotate(35deg);
+  background: white;
+}
+.action-icon.bookmark-icon {
+  width: 18px;
+  height: 22px;
+  border: 1.8px solid var(--navy);
+  border-radius: 2px 2px 4px 4px;
+  clip-path: polygon(0 0,100% 0,100% 100%,50% 78%,0 100%);
+  font-size:0;
+}
+.action-icon.share-icon { font-size: 22px; transform: translateY(-1px); }
+.action-icon.heart-icon { font-size: 24px; transform: translateY(-1px); }
+.visual-danger { background: linear-gradient(145deg,#FFF7F7,#FFECEC); }
+.visual-gold { background: linear-gradient(145deg,#FFF9E8,#F6E7B9); }
+.visual-green { background: linear-gradient(145deg,#F0FDF4,#DDFCEB); }
+.visual-navy { background: linear-gradient(145deg,#F3F6FB,#DDEAF8); }
+.visual-dark { background: linear-gradient(145deg,#1E3A5F,#102642); }
+.post-badge { background: var(--navy); color: #FFFFFF; }
+.visual-danger .post-badge { background: var(--danger); }
+.visual-gold .post-badge { background: var(--gold); color:#FFFFFF; }
+.visual-green .post-badge { background: var(--green); }
+@media(max-width:980px){
+  .device-shell { height: auto; min-height: 810px; }
+}
+
+
+/* FINAL FIX ROUND 2 */
+.post-grid {
+  align-items: stretch !important;
+}
+.asset-card {
+  display: grid !important;
+  grid-template-rows: auto auto 1fr !important;
+  height: 100% !important;
+}
+.device-shell {
+  height: 780px !important;
+  display: flex !important;
+}
+.ig-post {
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+.ig-creative {
+  height: 490px !important;
+  justify-content: flex-start !important;
+  padding-bottom: 14px !important;
+}
+.ig-caption {
+  min-height: 82px !important;
+  max-height: 96px !important;
+  overflow: hidden !important;
+}
+.download-btn {
+  align-self: stretch !important;
+  margin-top: 0 !important;
+}
+.alt-text {
+  align-self: start !important;
+}
+.visual-dark .post-title,
+.visual-dark .post-copy,
+.visual-dark text[fill="white"],
+.visual-dark text[fill="rgba(255,255,255,0.9)"] {
+  color: #F8FAFC !important;
+}
+.visual-dark .post-title {
+  color: #F8FAFC !important;
+}
+.visual-dark .post-copy {
+  color: #E5E7EB !important;
+}
+/* Make dark posts readable but less harsh than pure white */
+#ig-8 .post-title,
+#ig-9 .post-title {
+  color: #F5E6C0 !important;
+}
+#ig-8 .post-title span,
+#ig-9 .post-title span {
+  color: #FFFFFF !important;
+}
+/* LinkedIn visual cleanup */
+#li-1 .li-visual text:last-of-type,
+#li-1 .li-visual text:nth-last-of-type(2) {
+  display: none;
+}
+@media(max-width:980px){
+  .device-shell { height: auto !important; min-height: 760px !important; }
+}
+
+
+/* FINAL FIX ROUND 3: spacing + visibility */
+.device-shell {
+  height: 745px !important;
+}
+.ig-creative {
+  height: 455px !important;
+  padding: 18px 20px 10px !important;
+}
+.post-title {
+  margin-top: 22px !important;
+  margin-bottom: 8px !important;
+}
+.post-copy {
+  margin-bottom: 6px !important;
+}
+.ig-caption {
+  min-height: 72px !important;
+  max-height: 82px !important;
+  padding-bottom: 8px !important;
+  font-size: 11.5px !important;
+}
+.ig-actions {
+  padding-top: 7px !important;
+}
+.ig-likes {
+  font-size: 12px !important;
+}
+.ig-status {
+  height: 22px !important;
+}
+.ig-profile {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+.post-badge {
+  top: 10px !important;
+}
+svg {
+  max-height: 100%;
+}
+.visual-dark,
+#ig-8 .ig-creative,
+#ig-9 .ig-creative {
+  background: linear-gradient(145deg,#F3F6FB,#DDEAF8) !important;
+}
+#ig-8 .post-title,
+#ig-9 .post-title,
+#ig-8 .post-copy,
+#ig-9 .post-copy {
+  color: var(--navy) !important;
+}
+#ig-8 .post-title span,
+#ig-9 .post-title span {
+  color: var(--gold) !important;
+}
+@media(max-width:980px){
+  .device-shell { min-height: 735px !important; }
+}
+
+
+/* FINAL FIX ROUND 4: L1 spacing + normalized rating bars */
+#ig-1 .ig-creative {
+  padding-top: 24px !important;
+}
+#ig-1 .post-title {
+  margin-top: 28px !important;
+  margin-bottom: 16px !important;
+}
+#ig-1 .post-copy {
+  margin-bottom: 14px !important;
+  line-height: 1.55 !important;
+}
+#ig-1 svg {
+  margin-top: 10px !important;
+  margin-bottom: 14px !important;
+}
+#ig-1 .ig-creative .post-copy:last-child {
+  margin-top: 14px !important;
+}
+
+
+/* FINAL LABEL + POST 6 TEXT FIT */
+.ig-location::after {
+  content: "";
+}
+#ig-6 svg text {
+  dominant-baseline: auto;
+}
+
+
+/* FINAL FACULTY CHECK FIXES */
+.action-icon.comment-icon {
+  border: none !important;
+  border-radius: 0 !important;
+  font-size: 20px !important;
+  position: static !important;
+}
+.action-icon.comment-icon::after {
+  content: none !important;
+}
+.action-icon.bookmark-icon {
+  clip-path: none !important;
+  border: none !important;
+  font-size: 20px !important;
+  width: 22px !important;
+  height: 22px !important;
+}
+.ig-actions .comment-icon::before {
+  content: "💬";
+}
+.ig-actions .bookmark-icon::before {
+  content: "🔖";
+}
+.ig-actions, .ig-actions span {
+  color: var(--navy) !important;
+}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main-content">Skip to main content</a>
+<main id="main-content">
+<header class="header">
+<p class="eyebrow">DMGC 699 Capstone · Spring 2026 · Multimedia Deliverable · Social Media Posts Series / Campaign</p>
+<h1><em>Read Beyond the Stars</em></h1>
+<p class="subtitle">A social media posts series for Instagram, Facebook, and LinkedIn promoting ethical review practices for consumers and hospitality businesses.</p>
+<p class="source-note">Primary sources: Xiang et al. (2017) · Kirilenko et al. (2024) · Wu et al. (2020) · TripAdvisor (2025) · Originality.AI (2024)</p>
+</header>
+
+<section class="campaign-box" aria-labelledby="campaign-overview">
+<h2 id="campaign-overview">Campaign Strategy</h2>
+<p><strong>Read Beyond the Stars</strong> translates the capstone research into short, accessible social media posts for two audiences: consumers deciding whether to trust online reviews, and hospitality professionals managing digital reputation. The series is designed with flexible post formats suitable for Instagram, Facebook, LinkedIn, and other visual-first social platforms, creating a cohesive campaign that can reach both everyday travellers and industry professionals.</p>
+</section>
+
+<section aria-labelledby="strategy">
+<p class="section-label" id="strategy">Campaign Architecture</p>
+<div class="strategy-grid">
+<div class="strategy-card"><strong>Audience</strong><p>Travellers, hotel managers, tourism marketers, and digital communication practitioners.</p></div>
+<div class="strategy-card"><strong>Purpose</strong><p>Build review literacy while discouraging fake review inflation and manipulative reputation practices.</p></div>
+<div class="strategy-card"><strong>Platforms</strong><p>Social media posts for public education and professional awareness across Instagram, Facebook, LinkedIn, and other visual-first platforms.</p></div>
+<div class="strategy-card"><strong>Core Message</strong><p>Ratings are not neutral. Platform structure, fake reviews, and management responses shape trust.</p></div>
+</div>
+</section>
+
+<!-- ========== INSTAGRAM ========== -->
+<section aria-labelledby="instagram">
+<p class="section-label" id="instagram">Social Media Posts — Consumer Education (Posts 1–3)</p>
+<div class="post-grid">
+
+<!-- IG POST 1 -->
+<article class="asset-card">
+<div class="device-shell"><div class="ig-post" id="ig-1">
+<div class="ig-status"><span>9:41</span><span class="ig-status-icons">●●●</span></div>
+<div class="ig-profile"><div class="ig-avatar">RB</div><div class="ig-meta"><p class="ig-handle">readbeyondthestars</p><p class="ig-location">Hospitality review literacy</p></div><div class="ig-menu">•••</div></div>
+<div class="ig-creative visual-navy">
+  <span class="post-badge">Post 01</span>
+  <h2 class="post-title">Same hotel.<br><span class="gold">Three ratings.</span></h2>
+  <p class="post-copy">Sheraton Fallsview, Niagara Falls. One stay. Three platforms. Three different scores. Here's why.</p>
+  <!-- SVG: platform comparison bars -->
+  <svg width="100%" height="160" viewBox="0 0 280 160" aria-hidden="true" style="margin-top:4px">
+    <!-- TripAdvisor row -->
+    <rect x="0" y="8" width="280" height="40" rx="8" fill="white" fill-opacity="0.85"/>
+    <text x="12" y="33" font-family="JetBrains Mono" font-size="11" fill="#1E3A5F">TripAdvisor</text>
+    <rect x="150" y="16" width="96" height="24" rx="6" fill="#EBF0F7"/>
+    <rect x="150" y="16" width="72" height="24" rx="6" fill="#1E3A5F"/>
+    <text x="160" y="33" font-family="Lora" font-size="13" font-weight="700" fill="white">4.0 ★</text>
+    <text x="254" y="33" font-family="JetBrains Mono" font-size="9" fill="#6B7280">/ 5</text>
+    <!-- Booking.com row -->
+    <rect x="0" y="56" width="280" height="40" rx="8" fill="white" fill-opacity="0.85"/>
+    <text x="12" y="81" font-family="JetBrains Mono" font-size="11" fill="#1E3A5F">Booking.com</text>
+    <rect x="150" y="64" width="96" height="24" rx="6" fill="#EBF0F7"/>
+    <rect x="150" y="64" width="82" height="24" rx="6" fill="#047857"/>
+    <text x="160" y="81" font-family="Lora" font-size="13" font-weight="700" fill="white">8.2</text>
+    <text x="254" y="81" font-family="JetBrains Mono" font-size="9" fill="#6B7280">/ 10</text>
+    <!-- Google row -->
+    <rect x="0" y="104" width="280" height="40" rx="8" fill="white" fill-opacity="0.85"/>
+    <text x="12" y="129" font-family="JetBrains Mono" font-size="11" fill="#1E3A5F">Google</text>
+    <rect x="150" y="112" width="96" height="24" rx="6" fill="#EBF0F7"/>
+    <rect x="150" y="112" width="82" height="24" rx="6" fill="#B07D2A"/>
+    <text x="160" y="129" font-family="Lora" font-size="13" font-weight="700" fill="white">4.3 ★</text>
+    <text x="254" y="129" font-family="JetBrains Mono" font-size="9" fill="#6B7280">/ 5</text>
+  </svg>
+  <p class="post-copy" style="margin-top:8px;font-size:12px;">Different platforms, different reviewer populations.</p>
+</div>
+<div class="ig-actions"><div class="ig-left-actions"><span class="action-icon heart-icon">♡</span><span class="action-icon comment-icon" aria-hidden="true"></span><span class="action-icon share-icon">↗</span></div><span class="action-icon bookmark-icon" aria-hidden="true"></span></div>
+<div class="ig-likes">1,248 likes</div>
+<div class="ig-caption"><strong>readbeyondthestars</strong> Same hotel. Three platforms. Three different numbers. Before trusting a score, check the platform behind it. <span class="ig-tags">#OnlineReviews #TravelSmart #DigitalTrust</span></div>
+</div></div>
+<button class="download-btn" onclick="downloadPost('ig-1','ig-post01-platform-ratings.png')">↓ Download Post 01</button>
+<div class="alt-text"><strong>Alt text</strong> Instagram post showing three horizontal bar charts comparing TripAdvisor 4.0 stars, Booking.com 8.2 out of 10, and Google 4.3 stars for the same hotel, illustrating that platform structure affects scores.</div>
+</article>
+
+<!-- IG POST 2 -->
+<article class="asset-card">
+<div class="device-shell"><div class="ig-post" id="ig-2">
+<div class="ig-status"><span>9:41</span><span class="ig-status-icons">●●●</span></div>
+<div class="ig-profile"><div class="ig-avatar">RB</div><div class="ig-meta"><p class="ig-handle">readbeyondthestars</p><p class="ig-location">Platform structure explained</p></div><div class="ig-menu">•••</div></div>
+<div class="ig-creative visual-navy">
+  <span class="post-badge">Post 02</span>
+  <h2 class="post-title">Not all platforms are <span class="gold">built the same.</span></h2>
+  <p class="post-copy">Who can review changes everything.</p>
+  <!-- SVG: platform open/closed spectrum -->
+  <svg width="100%" height="200" viewBox="0 0 280 200" aria-hidden="true" style="margin-top:6px">
+    <!-- Column headers -->
+    <text x="10" y="16" font-family="JetBrains Mono" font-size="8" fill="#6B7280" letter-spacing="1">PLATFORM</text>
+    <text x="112" y="16" font-family="JetBrains Mono" font-size="8" fill="#6B7280" letter-spacing="1">ACCESS</text>
+    <text x="195" y="16" font-family="JetBrains Mono" font-size="8" fill="#6B7280" letter-spacing="1">RISK</text>
+    <line x1="0" y1="22" x2="280" y2="22" stroke="#E2E6ED" stroke-width="1"/>
+    <!-- TripAdvisor -->
+    <rect x="0" y="28" width="280" height="48" rx="6" fill="white" fill-opacity="0.9"/>
+    <text x="10" y="52" font-family="Source Sans 3" font-size="12" font-weight="600" fill="#1E3A5F">TripAdvisor</text>
+    <text x="10" y="66" font-family="Source Sans 3" font-size="10" fill="#6B7280">Open, no stay needed</text>
+    <rect x="110" y="36" width="60" height="20" rx="10" fill="#FECACA"/>
+    <text x="120" y="50" font-family="Source Sans 3" font-size="10" font-weight="600" fill="#DC2626">Open</text>
+    <rect x="192" y="36" width="52" height="20" rx="10" fill="#FEE2E2"/>
+    <text x="200" y="50" font-family="Source Sans 3" font-size="10" font-weight="600" fill="#DC2626">Higher</text>
+    <!-- Booking.com -->
+    <rect x="0" y="84" width="280" height="48" rx="6" fill="white" fill-opacity="0.9"/>
+    <text x="10" y="108" font-family="Source Sans 3" font-size="12" font-weight="600" fill="#047857">Booking.com</text>
+    <text x="10" y="122" font-family="Source Sans 3" font-size="10" fill="#6B7280">Verified stays only</text>
+    <rect x="110" y="92" width="60" height="20" rx="10" fill="#D1FAE5"/>
+    <text x="116" y="106" font-family="Source Sans 3" font-size="10" font-weight="600" fill="#047857">Closed</text>
+    <rect x="192" y="92" width="52" height="20" rx="10" fill="#D1FAE5"/>
+    <text x="202" y="106" font-family="Source Sans 3" font-size="10" font-weight="600" fill="#047857">Lower</text>
+    <!-- Google -->
+    <rect x="0" y="140" width="280" height="48" rx="6" fill="white" fill-opacity="0.9"/>
+    <text x="10" y="164" font-family="Source Sans 3" font-size="12" font-weight="600" fill="#B07D2A">Google</text>
+    <text x="10" y="178" font-family="Source Sans 3" font-size="10" fill="#6B7280">Any account, location-linked</text>
+    <rect x="110" y="148" width="60" height="20" rx="10" fill="#FDF6E3"/>
+    <text x="116" y="162" font-family="Source Sans 3" font-size="10" font-weight="600" fill="#B07D2A">Semi</text>
+    <rect x="192" y="148" width="52" height="20" rx="10" fill="#FDF6E3"/>
+    <text x="200" y="162" font-family="Source Sans 3" font-size="10" font-weight="600" fill="#B07D2A">Medium</text>
+  </svg>
+</div>
+<div class="ig-actions"><div class="ig-left-actions"><span class="action-icon heart-icon">♡</span><span class="action-icon comment-icon" aria-hidden="true"></span><span class="action-icon share-icon">↗</span></div><span class="action-icon bookmark-icon" aria-hidden="true"></span></div>
+<div class="ig-likes">874 likes</div>
+<div class="ig-caption"><strong>readbeyondthestars</strong> Booking.com only accepts verified stays. TripAdvisor accepts anyone. That's why the same hotel scores differently. <span class="ig-tags">#HotelReviews #TravelTips #PlatformLiteracy</span></div>
+</div></div>
+<button class="download-btn" onclick="downloadPost('ig-2','ig-post02-platform-structure.png')">↓ Download Post 02</button>
+<div class="alt-text"><strong>Alt text</strong> Instagram post showing a three-row comparison table of TripAdvisor, Booking.com, and Google reviews, indicating access type and manipulation risk level for each platform.</div>
+</article>
+
+<!-- IG POST 3 -->
+<article class="asset-card">
+<div class="device-shell"><div class="ig-post" id="ig-3">
+<div class="ig-status"><span>9:41</span><span class="ig-status-icons">●●●</span></div>
+<div class="ig-profile"><div class="ig-avatar">RB</div><div class="ig-meta"><p class="ig-handle">readbeyondthestars</p><p class="ig-location">Review literacy tips</p></div><div class="ig-menu">•••</div></div>
+<div class="ig-creative visual-gold">
+  <span class="post-badge">Post 03</span>
+  <h2 class="post-title">Read reviews<br>like a <span class="gold">researcher.</span></h2>
+  <p class="post-copy">Three checks before you trust a score.</p>
+  <!-- SVG: numbered checklist with icons -->
+  <svg width="100%" height="230" viewBox="0 0 280 230" aria-hidden="true" style="margin-top:6px">
+    <!-- Step 1 -->
+    <rect x="0" y="0" width="280" height="66" rx="10" fill="white" fill-opacity="0.92"/>
+    <circle cx="28" cy="33" r="18" fill="#1E3A5F"/>
+    <text x="24" y="38" font-family="Lora" font-size="16" font-weight="700" fill="white">1</text>
+    <text x="54" y="24" font-family="Source Sans 3" font-size="13" font-weight="600" fill="#1E3A5F">Cross-check platforms</text>
+    <text x="54" y="40" font-family="Source Sans 3" font-size="11" fill="#6B7280">Gap of 0.5+ stars? Investigate.</text>
+    <text x="54" y="55" font-family="JetBrains Mono" font-size="9" fill="#B07D2A">TA · Booking.com · Google</text>
+    <!-- Step 2 -->
+    <rect x="0" y="76" width="280" height="66" rx="10" fill="white" fill-opacity="0.92"/>
+    <circle cx="28" cy="109" r="18" fill="#B07D2A"/>
+    <text x="24" y="114" font-family="Lora" font-size="16" font-weight="700" fill="white">2</text>
+    <text x="54" y="100" font-family="Source Sans 3" font-size="13" font-weight="600" fill="#1E3A5F">Look for specifics</text>
+    <text x="54" y="116" font-family="Source Sans 3" font-size="11" fill="#6B7280">Names, dates, real incidents.</text>
+    <text x="54" y="131" font-family="JetBrains Mono" font-size="9" fill="#6B7280">Vague praise = red flag.</text>
+    <!-- Step 3 -->
+    <rect x="0" y="152" width="280" height="66" rx="10" fill="white" fill-opacity="0.92"/>
+    <circle cx="28" cy="185" r="18" fill="#047857"/>
+    <text x="24" y="190" font-family="Lora" font-size="16" font-weight="700" fill="white">3</text>
+    <text x="54" y="176" font-family="Source Sans 3" font-size="13" font-weight="600" fill="#1E3A5F">Read how they respond</text>
+    <text x="54" y="192" font-family="Source Sans 3" font-size="11" fill="#6B7280">Specific replies = accountability.</text>
+    <text x="54" y="207" font-family="JetBrains Mono" font-size="9" fill="#6b7280">Generic = trust less.</text>
+  </svg>
+</div>
+<div class="ig-actions"><div class="ig-left-actions"><span class="action-icon heart-icon">♡</span><span class="action-icon comment-icon" aria-hidden="true"></span><span class="action-icon share-icon">↗</span></div><span class="action-icon bookmark-icon" aria-hidden="true"></span></div>
+<div class="ig-likes">1,533 likes</div>
+<div class="ig-caption"><strong>readbeyondthestars</strong> A useful review is specific, recent, and consistent across platforms. Save this before your next hotel booking. <span class="ig-tags">#TravelTips #ReviewLiteracy #Hospitality</span></div>
+</div></div>
+<button class="download-btn" onclick="downloadPost('ig-3','ig-post03-review-literacy.png')">↓ Download Post 03</button>
+<div class="alt-text"><strong>Alt text</strong> Instagram post with three numbered steps for reading reviews critically: cross-check platforms for score gaps, look for specific details, and read how management responds.</div>
+</article>
+
+</div>
+</section>
+
+<!-- IG Posts 4-6 -->
+<section aria-labelledby="ig-data">
+<p class="section-label" id="ig-data">Social Media Posts — Fake Reviews &amp; Data (Posts 4–6)</p>
+<div class="post-grid">
+
+<!-- IG POST 4 -->
+<article class="asset-card">
+<div class="device-shell"><div class="ig-post" id="ig-4">
+<div class="ig-status"><span>9:41</span><span class="ig-status-icons">●●●</span></div>
+<div class="ig-profile"><div class="ig-avatar">RB</div><div class="ig-meta"><p class="ig-handle">readbeyondthestars</p><p class="ig-location">Fake review types</p></div><div class="ig-menu">•••</div></div>
+<div class="ig-creative visual-danger">
+  <span class="post-badge">Post 04</span>
+  <h2 class="post-title">Fake reviews come in <span class="red">three forms.</span></h2>
+  <p class="post-copy">Knowing the difference helps you spot them.</p>
+  <!-- SVG: three fake types as icon cards -->
+  <svg width="100%" height="225" viewBox="0 0 280 225" aria-hidden="true" style="margin-top:4px">
+    <!-- Boosting -->
+    <rect x="0" y="0" width="280" height="64" rx="10" fill="white" fill-opacity="0.9"/>
+    <rect x="0" y="0" width="6" height="64" rx="3" fill="#DC2626"/>
+    <text x="18" y="22" font-family="Source Sans 3" font-size="13" font-weight="700" fill="#DC2626">⚠ Boosting</text>
+    <text x="18" y="39" font-family="Source Sans 3" font-size="11" fill="#374151">Paid farms post sudden 5-star</text>
+    <text x="18" y="54" font-family="Source Sans 3" font-size="11" fill="#374151">clusters. Accounts have no history.</text>
+    <!-- Sabotage -->
+    <rect x="0" y="74" width="280" height="64" rx="10" fill="white" fill-opacity="0.9"/>
+    <rect x="0" y="74" width="6" height="64" rx="3" fill="#B07D2A"/>
+    <text x="18" y="96" font-family="Source Sans 3" font-size="13" font-weight="700" fill="#B07D2A">✕ Sabotage</text>
+    <text x="18" y="113" font-family="Source Sans 3" font-size="11" fill="#374151">Coordinated 1-star attacks on</text>
+    <text x="18" y="128" font-family="Source Sans 3" font-size="11" fill="#374151">competitor properties.</text>
+    <!-- AI Generated -->
+    <rect x="0" y="148" width="280" height="64" rx="10" fill="white" fill-opacity="0.9"/>
+    <rect x="0" y="148" width="6" height="64" rx="3" fill="#1E3A5F"/>
+    <text x="18" y="170" font-family="Source Sans 3" font-size="13" font-weight="700" fill="#1E3A5F">AI AI-Generated</text>
+    <text x="18" y="187" font-family="Source Sans 3" font-size="11" fill="#374151">Perfect grammar, no specifics,</text>
+    <text x="18" y="202" font-family="Source Sans 3" font-size="11" fill="#374151">oddly balanced tone. No real stay.</text>
+    <!-- stat -->
+  </svg>
+</div>
+<div class="ig-actions"><div class="ig-left-actions"><span class="action-icon heart-icon">♡</span><span class="action-icon comment-icon" aria-hidden="true"></span><span class="action-icon share-icon">↗</span></div><span class="action-icon bookmark-icon" aria-hidden="true"></span></div>
+<div class="ig-likes">986 likes</div>
+<div class="ig-caption"><strong>readbeyondthestars</strong> Fake reviews distort consumer trust and create unfair pressure on honest businesses. <span class="ig-tags">#FakeReviews #AIContent #ConsumerTrust</span></div>
+</div></div>
+<button class="download-btn" onclick="downloadPost('ig-4','ig-post04-fake-review-types.png')">↓ Download Post 04</button>
+<div class="alt-text"><strong>Alt text</strong> Instagram post listing three fake review types: review boosting with sudden 5-star clusters, competitor sabotage with coordinated 1-star attacks, and AI-generated reviews with no specific details, including a statistic that 54% of TripAdvisor removals in 2024 were boosting.</div>
+</article>
+
+<!-- IG POST 5 -->
+<article class="asset-card">
+<div class="device-shell"><div class="ig-post" id="ig-5">
+<div class="ig-status"><span>9:41</span><span class="ig-status-icons">●●●</span></div>
+<div class="ig-profile"><div class="ig-avatar">RB</div><div class="ig-meta"><p class="ig-handle">readbeyondthestars</p><p class="ig-location">Data post</p></div><div class="ig-menu">•••</div></div>
+<div class="ig-creative visual-danger">
+  <span class="post-badge">Post 05</span>
+  <h2 class="post-title">AI-generated reviews<br><span class="red">increased 137%</span></h2>
+  <p class="post-copy">From 4.49% in 2019 to 10.70% in 2024. 2020 and 2021 are estimated from the source graph.</p>
+  <!-- SVG: timeline bar chart with ChatGPT marker -->
+  <svg width="100%" height="215" viewBox="0 0 280 215" aria-hidden="true" style="margin-top:6px">
+    <!-- Axis labels -->
+    <text x="0" y="14" font-family="JetBrains Mono" font-size="8" fill="#6B7280">% AI-flagged reviews (TripAdvisor)</text>
+    <!-- Bars: 2019-2024, heights proportional to % -->
+    <!-- 2019: 4.49% → h=30, 2020: ~3.50% → h=34, 2021: ~3.80% → h=39, 2022: 5.57% → h=48, 2023: 4.68% → h=61, 2024: 10.70% → h=72 (max=72 for 10.70%) -->
+    <rect x="6"  y="148" width="32" height="30" rx="4" fill="#FCA5A5"/>
+    <rect x="52" y="154" width="32" height="24" rx="4" fill="#F87171"/>
+    <rect x="98" y="152" width="32" height="26" rx="4" fill="#EF4444"/>
+    <rect x="144" y="140" width="32" height="38" rx="4" fill="#DC2626"/>
+    <rect x="190" y="146" width="32" height="32" rx="4" fill="#B91C1C"/>
+    <rect x="236" y="106" width="32" height="72" rx="4" fill="#991B1B"/>
+    <!-- Value labels -->
+    <text x="14" y="144" font-family="JetBrains Mono" font-size="9" fill="#374151">4.49%</text>
+    <text x="58" y="150" font-family="JetBrains Mono" font-size="9" fill="#374151">~3.50%</text>
+    <text x="104" y="148" font-family="JetBrains Mono" font-size="9" fill="#374151">~3.80%</text>
+    <text x="148" y="136" font-family="JetBrains Mono" font-size="9" fill="#374151">5.57%</text>
+    <text x="194" y="142" font-family="JetBrains Mono" font-size="9" fill="#374151">4.68%</text>
+    <text x="240" y="102" font-family="JetBrains Mono" font-size="9" fill="#DC2626" font-weight="600">10.70%</text>
+    <!-- Year labels -->
+    <text x="8"   y="192" font-family="JetBrains Mono" font-size="9" fill="#6B7280">2019</text>
+    <text x="54"  y="192" font-family="JetBrains Mono" font-size="9" fill="#6B7280">2020</text>
+    <text x="100" y="192" font-family="JetBrains Mono" font-size="9" fill="#6B7280">2021</text>
+    <text x="146" y="192" font-family="JetBrains Mono" font-size="9" fill="#6B7280">2022</text>
+    <text x="192" y="192" font-family="JetBrains Mono" font-size="9" fill="#6B7280">2023</text>
+    <text x="238" y="192" font-family="JetBrains Mono" font-size="9" fill="#DC2626">2024</text>
+    <!-- ChatGPT annotation -->
+    <line x1="160" y1="130" x2="160" y2="200" stroke="#DC2626" stroke-width="1" stroke-dasharray="3,3"/>
+    <rect x="126" y="200" width="88" height="14" rx="3" fill="#FEE2E2"/>
+    <text x="128" y="211" font-family="JetBrains Mono" font-size="8" fill="#DC2626">ChatGPT launch Nov 2022</text>
+  </svg>
+</div>
+<div class="ig-actions"><div class="ig-left-actions"><span class="action-icon heart-icon">♡</span><span class="action-icon comment-icon" aria-hidden="true"></span><span class="action-icon share-icon">↗</span></div><span class="action-icon bookmark-icon" aria-hidden="true"></span></div>
+<div class="ig-likes">2,102 likes</div>
+<div class="ig-caption"><strong>readbeyondthestars</strong> The curve accelerates after ChatGPT launched in 2022. The tools for generating fake content are now widely available. <span class="ig-tags">#AIReviews #DigitalTrust #MediaLiteracy</span></div>
+</div></div>
+<button class="download-btn" onclick="downloadPost('ig-5','ig-post05-ai-review-data.png')">↓ Download Post 05</button>
+<div class="alt-text"><strong>Alt text</strong> Instagram data post showing a bar chart of AI-flagged TripAdvisor reviews from 2019 to 2024, rising from 4.49% to 10.70%, a 137% increase, with a dashed line marking the ChatGPT launch in November 2022.</div>
+</article>
+
+<!-- IG POST 6 -->
+<article class="asset-card">
+<div class="device-shell"><div class="ig-post" id="ig-6">
+<div class="ig-status"><span>9:41</span><span class="ig-status-icons">●●●</span></div>
+<div class="ig-profile"><div class="ig-avatar">RB</div><div class="ig-meta"><p class="ig-handle">readbeyondthestars</p><p class="ig-location">Spot an AI review</p></div><div class="ig-menu">•••</div></div>
+<div class="ig-creative visual-navy">
+  <span class="post-badge">Post 06</span>
+  <h2 class="post-title">Spot an <span class="gold">AI review</span><br>in 10 seconds.</h2>
+  <!-- SVG: real vs AI side by side -->
+  <svg width="100%" height="280" viewBox="0 0 280 280" aria-hidden="true" style="margin-top:8px">
+    <!-- Headers -->
+    <rect x="0" y="0" width="134" height="26" rx="6" fill="#ECFDF5"/>
+    <text x="8" y="17" font-family="JetBrains Mono" font-size="10" fill="#047857">✓ REAL REVIEW</text>
+    <rect x="146" y="0" width="134" height="26" rx="6" fill="#FEF2F2"/>
+    <text x="154" y="17" font-family="JetBrains Mono" font-size="10" fill="#DC2626">✕ AI REVIEW</text>
+    <!-- Real review box -->
+    <rect x="0" y="32" width="134" height="228" rx="8" fill="white" fill-opacity="0.9"/>
+    <text x="8" y="52"  font-family="Source Sans 3" font-size="10" fill="#374151">Names staff:</text>
+    <text x="8" y="65"  font-family="Source Sans 3" font-size="10" fill="#047857" font-weight="600">"Marcus at front desk"</text>
+    <line x1="8" y1="76" x2="126" y2="76" stroke="#E2E6ED" stroke-width="1"/>
+    <text x="8" y="92"  font-family="Source Sans 3" font-size="10" fill="#374151">Specific complaint:</text>
+    <text x="8" y="105" font-family="Source Sans 3" font-size="10" fill="#047857" font-weight="600">"Room 412, cold shower"</text>
+    <line x1="8" y1="116" x2="126" y2="116" stroke="#E2E6ED" stroke-width="1"/>
+    <text x="8" y="132" font-family="Source Sans 3" font-size="10" fill="#374151">Real date/context:</text>
+    <text x="8" y="145" font-family="Source Sans 3" font-size="10" fill="#047857" font-weight="600">"Stayed March 2024"</text>
+    <line x1="8" y1="156" x2="126" y2="156" stroke="#E2E6ED" stroke-width="1"/>
+    <text x="8" y="172" font-family="Source Sans 3" font-size="10" fill="#374151">Mixed opinion:</text>
+    <text x="8" y="185" font-family="Source Sans 3" font-size="10" fill="#047857" font-weight="600">"Breakfast great, parking</text>
+    <text x="8" y="198" font-family="Source Sans 3" font-size="10" fill="#047857" font-weight="600">was a nightmare"</text>
+    <line x1="8" y1="210" x2="126" y2="210" stroke="#E2E6ED" stroke-width="1"/>
+    <rect x="8" y="216" width="118" height="36" rx="6" fill="#ECFDF5"/>
+    <text x="16" y="232" font-family="Source Sans 3" font-size="9.5" fill="#047857" font-weight="600">Imperfect details</text>
+    <text x="16" y="244" font-family="Source Sans 3" font-size="9.5" fill="#047857" font-weight="600">feel authentic.</text>
+    <!-- AI review box -->
+    <rect x="146" y="32" width="134" height="228" rx="8" fill="white" fill-opacity="0.9"/>
+    <text x="154" y="52"  font-family="Source Sans 3" font-size="10" fill="#374151">No names:</text>
+    <text x="154" y="65"  font-family="Source Sans 3" font-size="10" fill="#DC2626" font-weight="600">"The staff were wonderful"</text>
+    <line x1="154" y1="76" x2="272" y2="76" stroke="#E2E6ED" stroke-width="1"/>
+    <text x="154" y="92"  font-family="Source Sans 3" font-size="10" fill="#374151">Vague praise:</text>
+    <text x="154" y="105" font-family="Source Sans 3" font-size="10" fill="#DC2626" font-weight="600">"Exceptional in every way"</text>
+    <line x1="154" y1="116" x2="272" y2="116" stroke="#E2E6ED" stroke-width="1"/>
+    <text x="154" y="132" font-family="Source Sans 3" font-size="10" fill="#374151">No date/account history:</text>
+    <text x="154" y="145" font-family="Source Sans 3" font-size="10" fill="#DC2626" font-weight="600">"First review, 2024"</text>
+    <line x1="154" y1="156" x2="272" y2="156" stroke="#E2E6ED" stroke-width="1"/>
+    <text x="154" y="172" font-family="Source Sans 3" font-size="10" fill="#374151">Perfectly balanced:</text>
+    <text x="154" y="185" font-family="Source Sans 3" font-size="10" fill="#DC2626" font-weight="600">"A minor thing to note</text>
+    <text x="154" y="198" font-family="Source Sans 3" font-size="10" fill="#DC2626" font-weight="600">was quickly resolved"</text>
+    <line x1="154" y1="210" x2="272" y2="210" stroke="#E2E6ED" stroke-width="1"/>
+    <rect x="154" y="216" width="118" height="36" rx="6" fill="#FEF2F2"/>
+    <text x="162" y="232" font-family="Source Sans 3" font-size="9.5" fill="#DC2626" font-weight="600">Too polished?</text>
+    <text x="162" y="244" font-family="Source Sans 3" font-size="9.5" fill="#DC2626" font-weight="600">Question it.</text>
+  </svg>
+</div>
+<div class="ig-actions"><div class="ig-left-actions"><span class="action-icon heart-icon">♡</span><span class="action-icon comment-icon" aria-hidden="true"></span><span class="action-icon share-icon">↗</span></div><span class="action-icon bookmark-icon" aria-hidden="true"></span></div>
+<div class="ig-likes">1,741 likes</div>
+<div class="ig-caption"><strong>readbeyondthestars</strong> Real guests remember something specific. AI reviews stay generic. Save this guide before your next booking. <span class="ig-tags">#FakeReviews #TravelSmart #ConsumerTips</span></div>
+</div></div>
+<button class="download-btn" onclick="downloadPost('ig-6','ig-post06-spot-ai-review.png')">↓ Download Post 06</button>
+<div class="alt-text"><strong>Alt text</strong> Instagram post with a side-by-side comparison table contrasting a real review with specific names, dates, and mixed opinions against an AI-generated review with vague praise, no history, and no concrete details.</div>
+</article>
+
+</div>
+</section>
+
+<!-- IG Posts 7-9 -->
+<section aria-labelledby="ig-hospitality">
+<p class="section-label" id="ig-hospitality">Social Media Posts — Hospitality Professionals (Posts 7–9)</p>
+<div class="post-grid">
+
+<!-- IG POST 7 -->
+<article class="asset-card">
+<div class="device-shell"><div class="ig-post" id="ig-7">
+<div class="ig-status"><span>9:41</span><span class="ig-status-icons">●●●</span></div>
+<div class="ig-profile"><div class="ig-avatar">RB</div><div class="ig-meta"><p class="ig-handle">readbeyondthestars</p><p class="ig-location">For hotels</p></div><div class="ig-menu">•••</div></div>
+<div class="ig-creative visual-green">
+  <span class="post-badge">Post 07</span>
+  <h2 class="post-title">A good response<br>can <span style="color:#047857">protect trust.</span></h2>
+  <p class="post-copy">Research by Sparks et al. (2016) shows management responses affect trust independently of the review itself.</p>
+  <!-- SVG: Good vs bad response -->
+  <svg width="100%" height="230" viewBox="0 0 280 230" aria-hidden="true" style="margin-top:6px">
+    <!-- Bad response -->
+    <rect x="0" y="0" width="280" height="96" rx="8" fill="white" fill-opacity="0.92"/>
+    <rect x="0" y="0" width="5" height="96" rx="3" fill="#DC2626"/>
+    <text x="14" y="18" font-family="JetBrains Mono" font-size="9" fill="#DC2626">✕ INEFFECTIVE</text>
+    <text x="14" y="36" font-family="Source Sans 3" font-size="11" fill="#374151" font-style="italic">"Sorry you had a bad experience.</text>
+    <text x="14" y="51" font-family="Source Sans 3" font-size="11" fill="#374151" font-style="italic">We hope to see you again."</text>
+    <line x1="14" y1="62" x2="268" y2="62" stroke="#E2E6ED" stroke-width="1"/>
+    <text x="14" y="77" font-family="Source Sans 3" font-size="10" fill="#DC2626">No issue named. No action taken.</text>
+    <text x="14" y="90" font-family="Source Sans 3" font-size="10" fill="#DC2626">Consumers trust the bad review more.</text>
+    <!-- Good response -->
+    <rect x="0" y="112" width="280" height="106" rx="8" fill="white" fill-opacity="0.92"/>
+    <rect x="0" y="112" width="5" height="106" rx="3" fill="#047857"/>
+    <text x="14" y="130" font-family="JetBrains Mono" font-size="9" fill="#047857">✓ EFFECTIVE</text>
+    <text x="14" y="148" font-family="Source Sans 3" font-size="11" fill="#374151" font-style="italic">"Hi Sarah, thank you for flagging</text>
+    <text x="14" y="163" font-family="Source Sans 3" font-size="11" fill="#374151" font-style="italic">the noise on Floor 6. We've moved</text>
+    <text x="14" y="178" font-family="Source Sans 3" font-size="11" fill="#374151" font-style="italic">those guests and added soundproofing."</text>
+    <line x1="14" y1="189" x2="268" y2="189" stroke="#E2E6ED" stroke-width="1"/>
+    <text x="14" y="204" font-family="Source Sans 3" font-size="10" fill="#047857">Named issue. Showed action. Built trust.</text>
+  </svg>
+</div>
+<div class="ig-actions"><div class="ig-left-actions"><span class="action-icon heart-icon">♡</span><span class="action-icon comment-icon" aria-hidden="true"></span><span class="action-icon share-icon">↗</span></div><span class="action-icon bookmark-icon" aria-hidden="true"></span></div>
+<div class="ig-likes">1,088 likes</div>
+<div class="ig-caption"><strong>readbeyondthestars</strong> Ethical reputation management is not about hiding bad reviews. It is about accountable communication. <span class="ig-tags">#HotelMarketing #ReputationManagement #Hospitality</span></div>
+</div></div>
+<button class="download-btn" onclick="downloadPost('ig-7','ig-post07-management-response.png')">↓ Download Post 07</button>
+<div class="alt-text"><strong>Alt text</strong> Instagram post contrasting an ineffective generic hotel response, "Sorry you had a bad experience," with an effective specific response naming the guest, the issue on Floor 6, and the corrective action taken.</div>
+</article>
+
+<!-- IG POST 8 -->
+<article class="asset-card">
+<div class="device-shell"><div class="ig-post" id="ig-8">
+<div class="ig-status"><span>9:41</span><span class="ig-status-icons">●●●</span></div>
+<div class="ig-profile"><div class="ig-avatar">RB</div><div class="ig-meta"><p class="ig-handle">readbeyondthestars</p><p class="ig-location">Hospitality action plan</p></div><div class="ig-menu">•••</div></div>
+<div class="ig-creative visual-navy">
+  <span class="post-badge">Post 08</span>
+  <h2 class="post-title" style="color:white;">4 steps for<br><span class="gold">ethical reputation</span><br>management.</h2>
+  <!-- SVG: 4-step numbered list -->
+  <svg width="100%" height="245" viewBox="0 0 280 245" aria-hidden="true" style="margin-top:6px">
+    <rect x="0" y="0" width="280" height="52" rx="8" fill="rgba(30,58,95,0.08)"/>
+    <circle cx="26" cy="26" r="16" fill="#B07D2A"/>
+    <text x="22" y="31" font-family="Lora" font-size="14" font-weight="700" fill="#1E3A5F">1</text>
+    <text x="50" y="18" font-family="Source Sans 3" font-size="12" font-weight="600" fill="#1E3A5F">Daily review monitoring</text>
+    <text x="50" y="34" font-family="Source Sans 3" font-size="10" fill="#374151">Dashboard across all 3 platforms.</text>
+
+    <rect x="0" y="60" width="280" height="52" rx="8" fill="rgba(30,58,95,0.08)"/>
+    <circle cx="26" cy="86" r="16" fill="#B07D2A"/>
+    <text x="22" y="91" font-family="Lora" font-size="14" font-weight="700" fill="#1E3A5F">2</text>
+    <text x="50" y="78" font-family="Source Sans 3" font-size="12" font-weight="600" fill="#1E3A5F">Respond within 24 hours</text>
+    <text x="50" y="94" font-family="Source Sans 3" font-size="10" fill="#374151">Always specific. Never copy-paste.</text>
+
+    <rect x="0" y="120" width="280" height="52" rx="8" fill="rgba(30,58,95,0.08)"/>
+    <circle cx="26" cy="146" r="16" fill="#B07D2A"/>
+    <text x="22" y="151" font-family="Lora" font-size="14" font-weight="700" fill="#1E3A5F">3</text>
+    <text x="50" y="138" font-family="Source Sans 3" font-size="12" font-weight="600" fill="#1E3A5F">Post-stay review request</text>
+    <text x="50" y="154" font-family="Source Sans 3" font-size="10" fill="#374151">Email 24h after checkout. Direct link.</text>
+
+    <rect x="0" y="180" width="280" height="52" rx="8" fill="rgba(30,58,95,0.08)"/>
+    <circle cx="26" cy="206" r="16" fill="#B07D2A"/>
+    <text x="22" y="211" font-family="Lora" font-size="14" font-weight="700" fill="#1E3A5F">4</text>
+    <text x="50" y="198" font-family="Source Sans 3" font-size="12" font-weight="600" fill="#1E3A5F">Report suspicious patterns</text>
+    <text x="50" y="214" font-family="Source Sans 3" font-size="10" fill="#374151">Use platform dispute mechanisms.</text>
+  </svg>
+</div>
+<div class="ig-actions"><div class="ig-left-actions"><span class="action-icon heart-icon">♡</span><span class="action-icon comment-icon" aria-hidden="true"></span><span class="action-icon share-icon">↗</span></div><span class="action-icon bookmark-icon" aria-hidden="true"></span></div>
+<div class="ig-likes">1,322 likes</div>
+<div class="ig-caption"><strong>readbeyondthestars</strong> Proactive reputation management protects honest businesses from fake review inflation. Save this for your team. <span class="ig-tags">#HotelManagement #EthicalMarketing #ReviewStrategy</span></div>
+</div></div>
+<button class="download-btn" onclick="downloadPost('ig-8','ig-post08-hospitality-action-plan.png')">↓ Download Post 08</button>
+<div class="alt-text"><strong>Alt text</strong> Instagram post on a dark navy background listing four steps for ethical reputation management: daily review monitoring, responding within 24 hours specifically, sending a post-stay review request, and reporting suspicious patterns.</div>
+</article>
+
+<!-- IG POST 9 -->
+<article class="asset-card">
+<div class="device-shell"><div class="ig-post" id="ig-9">
+<div class="ig-status"><span>9:41</span><span class="ig-status-icons">●●●</span></div>
+<div class="ig-profile"><div class="ig-avatar">RB</div><div class="ig-meta"><p class="ig-handle">readbeyondthestars</p><p class="ig-location">Campaign closing</p></div><div class="ig-menu">•••</div></div>
+<div class="ig-creative visual-navy">
+  <span class="post-badge">Post 09</span>
+  <!-- SVG: closing visual - trust infrastructure -->
+  <svg width="100%" height="400" viewBox="0 0 280 400" aria-hidden="true">
+    <!-- Large central text -->
+    <text x="140" y="70" font-family="Lora" font-size="38" font-weight="700" fill="#1E3A5F" text-anchor="middle">Trust</text>
+    <text x="140" y="108" font-family="Lora" font-size="38" font-weight="700" fill="#B07D2A" text-anchor="middle">is the</text>
+    <text x="140" y="146" font-family="Lora" font-size="38" font-weight="700" fill="#1E3A5F" text-anchor="middle">product.</text>
+    <!-- Divider -->
+    <line x1="40" y1="162" x2="240" y2="162" stroke="rgba(30,58,95,0.25)" stroke-width="1"/>
+    <!-- Three pillars -->
+    <rect x="0" y="174" width="86" height="80" rx="8" fill="rgba(30,58,95,0.08)"/>
+    <text x="43" y="205" font-family="Source Sans 3" font-size="11" font-weight="600" fill="#1E3A5F" text-anchor="middle">Authentic</text>
+    <text x="43" y="220" font-family="Source Sans 3" font-size="11" font-weight="600" fill="#1E3A5F" text-anchor="middle">reviews</text>
+    <text x="43" y="240" font-family="Source Sans 3" font-size="9" fill="#374151" text-anchor="middle">for consumers</text>
+
+    <rect x="97" y="174" width="86" height="80" rx="8" fill="#FDF6E3"/>
+    <text x="140" y="205" font-family="Source Sans 3" font-size="11" font-weight="600" fill="#B07D2A" text-anchor="middle">Honest</text>
+    <text x="140" y="220" font-family="Source Sans 3" font-size="11" font-weight="600" fill="#B07D2A" text-anchor="middle">responses</text>
+    <text x="140" y="240" font-family="Source Sans 3" font-size="9" fill="#374151" text-anchor="middle">for hotels</text>
+
+    <rect x="194" y="174" width="86" height="80" rx="8" fill="rgba(30,58,95,0.08)"/>
+    <text x="237" y="205" font-family="Source Sans 3" font-size="11" font-weight="600" fill="#1E3A5F" text-anchor="middle">Fair</text>
+    <text x="237" y="220" font-family="Source Sans 3" font-size="11" font-weight="600" fill="#1E3A5F" text-anchor="middle">competition</text>
+    <text x="237" y="240" font-family="Source Sans 3" font-size="9" fill="#374151" text-anchor="middle">for the industry</text>
+
+    <!-- Bottom stat -->
+    <rect x="0" y="272" width="280" height="48" rx="8" fill="rgba(30,58,95,0.08)"/>
+    <text x="140" y="294" font-family="JetBrains Mono" font-size="9" fill="#374151" text-anchor="middle">TripAdvisor removed in 2024:</text>
+    <text x="140" y="312" font-family="Lora" font-size="18" font-weight="700" fill="#B07D2A" text-anchor="middle">2.7 million fake reviews</text>
+
+    <text x="140" y="352" font-family="Source Sans 3" font-size="11" fill="#374151" text-anchor="middle">Fake inflation creates short-term visibility.</text>
+    <text x="140" y="368" font-family="Source Sans 3" font-size="11" fill="#374151" text-anchor="middle">It damages the ecosystem everyone</text>
+    <text x="140" y="384" font-family="Source Sans 3" font-size="11" fill="#374151" text-anchor="middle">in hospitality depends on.</text>
+  </svg>
+</div>
+<div class="ig-actions"><div class="ig-left-actions"><span class="action-icon heart-icon">♡</span><span class="action-icon comment-icon" aria-hidden="true"></span><span class="action-icon share-icon">↗</span></div><span class="action-icon bookmark-icon" aria-hidden="true"></span></div>
+<div class="ig-likes">1,794 likes</div>
+<div class="ig-caption"><strong>readbeyondthestars</strong> Ethical reviews help consumers choose better and help honest businesses compete fairly. <span class="ig-tags">#Trust #EthicalMarketing #Hospitality #ReadBeyondTheStars</span></div>
+</div></div>
+<button class="download-btn" onclick="downloadPost('ig-9','ig-post09-trust-is-the-product.png')">↓ Download Post 09</button>
+<div class="alt-text"><strong>Alt text</strong> Instagram closing post on a dark navy background with large text saying "Trust is the product," three pillars showing authentic reviews for consumers, honest responses for hotels, and fair competition for the industry, and a statistic that TripAdvisor removed 2.7 million fake reviews in 2024.</div>
+</article>
+
+</div>
+</section>
+
+<!-- ========== LINKEDIN ========== -->
+<section aria-labelledby="accessibility">
+<p class="section-label" id="accessibility">Accessibility and Inclusion Notes</p>
+<div class="access-grid">
+<div class="access-card"><h3>Readable Design</h3><p>High-contrast colours, large typography, clear hierarchy, and all data conveyed through both visual and text elements.</p></div>
+<div class="access-card"><h3>Alt Text Included</h3><p>Each post includes descriptive alt text communicating the message and data, not just visual appearance. SVG graphics have aria-hidden="true" with text equivalents in captions.</p></div>
+<div class="access-card"><h3>Downloadable Assets</h3><p>Each button exports the platform post card only. Post numbers are labelled consistently across the social media series from Post 01 to Post 09.</p></div>
+</div>
+</section>
+
+<section aria-labelledby="refs">
+<p class="section-label" id="refs">References</p>
+<div class="refs">
+<p>Filieri, R., Alguezaui, S., &amp; McLeay, F. (2015). Why do travelers trust TripAdvisor? <em>Tourism Management, 51</em>, 174-185.</p>
+<p>Kirilenko, A., Stepchenkova, S., Gromoll, R., &amp; Jo, Y. (2024). Comprehensive examination of online reviews divergence over time and platform types. <em>International Journal of Hospitality Management, 117</em>, 103647.</p>
+<p>Originality.AI. (2024). Fake AI TripAdvisor reviews increased by 137% from 2019 to 2024.</p>
+<p>Sparks, B. A., So, K. K. F., &amp; Bradley, G. L. (2016). Responding to negative online reviews. <em>Tourism Management, 53</em>, 74-85.</p>
+<p>TripAdvisor. (2025). <em>Tripadvisor transparency report 2025</em>.</p>
+<p>Wu, Y., Ngai, E. W., Wu, P., &amp; Wu, C. (2020). Fake online reviews: Literature review, synthesis, and directions for future research. <em>Decision Support Systems, 132</em>, 113280.</p>
+<p>Xiang, Z., Du, Q., Ma, Y., &amp; Fan, W. (2017). A comparative analysis of major online review platforms. <em>Tourism Management, 58</em>, 51-65.</p>
+</div>
+</section>
+
+<footer class="footer">
+<div><strong>Md Ashikur Rahman</strong> · NF1000759<br/>MA Digital Media and Global Communications · University of Niagara Falls Canada</div>
+<div>DMGC 699 Capstone · Social Media Posts Series · Spring 2026</div>
+</footer>
+</main>
+
+<script>
+function downloadPost(id, filename){
+  const node = document.getElementById(id);
+  html2canvas(node, {scale:3, backgroundColor:"#ffffff", useCORS:true}).then(canvas => {
+    const link = document.createElement("a");
+    link.download = filename;
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  });
+}
+</script>
+</body>
+</html>
