@@ -1,1906 +1,961 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Rating Discrepancies and Consumer Trust | DMGC 699 Capstone</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&amp;family=Source+Sans+3:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Read Beyond the Stars | Social Media Posts Series / Campaign</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
-:root {
-  --white: #FFFFFF;
-  --off-white: #F7F8FA;
-  --border: #E2E6ED;
-  --border-strong: #C8D0DB;
-  --ink: #111827;
-  --ink-mid: #374151;
-  --ink-light: #6B7280;
-  --ink-faint: #9CA3AF;
-  --navy: #1E3A5F;
-  --navy-mid: #2D5282;
-  --navy-light: #EBF0F7;
-  --gold: #B07D2A;
-  --gold-light: #FDF6E3;
-  --gold-pale: #F5E6C0;
-  --accent: #2563EB;
-  --accent-light: #EFF6FF;
+:root{
+  --white:#FFFFFF;--off:#F7F8FA;--border:#E2E6ED;--border2:#C8D0DB;
+  --ink:#111827;--mid:#374151;--light:#6B7280;--faint:#9CA3AF;
+  --navy:#1E3A5F;--navy2:#2D5282;--navyl:#EBF0F7;
+  --gold:#B07D2A;--goldl:#FDF6E3;--danger:#DC2626;--dangerl:#FEF2F2;
+  --green:#047857;--greenl:#ECFDF5;--blue:#0A66C2;
+  --post-h:520px;
 }
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Source Sans 3",sans-serif;background:var(--white);color:var(--ink);line-height:1.6;max-width:1200px;margin:0 auto;padding:40px 24px 80px}
+.skip{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip:focus{position:static;width:auto;height:auto;padding:8px 16px;background:var(--navy);color:white;display:inline-block;margin-bottom:12px}
+.header{border-top:4px solid var(--navy);padding-top:32px;margin-bottom:40px}
+.eyebrow{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--light);margin-bottom:16px}
+h1{font-family:"Lora",serif;font-size:42px;line-height:1.15;color:var(--navy);margin-bottom:12px}
+h1 em{color:var(--gold);font-style:italic}
+.subtitle{font-size:18px;color:var(--mid);max-width:760px;margin-bottom:24px}
+.source-note{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--light);letter-spacing:1px;border-left:3px solid var(--gold);padding-left:12px}
+.section-label{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--light);margin:48px 0 20px;display:flex;align-items:center;gap:12px}
+.section-label::after{content:"";flex:1;height:1px;background:var(--border)}
+.campaign-box{background:var(--navyl);border-left:4px solid var(--navy);padding:20px 24px;margin-bottom:32px}
+.campaign-box h2{font-family:"Lora",serif;color:var(--navy);font-size:20px;margin-bottom:8px}
+.campaign-box p{color:var(--mid);font-size:15px}
+.strategy-grid,.access-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:24px}
+.strategy-card,.access-card{background:white;padding:22px 20px}
+.strategy-card strong,.access-card h3{display:block;color:var(--navy);font-family:"Lora",serif;font-size:16px;margin-bottom:6px}
+.strategy-card p,.access-card p{font-size:13px;color:var(--mid)}
+.post-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:start}
+.asset-card{display:flex;flex-direction:column;gap:12px}
+.download-btn{border:0;background:var(--navy);color:#fff;padding:10px 14px;border-radius:8px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;cursor:pointer}
+.download-btn:hover,.download-btn:focus{background:#142D4A;outline:3px solid var(--goldl)}
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+/* Device shell */
+.device-shell{border:1px solid #0F172A;border-radius:34px;padding:14px;background:#111827;box-shadow:0 18px 42px rgba(17,24,39,.16);height:100%}
+.ig-post{background:white;border-radius:22px;overflow:hidden;color:var(--ink);height:100%;display:flex;flex-direction:column}
+.ig-status{height:24px;padding:5px 16px 0;display:flex;justify-content:space-between;align-items:center;font-family:"JetBrains Mono",monospace;font-size:9px;color:#111827;flex-shrink:0}
+.ig-status-icons{letter-spacing:2px}
+.ig-profile{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--border);flex-shrink:0}
+.ig-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--gold));display:flex;align-items:center;justify-content:center;color:white;font-family:"Lora",serif;font-weight:700;font-size:13px;flex-shrink:0}
+.ig-meta{flex:1}.ig-handle{font-weight:700;font-size:13px;color:var(--ink);line-height:1.1}.ig-location{font-size:11px;color:var(--light);line-height:1.1}.ig-menu{font-weight:700;color:var(--light)}
+.ig-creative{height:var(--post-h);padding:22px;display:flex;flex-direction:column;justify-content:flex-start;position:relative;overflow:hidden;flex-shrink:0}
+.visual-navy{background:linear-gradient(145deg,#EBF0F7,#DDEAF8)}
+.visual-danger{background:linear-gradient(145deg,#FEF2F2,#FFE4E4)}
+.visual-gold{background:linear-gradient(145deg,#FDF6E3,#FAF0C8)}
+.visual-green{background:linear-gradient(145deg,#ECFDF5,#D1FAE5)}
+.visual-dark{background:linear-gradient(145deg,#1E3A5F,#0F2040)}
 
-body {
-  font-family: 'Source Sans 3', sans-serif;
-  background: var(--white);
-  color: var(--ink);
-  overflow-x: hidden;
-  line-height: 1.6;
-}
+/* Post number badge */
+.post-badge{position:absolute;top:14px;left:14px;background:var(--navy);color:white;font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:1px;padding:3px 8px;border-radius:20px;z-index:10;text-transform:uppercase}
+.visual-dark .post-badge{background:rgba(255,255,255,.15);color:rgba(255,255,255,.9)}
 
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--off-white); }
-::-webkit-scrollbar-thumb { background: var(--navy); border-radius: 2px; }
+.post-title{font-family:"Lora",serif;color:var(--navy);font-size:22px;line-height:1.15;margin-bottom:10px;position:relative;z-index:2;margin-top:28px}
+.visual-dark .post-title{color:white}
+.post-title .gold{color:var(--gold)}
+.post-title .red{color:var(--danger)}
+.post-copy{color:var(--mid);font-size:13px;line-height:1.4;position:relative;z-index:2;margin-bottom:10px}
+.visual-dark .post-copy{color:rgba(255,255,255,.75)}
 
-/* NAV */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-  background: rgba(255,255,255,0.97);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  padding: 0 56px;
-  display: flex; align-items: stretch; justify-content: space-between;
-  height: 60px;
-}
-.nav-brand {
-  display: flex; align-items: center;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px; color: var(--ink-light);
-  letter-spacing: 1.5px; text-transform: uppercase;
-}
-.nav-links {
-  display: flex; align-items: stretch;
-  list-style: none; gap: 0;
-}
-.nav-links li { display: flex; align-items: stretch; }
-.nav-links a {
-  display: flex; align-items: center;
-  padding: 0 18px;
-  font-size: 13px; font-weight: 500;
-  color: var(--ink-mid); text-decoration: none;
-  border-bottom: 3px solid transparent;
-  transition: color 0.2s, border-color 0.2s;
-  white-space: nowrap;
-}
-.nav-links a:hover { color: var(--navy); border-bottom-color: var(--navy); }
+.ig-actions{display:flex;justify-content:space-between;align-items:center;padding:10px 14px 2px;font-size:20px;flex-shrink:0}
+.ig-left-actions{display:flex;gap:13px}.ig-likes{padding:0 14px;font-size:13px;font-weight:700;color:var(--ink);flex-shrink:0}
+.ig-caption{padding:5px 14px 12px;font-size:12px;color:var(--mid);line-height:1.35;flex-shrink:0}
+.ig-caption strong{color:var(--ink)}.ig-tags{color:var(--navy)}
 
-/* HERO */
-.hero {
-  padding-top: 60px;
-  background: var(--white);
-  border-bottom: 1px solid var(--border);
-}
+/* Alt text */
+.alt-text{background:var(--off);border:1px solid var(--border);padding:12px;font-size:12px;color:var(--mid);border-radius:8px}
+.alt-text strong{display:block;font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:1.5px;color:var(--navy);text-transform:uppercase;margin-bottom:4px}
 
-.hero-top {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 0;
-  border-bottom: 1px solid var(--border);
-}
+/* LinkedIn */
+.linkedin-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.linkedin-frame{border:1px solid var(--border);background:#F3F2EF;border-radius:14px;padding:18px;box-shadow:0 16px 38px rgba(17,24,39,.10);height:100%}
+.linkedin-post{background:white;border:1px solid #D6D9DC;border-radius:12px;overflow:hidden;height:100%;display:flex;flex-direction:column}
+.li-header{display:flex;align-items:center;gap:12px;padding:16px 18px 8px;position:relative}
+.li-avatar{width:48px;height:48px;border-radius:50%;background:var(--blue);color:white;display:flex;align-items:center;justify-content:center;font-family:"Lora",serif;font-weight:700;flex-shrink:0}
+.li-meta{flex:1}.li-name{font-weight:700;color:var(--ink);line-height:1.15}.li-role,.li-time{font-size:12px;color:var(--light);line-height:1.2}.li-menu{font-weight:700;color:var(--light)}
+.li-post-badge{background:var(--navy);color:white;font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:1px;padding:3px 8px;border-radius:20px;text-transform:uppercase;white-space:nowrap}
+.li-body{padding:8px 18px 14px}.li-body p{font-size:14px;color:var(--ink);margin-bottom:10px;line-height:1.45}
+.li-visual{margin:0 18px 14px;border:1px solid var(--border);border-radius:10px;padding:16px;background:linear-gradient(145deg,#EBF0F7,#DDEAF8);position:relative;overflow:hidden;min-height:180px}
+.li-visual h3{font-family:"Lora",serif;color:var(--navy);font-size:18px;line-height:1.2;margin-bottom:8px;position:relative;z-index:2}
+.li-visual p{position:relative;z-index:2;font-size:13px;color:var(--mid)}
+.li-callout{border-left:3px solid var(--gold);background:var(--goldl);padding:10px 12px;color:#5F3B05;font-size:13px;margin-top:10px;position:relative;z-index:2;border-radius:0 6px 6px 0}
+.li-engagement{display:flex;justify-content:space-between;border-top:1px solid var(--border);padding:8px 18px;color:var(--light);font-size:12px;margin-top:auto}
+.li-actions{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);color:var(--mid);font-size:13px;text-align:center}
+.li-actions span{padding:10px 4px}
 
-.hero-left {
-  padding: 72px 64px 64px 56px;
-  border-right: 1px solid var(--border);
-}
+/* SVG charts shared */
+svg{display:block;position:relative;z-index:2}
 
-.hero-eyebrow {
-  display: flex; align-items: center; gap: 10px;
-  margin-bottom: 28px;
-  opacity: 0; animation: fadeUp 0.7s ease 0.1s forwards;
-}
-.hero-eyebrow-tag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; font-weight: 500;
-  color: var(--navy); letter-spacing: 2px; text-transform: uppercase;
-  background: var(--navy-light);
-  padding: 4px 10px; border-radius: 4px;
-}
-.hero-eyebrow-sep { color: var(--border-strong); }
-.hero-eyebrow-sub {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; color: var(--ink-faint); letter-spacing: 1px;
-}
+/* accessibility */
+.access-grid{grid-template-columns:repeat(3,1fr)}
+.refs{font-size:12px;color:var(--light);line-height:1.8}
+.footer{border-top:1px solid var(--border);margin-top:52px;padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--light);font-size:12px}
 
-.hero-title {
-  font-family: 'Lora', serif;
-  font-size: clamp(32px, 4vw, 52px);
-  font-weight: 700; line-height: 1.15;
-  color: var(--ink); margin-bottom: 12px;
-  opacity: 0; animation: fadeUp 0.7s ease 0.25s forwards;
-}
-.hero-title em { font-style: italic; color: var(--navy); }
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+@media(max-width:980px){.strategy-grid,.post-grid,.linkedin-grid,.access-grid{grid-template-columns:1fr}h1{font-size:32px}.device-shell{max-width:420px;margin:0 auto;width:100%}}
 
-.hero-subtitle {
-  font-size: 17px; font-weight: 300;
-  color: var(--ink-light); margin-bottom: 40px;
-  opacity: 0; animation: fadeUp 0.7s ease 0.4s forwards;
+/* FINAL ALIGNMENT + COLOR CLEANUP */
+.asset-card { height: 100%; }
+.device-shell { height: 810px; display: flex; }
+.ig-post { height: 100%; width: 100%; }
+.ig-creative { height: 520px; }
+.ig-caption { min-height: 92px; }
+.download-btn { margin-top: auto; width: 100%; }
+.ig-actions, .ig-actions span {
+  color: var(--navy) !important;
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 600;
 }
-
-.rq-panel {
-  border: 1px solid var(--border);
-  border-radius: 8px; overflow: hidden;
-  margin-bottom: 40px;
-  opacity: 0; animation: fadeUp 0.7s ease 0.55s forwards;
+.ig-actions .bookmark-icon { margin-left: auto; }
+.action-icon {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  align-items: center;
+  justify-content: center;
+  color: var(--navy);
+  line-height: 1;
 }
-
-.rq-header {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 14px 20px;
-  background: var(--navy);
-  cursor: pointer; user-select: none;
-}
-.rq-header-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; color: rgba(255,255,255,0.7);
-  letter-spacing: 2px; text-transform: uppercase;
-}
-.rq-toggle-btn {
-  width: 22px; height: 22px;
-  border: 1px solid rgba(255,255,255,0.3);
+.action-icon.comment-icon {
+  border: 1.8px solid var(--navy);
   border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  color: white; font-size: 14px; font-weight: 300;
-  transition: transform 0.3s;
-}
-.rq-panel.open .rq-toggle-btn { transform: rotate(45deg); }
-
-.rq-body { padding: 20px; background: var(--white); }
-.rq-main-text {
-  font-family: 'Lora', serif;
-  font-size: 16px; font-style: italic;
-  color: var(--ink); line-height: 1.7;
-  margin-bottom: 0;
-}
-
-.rq-subqs {
-  max-height: 0; overflow: hidden;
-  transition: max-height 0.5s ease;
-}
-.rq-panel.open .rq-subqs { max-height: 400px; }
-
-.rq-subqs-inner {
-  border-top: 1px solid var(--border);
-  margin-top: 16px; padding-top: 16px;
-}
-.rq-subqs-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; color: var(--navy);
-  letter-spacing: 2px; text-transform: uppercase;
-  margin-bottom: 12px;
-}
-.rq-subqs ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-.rq-subqs li {
-  font-size: 14px; color: var(--ink-mid);
-  line-height: 1.65; padding-left: 16px;
+  font-size: 0;
   position: relative;
 }
-.rq-subqs li::before {
-  content: '';
-  position: absolute; left: 0; top: 9px;
-  width: 6px; height: 1px; background: var(--navy);
-}
-
-/* IDENTITY BLOCK */
-.identity-block {
-  margin-top: 4px;
-  opacity: 0; animation: fadeUp 0.7s ease 0.7s forwards;
-}
-.identity-row {
-  display: flex; align-items: center; gap: 0;
-  border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
-}
-.identity-cell {
-  flex: 1; padding: 14px 20px;
-  border-right: 1px solid var(--border);
-}
-.identity-cell:last-child { border-right: none; }
-.identity-role {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9px; color: var(--ink-faint);
-  letter-spacing: 2px; text-transform: uppercase;
-  margin-bottom: 4px;
-}
-.identity-name {
-  font-size: 14px; font-weight: 600; color: var(--ink);
-}
-.identity-detail {
-  font-size: 12px; color: var(--ink-light); margin-top: 2px;
-}
-
-/* HERO RIGHT - STATS */
-.hero-right {
-  position: sticky;
-  top: 80px;
-  align-self: start;
-  padding: 72px 56px 64px 48px;
-  display: flex; flex-direction: column; gap: 0;
-}
-
-.hero-right-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; color: var(--ink-faint);
-  letter-spacing: 2px; text-transform: uppercase;
-  margin-bottom: 20px;
-  opacity: 0; animation: fadeUp 0.7s ease 0.4s forwards;
-}
-
-.stat-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
-  background: var(--border); border: 1px solid var(--border);
-  border-radius: 8px; overflow: hidden;
-  flex: 1;
-}
-
-.stat-card {
-  background: var(--white);
-  padding: 24px 26px;
-  transition: background 0.2s;
-  opacity: 0; animation: fadeUp 0.7s ease forwards;
-  cursor: default;
-  display: grid;
-  grid-template-columns: 110px 1fr;
-  column-gap: 24px;
-  align-items: center;
-}
-.stat-card:nth-child(1) { animation-delay: 0.45s; }
-.stat-card:nth-child(2) { animation-delay: 0.55s; }
-.stat-card:nth-child(3) { animation-delay: 0.65s; }
-.stat-card:nth-child(4) { animation-delay: 0.75s; }
-.stat-card:hover { background: var(--navy-light); }
-
-.stat-num {
-  font-family: 'Lora', serif;
-  font-size: 40px; font-weight: 700;
-  color: var(--navy); line-height: 1;
-  margin-bottom: 8px;
-}
-.stat-desc {
-  font-size: 16px; line-height: 1.55; color: var(--ink-mid);
-}
-.stat-source {
-  font-family: 'Source Sans 3', sans-serif;
-  font-size: 13px;
-  color: var(--navy);
-  margin-top: 8px;
-  display: block;
-  line-height: 1.5;
-}
-.stat-source a {
-  color: var(--navy);
-  text-decoration: none;
-  border-bottom: 1px solid var(--border-strong);
-}
-.stat-source a:hover { border-color: var(--navy); }
-
-/* HERO STRIP */
-.hero-strip {
-  display: flex; align-items: stretch;
-  border-top: 1px solid var(--border);
-}
-.hero-strip-item {
-  flex: 1; padding: 14px 24px;
-  border-right: 1px solid var(--border);
-  display: flex; flex-direction: column; gap: 3px;
-}
-.hero-strip-item:last-child { border-right: none; }
-.strip-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9px; color: var(--ink-faint);
-  letter-spacing: 2px; text-transform: uppercase;
-}
-.strip-value {
-  font-size: 13px; font-weight: 500; color: var(--navy);
-}
-
-/* SECTIONS */
-.section-wrap { padding: 80px 56px; }
-.section-wrap.alt { background: var(--off-white); }
-.section-wrap.navy-bg { background: var(--navy); }
-
-.section-tag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; color: var(--navy);
-  letter-spacing: 2.5px; text-transform: uppercase;
-  margin-bottom: 12px;
-  display: flex; align-items: center; gap: 10px;
-}
-.section-tag.light { color: rgba(255,255,255,0.5); }
-.section-tag::after {
-  content: ''; width: 32px; height: 1px;
-  background: currentColor; opacity: 0.4;
-}
-
-.section-title {
-  font-family: 'Lora', serif;
-  font-size: clamp(26px, 3vw, 40px);
-  font-weight: 700; line-height: 1.2;
-  color: var(--ink); margin-bottom: 14px;
-}
-.section-title.light { color: var(--white); }
-
-.section-lead {
-  font-size: 16px; line-height: 1.85;
-  color: var(--ink-light); max-width: 680px;
-  margin-bottom: 52px;
-}
-.section-lead.light { color: rgba(255,255,255,0.65); }
-
-/* ABOUT */
-.about-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start;
-}
-
-.prose p {
-  font-size: 15px; line-height: 1.9; color: var(--ink-mid); margin-bottom: 18px;
-}
-.prose p:last-child { margin-bottom: 0; }
-.prose a {
-  color: var(--navy); text-decoration: none;
-  border-bottom: 1px solid var(--border-strong);
-  transition: border-color 0.2s;
-}
-.prose a:hover { border-color: var(--navy); }
-
-.scope-card {
-  background: var(--navy-light);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--navy);
-  border-radius: 0 8px 8px 0;
-  padding: 24px 28px; margin-top: 28px;
-}
-.scope-card h4 {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; color: var(--navy);
-  letter-spacing: 2px; text-transform: uppercase;
-  margin-bottom: 10px;
-}
-.scope-card p { font-size: 13px; line-height: 1.75; color: var(--ink-mid); margin: 0; }
-
-/* THEMES ACCORDION */
-.themes-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; color: var(--navy);
-  letter-spacing: 2px; text-transform: uppercase;
-  margin-bottom: 16px;
-  display: flex; align-items: center; gap: 10px;
-}
-.themes-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-
-.theme-accordion { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-.theme-item { border-bottom: 1px solid var(--border); }
-.theme-item:last-child { border-bottom: none; }
-
-.theme-btn {
-  width: 100%; display: flex; align-items: center; gap: 16px;
-  padding: 18px 20px; background: var(--white);
-  cursor: pointer; border: none; text-align: left;
-  transition: background 0.2s;
-}
-.theme-btn:hover { background: var(--off-white); }
-.theme-item.open .theme-btn { background: var(--navy-light); }
-
-.theme-n {
-  font-family: 'Lora', serif;
-  font-size: 22px; font-weight: 700;
-  color: var(--border-strong); min-width: 32px;
-  transition: color 0.2s;
-}
-.theme-item.open .theme-n { color: var(--navy); }
-
-.theme-btn-title { font-size: 14px; font-weight: 600; color: var(--ink); flex: 1; }
-.theme-btn-arrow { font-size: 16px; color: var(--ink-faint); transition: transform 0.3s; }
-.theme-item.open .theme-btn-arrow { transform: rotate(180deg); color: var(--navy); }
-
-.theme-body { max-height: 0; overflow: hidden; transition: max-height 0.45s ease; }
-.theme-item.open .theme-body { max-height: 500px; }
-
-.theme-body-inner {
-  padding: 0 20px 20px 68px;
-  border-top: 1px solid var(--border);
-  background: var(--white);
-}
-.theme-body-inner p { font-size: 14px; line-height: 1.85; color: var(--ink-mid); margin-top: 16px; }
-.theme-body-inner a { color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--border-strong); }
-.theme-body-inner a:hover { border-color: var(--navy); }
-
-/* PLATFORMS */
-.platform-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
-
-.platform-card {
-  border: 1px solid var(--border);
-  border-radius: 10px; overflow: hidden;
-  background: var(--white);
-  cursor: pointer;
-  transition: box-shadow 0.3s, transform 0.3s;
-}
-.platform-card:hover { box-shadow: 0 4px 24px rgba(30,58,95,0.1); transform: translateY(-2px); }
-
-.platform-card-top {
-  padding: 28px 24px 20px;
-  border-bottom: 1px solid var(--border);
-}
-.platform-logo { font-size: 28px; margin-bottom: 14px; }
-.platform-name {
-  font-family: 'Lora', serif;
-  font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 6px;
-}
-.platform-badge {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
-  padding: 3px 8px; border-radius: 4px; display: inline-block; margin-bottom: 14px;
-}
-.tripadvisor .platform-badge { color: #1A7A50; background: #E8F5EF; }
-.booking .platform-badge { color: #003580; background: #E8EEF7; }
-.google .platform-badge { color: #1A56DB; background: #EBF0FD; }
-
-.platform-desc { font-size: 13px; line-height: 1.7; color: var(--ink-light); }
-
-.platform-expand-hint {
-  padding: 10px 24px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; color: var(--ink-faint);
-  letter-spacing: 1px; text-transform: uppercase;
-  background: var(--off-white);
-  border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: space-between;
-}
-.expand-icon { font-size: 16px; color: var(--navy); transition: transform 0.3s; }
-.platform-card.open .expand-icon { transform: rotate(45deg); }
-
-.platform-details {
-  max-height: 0; overflow: hidden;
-  transition: max-height 0.45s ease;
-}
-.platform-card.open .platform-details { max-height: 400px; }
-
-.platform-details-inner { padding: 16px 24px 20px; }
-.platform-facts { list-style: none; margin-bottom: 16px; }
-.platform-facts li {
-  font-size: 13px; color: var(--ink-mid);
-  padding: 8px 0; border-bottom: 1px solid var(--border);
-  display: flex; align-items: flex-start; gap: 10px; line-height: 1.55;
-}
-.platform-facts li:last-child { border-bottom: none; }
-.platform-facts li::before {
-  content: '';
-  width: 5px; height: 5px; border-radius: 50%;
-  background: var(--navy); flex-shrink: 0; margin-top: 5px;
-}
-.platform-link {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; color: var(--navy); text-decoration: none;
-  border-bottom: 1px solid var(--border-strong);
-  letter-spacing: 0.5px; transition: border-color 0.2s;
-}
-.platform-link:hover { border-color: var(--navy); }
-
-/* FAKE REVIEWS */
-.fake-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
-
-.chart-card {
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: 10px; padding: 32px;
-}
-.chart-card-title {
-  font-family: 'Lora', serif;
-  font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 4px;
-}
-.chart-card-sub { font-size: 12px; color: var(--ink-light); margin-bottom: 28px; }
-
-.bar-chart { display: flex; flex-direction: column; gap: 14px; }
-.bar-row { display: flex; flex-direction: column; gap: 5px; }
-.bar-meta {
-  display: flex; justify-content: space-between;
-  font-size: 12px; font-weight: 500; color: var(--ink-mid);
-}
-.bar-track { height: 7px; background: var(--border); border-radius: 4px; overflow: hidden; }
-.bar-fill {
-  height: 100%; border-radius: 4px;
-  background: linear-gradient(90deg, var(--navy), var(--accent));
-  width: 0; transition: width 1s ease;
-}
-
-.chart-stats {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 24px;
-}
-.mini-stat {
-  background: var(--navy-light); border-radius: 8px; padding: 14px;
-  text-align: center; border: 1px solid var(--border);
-}
-.mini-num {
-  font-family: 'Lora', serif;
-  font-size: 26px; font-weight: 700; color: var(--navy);
-}
-.mini-label { font-size: 11px; color: var(--ink-light); line-height: 1.4; margin-top: 3px; }
-
-.chart-source {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9px; color: var(--ink-faint);
-  margin-top: 14px; display: block; text-align: right;
-}
-.chart-source a { color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--border-strong); }
-.chart-source a:hover { border-color: var(--navy); }
-
-.fake-text .prose a { color: var(--navy); border-bottom: 1px solid var(--border-strong); }
-
-.synthesis-box {
-  background: var(--gold-light); border: 1px solid var(--gold-pale);
-  border-left: 3px solid var(--gold);
-  border-radius: 0 8px 8px 0; padding: 22px 26px; margin-top: 24px;
-}
-.synthesis-box-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9px; color: var(--gold);
-  letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px;
-}
-.synthesis-box p {
-  font-family: 'Lora', serif;
-  font-style: italic; font-size: 15px;
-  color: var(--ink-mid); line-height: 1.7; margin: 0;
-}
-.synthesis-box cite {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9px; color: var(--gold);
-  font-style: normal; display: block; margin-top: 10px;
-}
-
-/* MANAGEMENT */
-.management-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; margin-bottom: 48px; }
-
-.prose-block p { font-size: 15px; line-height: 1.9; color: var(--ink-mid); margin-bottom: 16px; }
-.prose-block a { color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--border-strong); }
-.prose-block a:hover { border-color: var(--navy); }
-
-.synthesis-strip {
-  background: var(--navy-light); border: 1px solid var(--border);
-  border-radius: 8px; padding: 24px 28px;
-}
-.synthesis-strip h4 {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; color: var(--navy);
-  letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px;
-}
-.synthesis-strip p { font-size: 14px; line-height: 1.8; color: var(--ink-mid); }
-.synthesis-strip a { color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--border-strong); }
-.synthesis-strip a:hover { border-color: var(--navy); }
-
-.resp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-
-.resp-card {
-  border: 1px solid var(--border); border-radius: 10px;
-  padding: 24px; background: var(--white);
-  transition: box-shadow 0.2s;
-}
-.resp-card:hover { box-shadow: 0 3px 20px rgba(0,0,0,0.07); }
-.resp-card.good { border-top: 3px solid #16A34A; }
-.resp-card.bad { border-top: 3px solid #DC2626; }
-.resp-card.context { border-top: 3px solid var(--gold); }
-.resp-card.strategic { border-top: 3px solid var(--navy); }
-
-.resp-tag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
-  display: inline-block; padding: 3px 8px; border-radius: 4px; margin-bottom: 12px;
-}
-.good .resp-tag { color: #16A34A; background: #F0FDF4; }
-.bad .resp-tag { color: #DC2626; background: #FEF2F2; }
-.context .resp-tag { color: var(--gold); background: var(--gold-light); }
-.strategic .resp-tag { color: var(--navy); background: var(--navy-light); }
-
-.resp-card h4 { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
-.resp-card p { font-size: 13px; line-height: 1.75; color: var(--ink-light); }
-.resp-card a { color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--border-strong); }
-.resp-card a:hover { border-color: var(--navy); }
-
-/* RECOMMENDATIONS */
-.rec-list { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
-.rec-item {
-  display: grid; grid-template-columns: 64px 1fr;
-  border-bottom: 1px solid var(--border);
-  cursor: pointer; transition: background 0.2s;
-}
-.rec-item:last-child { border-bottom: none; }
-.rec-item:hover { background: var(--off-white); }
-.rec-item.open { background: var(--navy-light); }
-
-.rec-num-col {
-  display: flex; align-items: flex-start; justify-content: center;
-  padding: 22px 0 22px;
-  border-right: 1px solid var(--border);
-}
-.rec-num {
-  font-family: 'Lora', serif;
-  font-size: 22px; font-weight: 700;
-  color: var(--border-strong);
-  transition: color 0.2s;
-}
-.rec-item.open .rec-num { color: var(--navy); }
-
-.rec-body { padding: 22px 24px; }
-.rec-body h4 {
-  font-size: 15px; font-weight: 600; color: var(--ink);
-  display: flex; align-items: center; justify-content: space-between;
-}
-.rec-toggle { font-size: 18px; color: var(--navy); font-weight: 300; }
-.rec-item.open .rec-toggle::before { content: '-'; }
-.rec-toggle::before { content: '+'; }
-
-.rec-detail {
-  max-height: 0; overflow: hidden;
-  transition: max-height 0.4s ease, opacity 0.3s;
-  opacity: 0;
-}
-.rec-item.open .rec-detail { max-height: 200px; opacity: 1; }
-.rec-detail p {
-  font-size: 14px; line-height: 1.8; color: var(--ink-mid);
-  margin-top: 10px;
-}
-.rec-detail a { color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--border-strong); }
-.rec-detail a:hover { border-color: var(--navy); }
-
-/* REFERENCES */
-.ref-list { display: flex; flex-direction: column; gap: 12px; }
-.ref-entry {
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: 8px; padding: 18px 22px;
-  transition: border-color 0.2s;
-}
-.ref-entry:hover { border-color: var(--navy); }
-.ref-text { font-size: 13px; line-height: 1.8; color: var(--ink-mid); }
-.ref-text em { font-style: italic; }
-.ref-text a {
-  color: var(--navy); text-decoration: none;
-  border-bottom: 1px solid var(--border-strong);
-  word-break: break-all;
-}
-.ref-text a:hover { border-color: var(--navy); }
-
-/* FOOTER */
-footer {
-  background: var(--navy);
-  padding: 0;
-  border-top: 1px solid var(--border);
-}
-.footer-inner {
-  display: grid; grid-template-columns: 1fr auto;
-  gap: 48px; align-items: center;
-  padding: 36px 56px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-.footer-title {
-  font-family: 'Lora', serif;
-  font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 4px;
-}
-.footer-sub { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; }
-
-.footer-identity {
-  display: flex; gap: 0;
-  border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; overflow: hidden;
-}
-.footer-id-cell {
-  padding: 14px 22px;
-  border-right: 1px solid rgba(255,255,255,0.1);
-}
-.footer-id-cell:last-child { border-right: none; }
-.footer-id-role {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9px; color: rgba(255,255,255,0.4);
-  letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px;
-}
-.footer-id-name { font-size: 13px; font-weight: 600; color: var(--white); }
-.footer-id-detail { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 2px; }
-
-.footer-bottom {
-  padding: 14px 56px;
-  display: flex; justify-content: space-between; align-items: center;
-}
-.footer-bottom-left {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 1px;
-}
-.footer-bottom-right { font-size: 11px; color: rgba(255,255,255,0.3); }
-
-/* REVEAL */
-.reveal {
-  opacity: 0; transform: translateY(22px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
-}
-.reveal.visible { opacity: 1; transform: none; }
-.reveal-d1 { transition-delay: 0.1s; }
-.reveal-d2 { transition-delay: 0.2s; }
-.reveal-d3 { transition-delay: 0.3s; }
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: none; }
-}
-
-/* DIVIDER */
-.divider { height: 1px; background: var(--border); margin: 0; }
-
-/* RESPONSIVE */
-@media (max-width: 960px) {
-  nav { padding: 0 20px; }
-  .nav-links { gap: 0; }
-  .nav-links a { padding: 0 10px; font-size: 12px; }
-  .hero-top { grid-template-columns: 1fr; }
-  .hero-left { padding: 48px 24px 40px; border-right: none; border-bottom: 1px solid var(--border); }
-  .hero-right {
-  position: sticky;
-  top: 80px;
-  align-self: start; padding: 40px 24px; }
-  .identity-row { flex-direction: column; }
-  .identity-cell { border-right: none; border-bottom: 1px solid var(--border); }
-  .section-wrap { padding: 56px 24px; }
-  .about-grid, .fake-layout, .management-grid { grid-template-columns: 1fr; gap: 40px; }
-  .platform-grid, .resp-grid { grid-template-columns: 1fr; }
-  .footer-inner { grid-template-columns: 1fr; gap: 24px; }
-  .footer-identity { flex-direction: column; }
-  .footer-id-cell { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
-  .footer-bottom { padding: 14px 24px; flex-direction: column; gap: 8px; text-align: center; }
-  .hero-strip { flex-direction: column; }
-  .hero-strip-item { border-right: none; border-bottom: 1px solid var(--border); }
-}
-
-/* Final layout updates */
-.rq-header { gap: 16px; }
-.rq-toggle-btn {
-  width: auto; min-height: 28px; padding: 0 10px;
-  border-radius: 999px;
-  gap: 8px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px; font-weight: 500;
-  letter-spacing: 1px; text-transform: uppercase;
-  background: rgba(255,255,255,0.08);
-}
-.rq-toggle-btn b { font-size: 15px; line-height: 1; transition: transform 0.3s; font-weight: 400; }
-.rq-panel.open .rq-toggle-btn { transform: none; }
-.rq-panel.open .rq-toggle-btn b { transform: rotate(45deg); }
-.hero-right {
-  position: sticky;
-  top: 80px;
-  align-self: start; background: linear-gradient(180deg, var(--white) 0%, var(--off-white) 100%); }
-.stat-grid {
-  grid-template-columns: 1fr;
-  gap: 12px;
-  background: transparent;
-  border: 0;
-  border-radius: 0;
-  overflow: visible;
-  flex: 0;
-}
-.stat-card {
-  padding: 18px 20px;
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--navy);
-  border-radius: 10px;
-  display: grid;
-  grid-template-columns: 92px 1fr;
-  gap: 16px;
-  align-items: center;
-}
-.stat-card:hover {
-  background: var(--white);
-  box-shadow: 0 5px 22px rgba(30,58,95,0.08);
-  transform: translateY(-1px);
-  border-color: var(--border-strong);
-}
-.stat-num { font-size: 34px; margin-bottom: 0; }
-.stat-source { margin-top: 6px; letter-spacing: 0.4px; text-transform: uppercase; }
-.platform-card { display: flex; flex-direction: column; min-height: 100%; }
-.platform-card-top { flex: 1; }
-.platform-expand-hint {
-  min-height: 58px;
-  padding: 0 30px;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  margin-top: auto;
-  letter-spacing: 1.5px;
-}
-.expand-icon { font-size: 18px; line-height: 1; flex-shrink: 0; }
-@media (max-width: 960px) {
-  .stat-card { grid-template-columns: 78px 1fr; padding: 16px; }
-  .stat-num { font-size: 30px; }
-}
-
-
-.stat-text-wrap {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.stat-card { cursor: pointer; }
-.stat-extra {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-  font-size: 13px;
-  color: var(--ink-light);
-  margin-top: 6px;
-}
-.stat-card.open .stat-extra { max-height: 80px; }
-
-/* TRUST DECISION TOOL */
-.trust-tool-grid {
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 48px;
-  align-items: start;
-}
-.tool-panel {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  overflow: hidden;
-}
-.tool-head {
-  padding: 22px 24px;
-  border-bottom: 1px solid var(--border);
-  background: var(--navy-light);
-}
-.tool-head h3 {
-  font-family: 'Lora', serif;
-  font-size: 20px;
-  color: var(--ink);
-  margin-bottom: 6px;
-}
-.tool-head p {
-  font-size: 13px;
-  color: var(--ink-light);
-  line-height: 1.7;
-}
-.tool-controls { padding: 24px; display: grid; gap: 18px; }
-.tool-control label {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--ink-mid);
-  margin-bottom: 8px;
-}
-.tool-control span {
-  font-family: 'JetBrains Mono', monospace;
-  color: var(--navy);
-  font-size: 12px;
-}
-.tool-control input[type=range] { width: 100%; accent-color: var(--navy); }
-.tool-result {
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: var(--white);
-  padding: 28px;
-}
-.tool-score-row {
-  display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 24px;
-  align-items: center;
-  margin-bottom: 22px;
-}
-.tool-score {
-  font-family: 'Lora', serif;
-  font-size: 48px;
-  font-weight: 700;
-  color: var(--navy);
-  line-height: 1;
-}
-.tool-score-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  color: var(--ink-faint);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-top: 8px;
-}
-.tool-status {
-  font-family: 'Lora', serif;
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: 8px;
-}
-.tool-status-text { font-size: 14px; line-height: 1.8; color: var(--ink-mid); }
-.tool-bars { display: grid; gap: 10px; margin: 22px 0; }
-.tool-mini-row { display: grid; grid-template-columns: 92px 1fr 42px; gap: 10px; align-items: center; }
-.tool-mini-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--ink-light); text-transform: uppercase; letter-spacing: 1px; }
-.tool-mini-track { height: 8px; background: var(--border); border-radius: 99px; overflow: hidden; }
-.tool-mini-fill { height: 100%; background: var(--navy); border-radius: 99px; transition: width 0.25s ease; }
-.tool-mini-value { font-size: 12px; color: var(--ink-mid); text-align: right; }
-.tool-actions {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-top: 18px;
-}
-.tool-action {
-  border: 1px solid var(--border);
-  background: var(--off-white);
-  border-radius: 8px;
-  padding: 14px;
-  font-size: 12px;
-  line-height: 1.6;
-  color: var(--ink-mid);
-}
-.tool-action strong { display: block; color: var(--navy); margin-bottom: 4px; }
-
-.tool-formula {
-  margin-top: 18px;
-  padding: 18px 20px;
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--gold);
-  border-radius: 8px;
-  background: var(--gold-light);
-}
-.tool-formula-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
-  color: var(--gold);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-.tool-formula-main {
-  font-family: 'Lora', serif;
-  font-size: 15px;
-  line-height: 1.75;
-  color: var(--ink);
-}
-.tool-formula-main code {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  color: var(--navy);
-  background: rgba(255,255,255,0.65);
-  padding: 2px 5px;
-  border-radius: 4px;
-}
-.tool-formula-source {
-  font-size: 12px;
-  line-height: 1.7;
-  color: var(--ink-light);
-  margin-top: 8px;
-}
-.tool-formula-source a {
-  color: var(--navy);
-  text-decoration: none;
-  border-bottom: 1px solid var(--border-strong);
-}
-.tool-formula-source a:hover { border-color: var(--navy); }
-
-.accessibility-note {
-  margin-top: 20px;
-  font-size: 12px;
-  line-height: 1.7;
-  color: var(--ink-light);
-}
-
-.tool-disclosure {
-  margin-top: 18px;
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--gold);
-  border-radius: 8px;
-  background: var(--gold-light);
-  overflow: hidden;
-}
-.tool-disclosure-btn {
-  width: 100%;
-  border: 0;
-  background: transparent;
-  padding: 16px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  text-align: left;
-}
-.tool-disclosure-btn span:first-child {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
-  color: var(--gold);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-.tool-disclosure-icon {
-  color: var(--navy);
-  font-size: 18px;
-  line-height: 1;
-  transition: transform 0.3s ease;
-}
-.tool-disclosure.open .tool-disclosure-icon { transform: rotate(45deg); }
-.tool-disclosure-body {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease;
-}
-.tool-disclosure.open .tool-disclosure-body { max-height: 420px; }
-@media (max-width: 768px) {
-  .tool-disclosure.open .tool-disclosure-body { max-height: 600px; }
-}
-.tool-disclosure-inner {
-  padding: 0 20px 18px;
-  border-top: 1px solid var(--gold-pale);
-}
-.site-accessibility-note {
-  margin-top: 28px;
-  padding: 18px 20px;
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--navy);
-  border-radius: 8px;
-  background: var(--white);
-  font-size: 13px;
-  line-height: 1.7;
-  color: var(--ink-mid);
-}
-.site-accessibility-note strong {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
-  color: var(--navy);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  display: block;
-  margin-bottom: 6px;
-}
-
-a:focus-visible, button:focus-visible, input:focus-visible, .rec-item:focus-visible, .platform-card:focus-visible, .stat-card:focus-visible {
-  outline: 3px solid var(--gold);
-  outline-offset: 3px;
-}
-.skip-link {
+.action-icon.comment-icon::after {
+  content: "";
   position: absolute;
-  left: -999px;
-  top: 12px;
-  background: var(--navy);
-  color: var(--white);
-  padding: 8px 12px;
-  z-index: 999;
-  border-radius: 4px;
+  right: 2px;
+  bottom: 1px;
+  width: 6px;
+  height: 6px;
+  border-right: 1.8px solid var(--navy);
+  border-bottom: 1.8px solid var(--navy);
+  transform: rotate(35deg);
+  background: white;
 }
-.skip-link:focus { left: 12px; }
-@media (max-width: 960px) {
-  .trust-tool-grid, .tool-score-row, .tool-actions { grid-template-columns: 1fr; }
+.action-icon.bookmark-icon {
+  width: 18px;
+  height: 22px;
+  border: 1.8px solid var(--navy);
+  border-radius: 2px 2px 4px 4px;
+  clip-path: polygon(0 0,100% 0,100% 100%,50% 78%,0 100%);
+  font-size:0;
+}
+.action-icon.share-icon { font-size: 22px; transform: translateY(-1px); }
+.action-icon.heart-icon { font-size: 24px; transform: translateY(-1px); }
+.visual-danger { background: linear-gradient(145deg,#FFF7F7,#FFECEC); }
+.visual-gold { background: linear-gradient(145deg,#FFF9E8,#F6E7B9); }
+.visual-green { background: linear-gradient(145deg,#F0FDF4,#DDFCEB); }
+.visual-navy { background: linear-gradient(145deg,#F3F6FB,#DDEAF8); }
+.visual-dark { background: linear-gradient(145deg,#1E3A5F,#102642); }
+.post-badge { background: var(--navy); color: #FFFFFF; }
+.visual-danger .post-badge { background: var(--danger); }
+.visual-gold .post-badge { background: var(--gold); color:#FFFFFF; }
+.visual-green .post-badge { background: var(--green); }
+@media(max-width:980px){
+  .device-shell { height: auto; min-height: 810px; }
 }
 
-/* HAMBURGER NAV */
-.nav-toggle {
+
+/* FINAL FIX ROUND 2 */
+.asset-card {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
+.device-shell {
+  height: 780px !important;
+  display: flex !important;
+}
+.ig-post {
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+.ig-creative {
+  height: 490px !important;
+  justify-content: flex-start !important;
+  padding-bottom: 14px !important;
+}
+.ig-caption {
+  min-height: 82px !important;
+  max-height: 96px !important;
+  overflow: hidden !important;
+}
+.download-btn {
+  align-self: stretch !important;
+  margin-top: 8px !important;
+  flex-shrink: 0 !important;
+}
+.alt-text {
+  margin-top: 8px !important;
+  flex-shrink: 0 !important;
+}
+.alt-text {
+  align-self: start !important;
+}
+.visual-dark .post-title,
+.visual-dark .post-copy,
+.visual-dark text[fill="white"],
+.visual-dark text[fill="rgba(255,255,255,0.9)"] {
+  color: #F8FAFC !important;
+}
+.visual-dark .post-title {
+  color: #F8FAFC !important;
+}
+.visual-dark .post-copy {
+  color: #E5E7EB !important;
+}
+/* Make dark posts readable but less harsh than pure white */
+#ig-8 .post-title,
+#ig-9 .post-title {
+  color: #F5E6C0 !important;
+}
+#ig-8 .post-title span,
+#ig-9 .post-title span {
+  color: #FFFFFF !important;
+}
+/* LinkedIn visual cleanup */
+#li-1 .li-visual text:last-of-type,
+#li-1 .li-visual text:nth-last-of-type(2) {
   display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  z-index: 300;
 }
-.nav-toggle span {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background: var(--ink);
-  border-radius: 2px;
-  transition: all 0.3s ease;
-}
-.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-toggle.open span:nth-child(2) { opacity: 0; }
-.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-@media (max-width: 768px) {
-  .nav-toggle { display: flex; }
-
-  .nav-links {
-    display: none;
-    position: fixed;
-    top: 60px;
-    left: 0;
-    right: 0;
-    background: rgba(255,255,255,0.98);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    flex-direction: column;
-    padding: 8px 0 16px;
-    z-index: 199;
-  }
-  .nav-links.open { display: flex; }
-  .nav-links li { width: 100%; }
-  .nav-links a {
-    padding: 14px 24px;
-    font-size: 15px;
-    border-bottom: none;
-    border-left: 3px solid transparent;
-  }
-  .nav-links a:hover { border-left-color: var(--navy); border-bottom: none; }
-
-  /* Hero */
-  .hero-left { padding: 36px 20px 32px; }
-  .hero-right { padding: 28px 20px; position: static; }
-  .hero-title { font-size: clamp(26px, 7vw, 38px); }
-  .hero-subtitle { font-size: 15px; }
-
-  /* Sections */
-  .section-wrap { padding: 44px 20px; }
-
-  /* Stats */
-  .stat-card { grid-template-columns: 70px 1fr; padding: 14px 16px; gap: 12px; }
-  .stat-num { font-size: 26px; }
-
-  /* Platform grid already 1fr at 960, keep */
-  /* Trust tool */
-  .trust-tool-grid { gap: 28px; }
-  .tool-score-row { grid-template-columns: 1fr; }
-  .tool-score { font-size: 40px; }
-  .tool-actions { grid-template-columns: 1fr; }
-  .tool-mini-row { grid-template-columns: 80px 1fr 38px; }
-
-  /* Resp grid */
-  .resp-grid { grid-template-columns: 1fr; }
-
-  /* Footer */
-  .footer-inner { padding: 28px 20px; }
-  .footer-bottom { padding: 14px 20px; }
-
-  /* Theme body indent */
-  .theme-body-inner { padding: 0 16px 16px 16px; }
-
-  /* RQ panel text */
-  .rq-main-text { font-size: 14px; }
-
-  /* Identity block */
-  .identity-row { flex-direction: column; }
-  .identity-cell { border-right: none; border-bottom: 1px solid var(--border); }
-  .identity-cell:last-child { border-bottom: none; }
-
-  /* Hero strip */
-  .hero-strip { flex-direction: column; }
-  .hero-strip-item { border-right: none; border-bottom: 1px solid var(--border); }
-  .hero-strip-item:last-child { border-bottom: none; }
-
-  /* Rec item */
-  .rec-item { grid-template-columns: 48px 1fr; }
-  .rec-num { font-size: 18px; }
+@media(max-width:980px){
+  .device-shell { height: auto !important; min-height: 760px !important; }
 }
 
-@media (max-width: 480px) {
-  .hero-eyebrow { flex-wrap: wrap; gap: 6px; }
-  .hero-eyebrow-sep { display: none; }
-  .stat-card { grid-template-columns: 1fr; }
-  .stat-num { font-size: 30px; margin-bottom: 4px; }
-  .chart-stats { grid-template-columns: 1fr; }
-  .tool-mini-row { grid-template-columns: 72px 1fr 32px; gap: 8px; }
-  .platform-expand-hint { padding: 0 16px; }
-  .rec-body h4 { font-size: 14px; }
-  .nav-brand { font-size: 10px; letter-spacing: 1px; }
-  .section-title { font-size: clamp(22px, 6vw, 32px); }
+
+/* FINAL FIX ROUND 3: spacing + visibility */
+.device-shell {
+  height: 745px !important;
+}
+.ig-creative {
+  height: 455px !important;
+  padding: 18px 20px 10px !important;
+}
+.post-title {
+  margin-top: 22px !important;
+  margin-bottom: 8px !important;
+}
+.post-copy {
+  margin-bottom: 6px !important;
+}
+.ig-caption {
+  min-height: 72px !important;
+  max-height: 82px !important;
+  padding-bottom: 8px !important;
+  font-size: 11.5px !important;
+}
+.ig-actions {
+  padding-top: 7px !important;
+}
+.ig-likes {
+  font-size: 12px !important;
+}
+.ig-status {
+  height: 22px !important;
+}
+.ig-profile {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+.post-badge {
+  top: 10px !important;
+}
+svg {
+  max-height: 100%;
+}
+.visual-dark,
+#ig-8 .ig-creative,
+#ig-9 .ig-creative {
+  background: linear-gradient(145deg,#F3F6FB,#DDEAF8) !important;
+}
+#ig-8 .post-title,
+#ig-9 .post-title,
+#ig-8 .post-copy,
+#ig-9 .post-copy {
+  color: var(--navy) !important;
+}
+#ig-8 .post-title span,
+#ig-9 .post-title span {
+  color: var(--gold) !important;
+}
+@media(max-width:980px){
+  .device-shell { min-height: 735px !important; }
+}
+
+
+/* FINAL FIX ROUND 4: L1 spacing + normalized rating bars */
+#ig-1 .ig-creative {
+  padding-top: 24px !important;
+}
+#ig-1 .post-title {
+  margin-top: 28px !important;
+  margin-bottom: 16px !important;
+}
+#ig-1 .post-copy {
+  margin-bottom: 14px !important;
+  line-height: 1.55 !important;
+}
+#ig-1 svg {
+  margin-top: 10px !important;
+  margin-bottom: 14px !important;
+}
+#ig-1 .ig-creative .post-copy:last-child {
+  margin-top: 14px !important;
+}
+
+
+/* FINAL LABEL + POST 6 TEXT FIT */
+.ig-location::after {
+  content: "";
+}
+#ig-6 svg text {
+  dominant-baseline: auto;
+}
+
+
+/* FINAL FACULTY CHECK FIXES */
+.action-icon.comment-icon {
+  border: none !important;
+  border-radius: 0 !important;
+  font-size: 20px !important;
+  position: static !important;
+}
+.action-icon.comment-icon::after {
+  content: none !important;
+}
+.action-icon.bookmark-icon {
+  clip-path: none !important;
+  border: none !important;
+  font-size: 20px !important;
+  width: 22px !important;
+  height: 22px !important;
+}
+.ig-actions .comment-icon::before {
+  content: "💬";
+}
+.ig-actions .bookmark-icon::before {
+  content: "🔖";
+}
+.ig-actions, .ig-actions span {
+  color: var(--navy) !important;
 }
 
 </style>
 </head>
 <body>
-<a class="skip-link" href="#about">Skip to main content</a>
-<!-- NAV -->
-<nav>
-<div class="nav-brand">DMGC 699 • Capstone 2026</div>
-<button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-  <span></span><span></span><span></span>
-</button>
-<ul class="nav-links" id="nav-links">
-<li><a href="#about">About</a></li>
-<li><a href="#platforms">Platforms</a></li>
-<li><a href="#fakereviews">Fake Reviews</a></li>
-<li><a href="#management">Responses</a></li>
-<li><a href="#trusttool">Trust Tool</a></li>
-<li><a href="#recommendations">Recommendations</a></li>
-<li><a href="#references">References</a></li>
-</ul>
-</nav>
-<!-- HERO -->
-<header class="hero">
-<div class="hero-top">
-<div class="hero-left">
-<div class="hero-eyebrow">
-<span class="hero-eyebrow-tag">DMGC 699 Capstone</span>
-<span class="hero-eyebrow-sep">|</span>
-<span class="hero-eyebrow-sub">Spring 2026 • Multimedia Deliverable 1</span>
-</div>
-<h1 class="hero-title">
-        Rating Discrepancies<br/>and <em>Consumer Trust</em>
-</h1>
-<p class="hero-subtitle">How multi-platform hotel reviews shape booking intentions</p>
-<div class="rq-panel" id="rq-panel">
-<div class="rq-header" id="rq-header" role="button" tabindex="0" aria-expanded="false" aria-controls="rq-subqs">
-<span class="rq-header-label">Research Question</span>
-<div class="rq-toggle-btn"><span>Sub-questions</span><b>+</b></div>
-</div>
-<div class="rq-body">
-<p class="rq-main-text">To what extent do multi-platform rating discrepancies function as a barrier to consumer trust, and how does the presence of synthetic (AI) content complicate the user's interpretive framework?</p>
-<div class="rq-subqs" id="rq-subqs">
-<div class="rq-subqs-inner">
-<p class="rq-subqs-label">Sub-questions</p>
-<ul>
-<li>What structural and algorithmic factors account for rating inconsistencies for the same hotel across different platforms, and how do these factors differ across regional or cultural markets?</li>
-<li>How do AI-generated and fraudulent reviews contribute to rating discrepancies and undermine consumer trust?</li>
-<li>How do hotel management response strategies on review platforms affect consumer perceptions of credibility and booking likelihood?</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="identity-block">
-<div class="identity-row">
-<div class="identity-cell">
-<div class="identity-role">Student</div>
-<div class="identity-name">Md Ashikur Rahman</div>
-<div class="identity-detail">NF1000759 • MA Digital Media and Global Communications</div>
-</div>
-<div class="identity-cell">
-<div class="identity-role">Supervisor</div>
-<div class="identity-name">Raquel Benitez Rojas</div>
-<div class="identity-detail">University of Niagara Falls Canada • Spring 2026</div>
-</div>
-</div>
-</div>
-</div>
-<div class="hero-right">
-<p class="hero-right-label">Key Research Statistics</p>
-<div class="stat-grid">
-<div class="stat-card">
-<div class="stat-num">2.7M</div><div class="stat-text-wrap"><div class="stat-desc">Fake reviews removed by TripAdvisor in 2024</div><span class="stat-source"><a href="https://www.tripadvisor.com/TransparencyReport2025" rel="noopener" target="_blank">TripAdvisor Transparency Report, 2025</a></span></div>
-<div class="stat-extra">Large-scale moderation effort shows ongoing fake review problem.</div></div>
-<div class="stat-card">
-<div class="stat-num">137%</div><div class="stat-text-wrap"><div class="stat-desc">Increase in AI-generated reviews on TripAdvisor, 2019 to 2024</div><span class="stat-source"><a href="https://originality.ai/blog/ai-tripadvisor-reviews-study" rel="noopener" target="_blank">Originality.AI, 2024</a></span></div>
-<div class="stat-extra">Rapid growth driven by generative AI tools adoption.</div></div>
-<div class="stat-card">
-<div class="stat-num">90%+</div><div class="stat-text-wrap"><div class="stat-desc">Travellers who read reviews before booking accommodation</div><span class="stat-source"><a href="https://doi.org/10.1016/j.ijhm.2023.103647" rel="noopener" target="_blank">Kirilenko et al., 2024</a></span></div>
-<div class="stat-extra">Near-universal reliance on reviews before booking decisions.</div></div>
-<div class="stat-card">
-<div class="stat-num">54%</div><div class="stat-text-wrap"><div class="stat-desc">Fake reviews caused by businesses boosting their own ratings</div><span class="stat-source"><a href="https://www.tripadvisor.com/TransparencyReport2025" rel="noopener" target="_blank">TripAdvisor Transparency Report, 2025</a></span></div>
-<div class="stat-extra">Business-driven manipulation remains dominant source of fake reviews.</div></div>
-</div>
-</div>
-</div>
+<a class="skip" href="#main-content">Skip to main content</a>
+<main id="main-content">
+<header class="header">
+<p class="eyebrow">DMGC 699 Capstone · Spring 2026 · Multimedia Deliverable · Social Media Posts Series / Campaign</p>
+<h1><em>Read Beyond the Stars</em></h1>
+<p class="subtitle">A social media posts series for Instagram, Facebook, and LinkedIn promoting ethical review practices for consumers and hospitality businesses.</p>
 </header>
-<!-- ABOUT -->
-<section id="about">
-<div class="section-wrap">
-<div class="about-grid">
-<div class="reveal">
-<p class="section-tag">About This Project</p>
-<h2 class="section-title">Why This Research Question?</h2>
-<div class="prose">
-<p>Working at a hotel front desk in Niagara Falls made one thing clear: guests arrive with their phones open, screenshots of three different platforms showing three different scores for the same property. The confusion is real, and so are its consequences for booking decisions.</p>
-<p>This capstone project examines how structural differences between TripAdvisor, Booking.com, and Google Reviews produce inconsistent ratings, how AI-generated and fraudulent content amplifies distrust, and how hotel management communication either restores or erodes consumer confidence. The research draws on a systematic review of peer-reviewed scholarship and secondary analysis of publicly available review data.</p>
-<p>Key sources include <a href="https://doi.org/10.1016/j.ijhm.2023.103647" rel="noopener" target="_blank">Kirilenko et al. (2024)</a>, <a href="https://doi.org/10.1016/j.tourman.2016.10.001" rel="noopener" target="_blank">Xiang et al. (2017)</a>, <a href="https://doi.org/10.1016/j.tourman.2010.12.011" rel="noopener" target="_blank">Sparks and Browning (2011)</a>, and <a href="https://doi.org/10.1016/j.dss.2020.113280" rel="noopener" target="_blank">Wu et al. (2020)</a>.</p>
-</div>
-<div class="scope-card">
-<h4>Project Scope</h4>
-<p>Focused on hotel accommodation on TripAdvisor, Booking.com, and Google Reviews. Literature from 2015 to 2025. Secondary content analysis draws on publicly available review data for five Niagara Falls properties and on previously published platform-level analyses. No original data collection or participant recruitment.</p>
-</div>
-</div>
-<div class="reveal reveal-d1">
-<p class="themes-label">Three Research Themes</p>
-<p style="font-size:13px;color:var(--ink-light);margin-bottom:16px;">Click each theme to expand the literature context.</p>
-<div class="theme-accordion">
-<div class="theme-item" id="theme-1">
-<button class="theme-btn" aria-expanded="false">
-<div class="theme-n">01</div>
-<div class="theme-btn-title">Platform Structure and Rating Divergence</div>
-<div class="theme-btn-arrow">⌄</div>
-</button>
-<div class="theme-body">
-<div class="theme-body-inner">
-<p><a href="https://doi.org/10.1016/j.tourman.2016.10.001" rel="noopener" target="_blank">Xiang et al. (2017)</a> showed that TripAdvisor, Expedia, and Yelp produce systematically different ratings for the same Manhattan hotels. Building on this, <a href="https://doi.org/10.1016/j.ijhm.2023.103647" rel="noopener" target="_blank">Kirilenko et al. (2024)</a> demonstrated that the divergence is not static but temporal: as platforms update their algorithms and review volume grows, the gap between open and closed platforms widens over time. Where Xiang et al. treat divergence as primarily structural, Kirilenko et al. reframe it as dynamic, suggesting consumer trust is not just a platform issue but a moving target for hoteliers. The global communication dimension is significant: what a five-star rating signals on a North American Google Reviews profile may carry a different interpretive weight than the same score on a European Booking.com page, as rating culture and platform norms vary across markets.</p>
-</div>
-</div>
-</div>
-<div class="theme-item" id="theme-2">
-<button class="theme-btn" aria-expanded="false">
-<div class="theme-n">02</div>
-<div class="theme-btn-title">Fraudulent and AI-Generated Reviews</div>
-<div class="theme-btn-arrow">⌄</div>
-</button>
-<div class="theme-body">
-<div class="theme-body-inner">
-<p><a href="https://doi.org/10.1016/j.dss.2020.113280" rel="noopener" target="_blank">Wu et al. (2020)</a> documented the full range of fake review mechanisms, from incentivised posting to automated generation, and found that no existing detection approach provides reliable, scalable protection. <a href="https://doi.org/10.1007/s00521-020-04757-2" rel="noopener" target="_blank">Hajek et al. (2020)</a> extended this at the technical level, showing that rating deviations are among the strongest computational signals of fraud. Taken together, these studies reveal a tension: platforms have detection tools, but those tools are consistently outpaced by new generation methods. <a href="https://doi.org/10.3389/fcomm.2024.1460321" rel="noopener" target="_blank">Pena-Garcia et al. (2024)</a> add a consumer-side dimension: suspicion of fake reviews degrades trust not just for the flagged item but across the platform as a whole, producing a spillover effect that <a href="https://doi.org/10.1016/j.tourman.2015.05.007" rel="noopener" target="_blank">Filieri et al. (2015)</a> would explain through platform trustworthiness as an antecedent to review adoption.</p>
-</div>
-</div>
-</div>
-<div class="theme-item" id="theme-3">
-<button class="theme-btn" aria-expanded="false">
-<div class="theme-n">03</div>
-<div class="theme-btn-title">Management Responses and Credibility</div>
-<div class="theme-btn-arrow">⌄</div>
-</button>
-<div class="theme-body">
-<div class="theme-body-inner">
-<p><a href="https://doi.org/10.1016/j.tourman.2010.12.011" rel="noopener" target="_blank">Sparks and Browning (2011)</a> established that management responses shift consumer perceptions even when the underlying review content is unchanged. <a href="https://doi.org/10.1016/j.tourman.2015.09.011" rel="noopener" target="_blank">Sparks et al. (2016)</a> refined this: specificity matters more than tone, with acknowledgement of the exact concern raised being the strongest predictor of trust restoration. However, <a href="https://doi.org/10.1016/j.ijhm.2015.01.010" rel="noopener" target="_blank">Ladhari and Michaud (2015)</a> introduce a complication: source credibility mediates how much weight a response carries, which means the same management reply will land differently on a closed platform like Booking.com than on an open one like TripAdvisor. This cross-platform variability in response effectiveness is a gap the existing literature has not yet fully addressed.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+
+<section class="campaign-box" aria-labelledby="campaign-overview">
+<h2 id="campaign-overview">Campaign Strategy</h2>
+<p><strong>Read Beyond the Stars</strong> translates the capstone research into short, accessible social media posts for two audiences: consumers deciding whether to trust online reviews, and hospitality professionals managing digital reputation. The series is designed with flexible post formats suitable for Instagram, Facebook, LinkedIn, and other visual-first social platforms, creating a cohesive campaign that can reach both everyday travellers and industry professionals.</p>
+</section>
+
+<section aria-labelledby="strategy">
+<p class="section-label" id="strategy">Campaign Architecture</p>
+<div class="strategy-grid">
+<div class="strategy-card"><strong>Primary Audience</strong><p><em>Consumers:</em> Millennial and Gen Z travellers (ages 22–42) who rely on online reviews when booking accommodation. Active on Instagram and Facebook.<br><br><em>Professionals:</em> Hotel managers, tourism marketers, and digital communication practitioners seeking ethical reputation management guidance. Active on LinkedIn.</p></div>
+<div class="strategy-card"><strong>Campaign Purpose</strong><p>Translate capstone research findings into publicly accessible, platform-native content that (1) builds review literacy among everyday travellers, (2) discourages fake review inflation and manipulative reputation practices, and (3) demonstrates the academic value of the capstone research to a broader audience.</p></div>
+<div class="strategy-card"><strong>Platforms</strong><p>Social media posts for public education and professional awareness across Instagram, Facebook, LinkedIn, and other visual-first platforms.</p></div>
+<div class="strategy-card"><strong>Core Message</strong><p>Ratings are not neutral. Platform structure, fake reviews, and management responses shape trust.</p></div>
 </div>
 </section>
-<div class="divider"></div>
-<!-- PLATFORMS -->
-<section id="platforms">
-<div class="section-wrap alt">
-<div class="reveal">
-<p class="section-tag">Theme 01</p>
-<h2 class="section-title">Three Platforms, Three Realities</h2>
-<p class="section-lead">Click each platform card to expand characteristics. Structural differences documented in <a href="https://doi.org/10.1016/j.tourman.2016.10.001" rel="noopener" style="color:var(--navy);text-decoration:none;border-bottom:1px solid var(--border-strong);" target="_blank">Xiang et al. (2017)</a> and <a href="https://doi.org/10.1016/j.ijhm.2023.103647" rel="noopener" style="color:var(--navy);text-decoration:none;border-bottom:1px solid var(--border-strong);" target="_blank">Kirilenko et al. (2024)</a>.</p>
+
+<!-- ========== KPIs ========== -->
+<section aria-labelledby="kpis">
+<p class="section-label" id="kpis">Estimated KPIs &amp; Performance Targets</p>
+<div class="campaign-box" style="margin-bottom:16px">
+<h2>Benchmark Sources</h2>
+<p>Targets are based on 2025 industry benchmarks: Instagram median engagement 1.0–3.0% for educational content (RivalIQ / Sprout Social 2025); LinkedIn education sector engagement 3.0–3.6% (Closely 2025). A new account without paid promotion is expected to perform at or slightly above median.</p>
 </div>
-<div class="platform-grid reveal reveal-d1">
-<div class="platform-card tripadvisor">
-<div class="platform-card-top">
-<div class="platform-logo">🗻</div>
-<h3 class="platform-name">TripAdvisor</h3>
-<span class="platform-badge">Open Platform</span>
-<p class="platform-desc">Any registered user may submit a review regardless of whether a stay was verified. Drives high volume but creates significant vulnerability to manipulation.</p>
+<div class="strategy-grid" style="grid-template-columns:repeat(3,1fr)">
+<div class="strategy-card" style="border-top:3px solid var(--navy)">
+<strong>Reach per Post</strong>
+<p><span style="font-family:'Lora',serif;font-size:22px;color:var(--navy);font-weight:700">500–1,000</span><br>impressions per post across all platforms combined. Organic baseline for a new educational account with no prior following.</p>
 </div>
-<div class="platform-expand-hint">
-          Click to expand details
-          <span class="expand-icon">+</span>
+<div class="strategy-card" style="border-top:3px solid var(--gold)">
+<strong>Engagement Rate</strong>
+<p><span style="font-family:'Lora',serif;font-size:22px;color:var(--gold);font-weight:700">1.0–3.0%</span> Instagram / Facebook<br><span style="font-family:'Lora',serif;font-size:22px;color:var(--navy);font-weight:700">3.0–3.6%</span> LinkedIn<br>Likes + comments + shares divided by reach. Educational image posts benchmark: ~1.05% (top 25%) on IG.</p>
 </div>
-<div class="platform-details">
-<div class="platform-details-inner">
-<ul class="platform-facts">
-<li>Open to all registered users; no booking verification required</li>
-<li>Bimodal rating distribution: extreme scores overrepresented (Kirilenko et al., 2024)</li>
-<li>214,000 AI-generated reviews removed in 2024</li>
-<li>2.7 million total fake reviews removed in 2024</li>
-<li>Review boosting by businesses accounts for 54% of removals</li>
-</ul>
-<a class="platform-link" href="https://www.tripadvisor.com/TransparencyReport2025" rel="noopener" target="_blank">TripAdvisor Transparency Report 2025 ↗</a>
+<div class="strategy-card" style="border-top:3px solid var(--green)">
+<strong>Saves &amp; Shares</strong>
+<p><span style="font-family:'Lora',serif;font-size:22px;color:var(--green);font-weight:700">5–15</span> saves or shares per post on Instagram. Saves signal high-value educational content and improve algorithmic reach over time.</p>
 </div>
+<div class="strategy-card" style="border-top:3px solid var(--navy)">
+<strong>Follower Growth</strong>
+<p><span style="font-family:'Lora',serif;font-size:22px;color:var(--navy);font-weight:700">+50–100</span> net new followers across all platforms by campaign close (Day 30). Benchmark: 3.3% monthly growth rate for small accounts.</p>
 </div>
+<div class="strategy-card" style="border-top:3px solid var(--gold)">
+<strong>Profile Visits</strong>
+<p><span style="font-family:'Lora',serif;font-size:22px;color:var(--gold);font-weight:700">200+</span> total profile visits across Instagram and LinkedIn over the 19-day campaign. Indicates interest beyond a single post.</p>
 </div>
-<div class="platform-card booking">
-<div class="platform-card-top">
-<div class="platform-logo">🏢</div>
-<h3 class="platform-name">Booking.com</h3>
-<span class="platform-badge">Closed Platform</span>
-<p class="platform-desc">Reviews restricted to guests who completed a verified booking. Adds a verification layer that moderates distribution and reduces, but does not eliminate, fake content.</p>
-</div>
-<div class="platform-expand-hint">
-          Click to expand details
-          <span class="expand-icon">+</span>
-</div>
-<div class="platform-details">
-<div class="platform-details-inner">
-<ul class="platform-facts">
-<li>Only verified guests can leave reviews</li>
-<li>More moderate, normally distributed ratings vs. open platforms</li>
-<li>Management responses appear directly beneath verified reviews</li>
-<li>Higher perceived source credibility for review content</li>
-<li>Used as primary research source by Kirilenko et al. (2024)</li>
-</ul>
-<a class="platform-link" href="https://www.booking.com" rel="noopener" target="_blank">Visit Booking.com ↗</a>
-</div>
-</div>
-</div>
-<div class="platform-card google">
-<div class="platform-card-top">
-<div class="platform-logo">📍</div>
-<h3 class="platform-name">Google Reviews</h3>
-<span class="platform-badge">Semi-Open Platform</span>
-<p class="platform-desc">Accessible to any Google account holder, loosely tied to location check-ins. Sits between open and closed models in verification and rating patterns.</p>
-</div>
-<div class="platform-expand-hint">
-          Click to expand details
-          <span class="expand-icon">+</span>
-</div>
-<div class="platform-details">
-<div class="platform-details-inner">
-<ul class="platform-facts">
-<li>Google account required; no booking verification</li>
-<li>Integrated with Google Maps and Search results</li>
-<li>High visibility: appears in hotel search results by default</li>
-<li>Variable verification leads to mixed rating reliability</li>
-<li>Growing influence on first-touch booking decisions</li>
-</ul>
-<a class="platform-link" href="https://business.google.com" rel="noopener" target="_blank">Google Business Profile ↗</a>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<div class="divider"></div>
-<!-- FAKE REVIEWS -->
-<section id="fakereviews">
-<div class="section-wrap">
-<div class="fake-layout">
-<div class="fake-text reveal">
-<p class="section-tag">Theme 02</p>
-<h2 class="section-title">The Authenticity Crisis</h2>
-<div class="prose">
-<p>The credibility of online reviews rests on one assumption: that they reflect genuine consumer experiences. When that assumption fails, the information value of the entire ecosystem degrades (<a href="https://doi.org/10.1016/j.dss.2020.113280" rel="noopener" target="_blank">Wu et al., 2020</a>).</p>
-<p><a href="https://doi.org/10.1007/s00521-020-04757-2" rel="noopener" target="_blank">Hajek et al. (2020)</a> confirmed that rating deviations are among the most reliable computational signals of fraudulent content. However, where Hajek et al. focus on detection from the platform side, <a href="https://doi.org/10.3389/fcomm.2024.1460321" rel="noopener" target="_blank">Pena-Garcia et al. (2024)</a> shift the lens to the consumer side, finding that suspicion of fake reviews produces a spillover: trust degrades not just for the flagged item but across the entire platform. <a href="https://doi.org/10.1016/j.tourman.2015.05.007" rel="noopener" target="_blank">Filieri et al. (2015)</a> provide the theoretical anchor, showing that platform trustworthiness is a prerequisite for review adoption. Together, these three studies reveal a compounding dynamic: fake reviews undermine platform trust, which in turn reduces the utility of all reviews, authentic or not.</p>
-<p>As generative AI tools become more sophisticated, the surface features that once distinguished machine-produced text from human-produced text are becoming less reliable markers, further straining the user's interpretive framework.</p>
-</div>
-<div class="synthesis-box">
-<p class="synthesis-box-label">Literature Synthesis</p>
-<p>"While Wu et al. (2020) document the mechanisms of fake review production, Pena-Garcia et al. (2024) reveal the downstream consequence: it is not just the fraudulent review that consumers distrust, but the platform that hosts it. Filieri et al. (2015) complete the picture by showing that once platform trustworthiness falls below a threshold, the review adoption process breaks down entirely."</p>
-<cite>Synthesis: Rating Discrepancies and Consumer Trust (2026)</cite>
-</div>
-</div>
-<div class="chart-card reveal reveal-d1">
-<h3 class="chart-card-title">AI-Generated Reviews on TripAdvisor</h3>
-<p class="chart-card-sub">Percentage of submissions identified as AI-generated, 2019 to 2024</p>
-<div class="bar-chart" id="bar-chart" role="img" aria-label="Bar chart showing AI-generated reviews on TripAdvisor grew from 4.49% in 2019 to 10.7% in 2024, a 137% increase over five years. Data source: Originality.AI (2024).">
-    <div class="bar-row">
-        <div class="bar-meta"><span>2019</span><span>4.49%</span></div>
-        <div class="bar-track"><div class="bar-fill" data-width="45"></div></div>
-    </div>
-    <div class="bar-row">
-        <div class="bar-meta"><span>2020</span><span>3.50%</span></div>
-        <div class="bar-track"><div class="bar-fill" data-width="35"></div></div>
-    </div>
-    <div class="bar-row">
-        <div class="bar-meta"><span>2021</span><span>4.30%</span></div>
-        <div class="bar-track"><div class="bar-fill" data-width="43"></div></div>
-    </div>
-    <div class="bar-row">
-        <div class="bar-meta"><span>2022</span><span>5.57%</span></div>
-        <div class="bar-track"><div class="bar-fill" data-width="56"></div></div>
-    </div>
-    <div class="bar-row">
-        <div class="bar-meta"><span>2023</span><span>4.68%</span></div>
-        <div class="bar-track"><div class="bar-fill" data-width="47"></div></div>
-    </div>
-    <div class="bar-row">
-        <div class="bar-meta">
-            <span style="font-weight:600;color:var(--ink)">2024</span>
-            <span style="font-weight:600;color:var(--navy)">10.70%</span>
-        </div>
-        <div class="bar-track"><div class="bar-fill" data-width="100"></div></div>
-    </div>
-</div>
-<div class="chart-stats">
-<div class="mini-stat">
-<div class="mini-num">2.7M</div>
-<div class="mini-label">Total fake reviews removed by TripAdvisor in 2024</div>
-</div>
-<div class="mini-stat">
-<div class="mini-num">214K</div>
-<div class="mini-label">Reviews removed specifically for being AI-generated</div>
-</div>
-</div>
-<span class="chart-source">
-  2020 and 2021 values estimated by linear interpolation; 2019, 2022, 2023, and 2024 reported by 
-  <a href="https://originality.ai/blog/ai-tripadvisor-reviews-study" rel="noopener" target="_blank">Originality.AI (2024)</a>  
-</span>
-</div>
-</div>
-</div>
-</section>
-<div class="divider"></div>
-<!-- MANAGEMENT -->
-<section id="management">
-<div class="section-wrap alt">
-<div class="reveal">
-<p class="section-tag">Theme 03</p>
-<h2 class="section-title">How Hotels Respond and Why It Matters</h2>
-</div>
-<div class="management-grid reveal reveal-d1">
-<div class="prose-block">
-<p>The core finding in the management response literature is that how a business responds to reviews has independent effects on consumer trust and booking intention, over and above the content of the original review (<a href="https://doi.org/10.1080/15256480.2016.1226150" rel="noopener" target="_blank">Chen and Law, 2016</a>; <a href="https://doi.org/10.1016/j.tourman.2010.12.011" rel="noopener" target="_blank">Sparks and Browning, 2011</a>).</p>
-<p><a href="https://doi.org/10.1016/j.tourman.2015.09.011" rel="noopener" target="_blank">Sparks et al. (2016)</a> refined this: responses that acknowledge specific concerns and offer concrete remedies outperform generic apologies significantly. The platform context shapes these dynamics: on Booking.com, management responses tied to verified transactions carry more weight than on TripAdvisor (<a href="https://doi.org/10.1016/j.ijhm.2023.103647" rel="noopener" target="_blank">Kirilenko et al., 2024</a>). Active engagement on all platforms was found to enhance booking intentions among prospective guests (<a href="https://doi.org/10.5861/ijrsm.2025.25014" rel="noopener" target="_blank">Elmedulan et al., 2025</a>).</p>
-</div>
-<div class="synthesis-strip">
-<h4>Author Synthesis</h4>
-<p>While <a href="https://doi.org/10.1016/j.ijhm.2015.01.010" rel="noopener" target="_blank">Ladhari and Michaud (2015)</a> show that eWOM source credibility mediates the effect of reviews on trust, <a href="https://doi.org/10.3389/fcomm.2024.1460321" rel="noopener" target="_blank">Pena-Garcia et al. (2024)</a> extend this by demonstrating that the platform itself is a credibility signal. This places management responses in a more complex context than Sparks and Browning (2011) originally assumed: the same reply carries different interpretive weight depending on whether the platform verifies the underlying review. Hoteliers cannot treat response strategy as platform-neutral.</p>
-</div>
-</div>
-<div class="resp-grid reveal reveal-d2">
-<div class="resp-card good">
-<span class="resp-tag">Effective</span>
-<h4>Acknowledge the Specific Concern</h4>
-<p>Responses that name the exact issue raised are significantly more effective at restoring trust than generic apologies. Specificity is the strongest predictor of positive consumer reappraisal (<a href="https://doi.org/10.1016/j.tourman.2010.12.011" rel="noopener" target="_blank">Sparks and Browning, 2011</a>; <a href="https://doi.org/10.1016/j.tourman.2015.09.011" rel="noopener" target="_blank">Sparks et al., 2016</a>).</p>
-</div>
-<div class="resp-card bad">
-<span class="resp-tag">Ineffective</span>
-<h4>Defensive or Dismissive Replies</h4>
-<p>Responses that challenge the guest's account or redirect blame can actively worsen consumer perceptions. An absent response is often preferable to a defensive one (<a href="https://doi.org/10.1016/j.tourman.2015.09.011" rel="noopener" target="_blank">Sparks et al., 2016</a>).</p>
-</div>
-<div class="resp-card context">
-<span class="resp-tag">Platform Context</span>
-<h4>Responses Land Differently by Platform</h4>
-<p>On Booking.com, responses tied to verified stays carry more credibility weight. On TripAdvisor, where the underlying review may be unverified, consumers apply more scepticism to both the review and the response (<a href="https://doi.org/10.1016/j.ijhm.2023.103647" rel="noopener" target="_blank">Kirilenko et al., 2024</a>).</p>
-</div>
-<div class="resp-card strategic">
-<span class="resp-tag">Strategic Insight</span>
-<h4>Consistency Across Platforms Is Essential</h4>
-<p>Guests who consult multiple platforms before booking notice inconsistencies in management communication. Active engagement across all platforms enhanced booking intentions (<a href="https://doi.org/10.5861/ijrsm.2025.25014" rel="noopener" target="_blank">Elmedulan et al., 2025</a>; <a href="https://doi.org/10.1016/j.ijhm.2015.01.010" rel="noopener" target="_blank">Ladhari and Michaud, 2015</a>).</p>
-</div>
+<div class="strategy-card" style="border-top:3px solid var(--danger)">
+<strong>Link Clicks / Bio Visits</strong>
+<p><span style="font-family:'Lora',serif;font-size:22px;color:var(--danger);font-weight:700">2–5%</span> click-through rate on posts that include a call-to-action directing audiences to a bio link or capstone resource. Baseline for educational CTAs.</p>
 </div>
 </div>
 </section>
 
-<div class="divider"></div>
-<!-- TRUST TOOL -->
-<section id="trusttool">
-<div class="section-wrap alt">
-<div class="reveal">
-<p class="section-tag">Interactive Research Translation</p>
-<h2 class="section-title">Consumer Trust Decision Tool</h2>
-<p class="section-lead">Use the sliders to model how rating gaps, AI suspicion, review volume, and management response quality change a traveller's confidence before booking.</p>
-</div>
-<div class="trust-tool-grid reveal reveal-d1">
-<div class="tool-panel">
-<div class="tool-head">
-<h3>Adjust the review signals</h3>
-<p>This tool translates the project's literature synthesis into a simple interpretive framework for hotel managers and consumers.</p>
-</div>
-<div class="tool-controls" aria-label="Trust decision tool controls">
-<div class="tool-control">
-<label for="ratingGap">Rating gap across platforms <span id="ratingGapValue">0.8 stars</span></label>
-<input id="ratingGap" type="range" min="0" max="2" step="0.1" value="0.8" aria-describedby="ratingGapValue"/>
-</div>
-<div class="tool-control">
-<label for="aiRisk">Suspicion of AI or fake reviews <span id="aiRiskValue">45%</span></label>
-<input id="aiRisk" type="range" min="0" max="100" step="5" value="45" aria-describedby="aiRiskValue"/>
-</div>
-<div class="tool-control">
-<label for="reviewVolume">Cross-platform review volume <span id="reviewVolumeValue">60%</span></label>
-<input id="reviewVolume" type="range" min="0" max="100" step="5" value="60" aria-describedby="reviewVolumeValue"/>
-</div>
-<div class="tool-control">
-<label for="responseQuality">Management response quality <span id="responseQualityValue">70%</span></label>
-<input id="responseQuality" type="range" min="0" max="100" step="5" value="70" aria-describedby="responseQualityValue"/>
-</div>
-</div>
-</div>
-<div class="tool-result" aria-live="polite">
-<div class="tool-score-row">
-<div>
-<div class="tool-score" id="trustScore">62</div>
-<div class="tool-score-label">Trust Score</div>
-</div>
-<div>
-<div class="tool-status" id="trustStatus">Moderate confidence</div>
-<p class="tool-status-text" id="trustText">Consumers may still book, but they are likely to cross-check platforms and read recent negative reviews before deciding.</p>
-</div>
-</div>
-<div class="tool-bars">
-<div class="tool-mini-row"><div class="tool-mini-label">Gap Risk</div><div class="tool-mini-track"><div class="tool-mini-fill" id="gapBar"></div></div><div class="tool-mini-value" id="gapRiskText">40%</div></div>
-<div class="tool-mini-row"><div class="tool-mini-label">Trust Loss</div><div class="tool-mini-track"><div class="tool-mini-fill" id="aiBar"></div></div><div class="tool-mini-value" id="aiRiskText">45%</div></div>
-<div class="tool-mini-row"><div class="tool-mini-label">Recovery</div><div class="tool-mini-track"><div class="tool-mini-fill" id="responseBar"></div></div><div class="tool-mini-value" id="responseText">70%</div></div>
-</div>
-<div class="tool-actions">
-<div class="tool-action"><strong>For consumers</strong>Compare at least two platforms before relying on one score.</div>
-<div class="tool-action"><strong>For managers</strong>Respond to the exact concern, not just the star rating.</div>
-<div class="tool-action"><strong>For platforms</strong>Make verification and AI-detection signals visible to users.</div>
-</div>
+<!-- ========== INSTAGRAM ========== -->
+<section aria-labelledby="instagram">
+<p class="section-label" id="instagram">Social Media Posts — Consumer Education (Posts 1–3)</p>
+<div class="post-grid">
 
-<div class="tool-disclosure" id="formulaDisclosure">
-<button class="tool-disclosure-btn" type="button" aria-expanded="false" aria-controls="formulaBody">
-<span>Formula and source note</span>
-<span class="tool-disclosure-icon" aria-hidden="true">+</span>
-</button>
-<div class="tool-disclosure-body" id="formulaBody">
-<div class="tool-disclosure-inner">
-<p class="tool-formula-main"><code>Tᵢ = min{100, max{0, β₀ − β₁Gᵢ − β₂Fᵢ + β₃Vᵢ + β₄Mᵢ}}</code></p>
-<p class="tool-formula-main"><code>Gᵢ = ΔRᵢ / 2, &nbsp; Fᵢ = fᵢ / 100, &nbsp; Vᵢ = vᵢ / 100, &nbsp; Mᵢ = mᵢ / 100</code></p>
-<p class="tool-formula-source"><strong>Compact reading guide:</strong> displayed values are raw inputs; the model converts them to 0–1 values before weighting. ΔRᵢ = rating gap on a 0–2 star scale; fᵢ = AI/fake-review risk; vᵢ = review volume signal; mᵢ = management response quality. Penalties: −β₁Gᵢ and −β₂Fᵢ. Supports: +β₃Vᵢ and +β₄Mᵢ. The final Tᵢ score is bounded from 0 to 100.</p>
-<p class="tool-formula-source"><strong>Weights used:</strong> β₀ = 72, β₁ = 32, β₂ = 28, β₃ = 16, β₄ = 24. This is a heuristic research-translation model, not a validated predictive model. Grounded in literature on rating divergence, fake reviews, eWOM trust, and management responses (<a href="https://doi.org/10.1016/j.ijhm.2023.103647" rel="noopener" target="_blank">Kirilenko et al., 2024</a>; <a href="https://doi.org/10.1016/j.dss.2020.113280" rel="noopener" target="_blank">Wu et al., 2020</a>; <a href="https://doi.org/10.1007/s00521-020-04757-2" rel="noopener" target="_blank">Hajek et al., 2020</a>; <a href="https://doi.org/10.1016/j.tourman.2010.12.011" rel="noopener" target="_blank">Sparks and Browning, 2011</a>).</p>
+<!-- IG POST 1 -->
+<article class="asset-card">
+<p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy);margin-bottom:6px;font-weight:700">Post 01 &nbsp;·&nbsp; Day 1</p>
+<div class="device-shell"><div class="ig-post" id="ig-1">
+<div class="ig-status"><span>9:41</span><span class="ig-status-icons">●●●</span></div>
+<div class="ig-profile"><div class="ig-avatar">RB</div><div class="ig-meta"><p class="ig-handle">readbeyondthestars</p><p class="ig-location">Hospitality review literacy</p></div><div class="ig-menu">•••</div></div>
+<div class="ig-creative visual-navy">
+  <h2 class="post-title">Same hotel.<br><span class="gold">Three ratings.</span></h2>
+  <p class="post-copy">Sheraton Fallsview, Niagara Falls. One stay. Three platforms. Three different scores. Here's why.</p>
+  <!-- SVG: platform comparison bars -->
+  <svg width="100%" height="160" viewBox="0 0 280 160" aria-hidden="true" style="margin-top:4px">
+    <!-- TripAdvisor row -->
+    <rect x="0" y="8" width="280" height="40" rx="8" fill="white" fill-opacity="0.85"/>
+    <text x="12" y="33" font-family="JetBrains Mono" font-size="11" fill="#1E3A5F">TripAdvisor</text>
+    <rect x="150" y="16" width="96" height="24" rx="6" fill="#EBF0F7"/>
+    <rect x="150" y="16" width="72" height="24" rx="6" fill="#1E3A5F"/>
+    <text x="160" y="33" font-family="Lora" font-size="13" font-weight="700" fill="white">4.0 ★</text>
+    <text x="254" y="33" font-family="JetBrains Mono" font-size="9" fill="#6B7280">/ 5</text>
+    <!-- Booking.com row -->
+    <rect x="0" y="56" width="280" height="40" rx="8" fill="white" fill-opacity="0.85"/>
+    <text x="12" y="81" font-family="JetBrains Mono" font-size="11" fill="#1E3A5F">Booking.com</text>
+    <rect x="150" y="64" width="96" height="24" rx="6" fill="#EBF0F7"/>
+    <rect x="150" y="64" width="82" height="24" rx="6" fill="#047857"/>
+    <text x="160" y="81" font-family="Lora" font-size="13" font-weight="700" fill="white">8.2</text>
+    <text x="254" y="81" font-family="JetBrains Mono" font-size="9" fill="#6B7280">/ 10</text>
+    <!-- Google row -->
+    <rect x="0" y="104" width="280" height="40" rx="8" fill="white" fill-opacity="0.85"/>
+    <text x="12" y="129" font-family="JetBrains Mono" font-size="11" fill="#1E3A5F">Google</text>
+    <rect x="150" y="112" width="96" height="24" rx="6" fill="#EBF0F7"/>
+    <rect x="150" y="112" width="82" height="24" rx="6" fill="#B07D2A"/>
+    <text x="160" y="129" font-family="Lora" font-size="13" font-weight="700" fill="white">4.3 ★</text>
+    <text x="254" y="129" font-family="JetBrains Mono" font-size="9" fill="#6B7280">/ 5</text>
+  </svg>
+  <p class="post-copy" style="margin-top:8px;font-size:12px;">Different platforms, different reviewer populations.</p>
 </div>
-</div>
-</div>
-</div>
-</div>
-</div>
+<div class="ig-actions"><div class="ig-left-actions"><span class="action-icon heart-icon">♡</span><span class="action-icon comment-icon" aria-hidden="true"></span><span class="action-icon share-icon">↗</span></div><span class="action-icon bookmark-icon" aria-hidden="true"></span></div>
+<div class="ig-likes">1,248 likes</div>
+<div class="ig-caption"><strong>readbeyondthestars</strong> Same hotel. Three platforms. Three different numbers. Before trusting a score, check the platform behind it. <span class="ig-tags">#OnlineReviews #TravelSmart #DigitalTrust</span></div>
+</div></div>
+<button class="download-btn" onclick="downloadPost('ig-1','ig-post01-platform-ratings.png')">↓ Download Post 01</button>
+<div class="alt-text"><strong>Alt text</strong> Instagram post showing three horizontal bar charts comparing TripAdvisor 4.0 stars, Booking.com 8.2 out of 10, and Google 4.3 stars for the same hotel, illustrating that platform structure affects scores.</div>
+</article>
 
+<!-- IG POST 2 -->
+<article class="asset-card">
+<p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy);margin-bottom:6px;font-weight:700">Post 02 &nbsp;·&nbsp; Day 4</p>
+<div class="device-shell"><div class="ig-post" id="ig-2">
+<div class="ig-status"><span>9:41</span><span class="ig-status-icons">●●●</span></div>
+<div class="ig-profile"><div class="ig-avatar">RB</div><div class="ig-meta"><p class="ig-handle">readbeyondthestars</p><p class="ig-location">Platform structure explained</p></div><div class="ig-menu">•••</div></div>
+<div class="ig-creative visual-navy">
+  <h2 class="post-title">Not all platforms are <span class="gold">built the same.</span></h2>
+  <p class="post-copy">Who can review changes everything.</p>
+  <!-- SVG: platform open/closed spectrum -->
+  <svg width="100%" height="200" viewBox="0 0 280 200" aria-hidden="true" style="margin-top:6px">
+    <!-- Column headers -->
+    <text x="10" y="16" font-family="JetBrains Mono" font-size="8" fill="#6B7280" letter-spacing="1">PLATFORM</text>
+    <text x="112" y="16" font-family="JetBrains Mono" font-size="8" fill="#6B7280" letter-spacing="1">ACCESS</text>
+    <text x="195" y="16" font-family="JetBrains Mono" font-size="8" fill="#6B7280" letter-spacing="1">RISK</text>
+    <line x1="0" y1="22" x2="280" y2="22" stroke="#E2E6ED" stroke-width="1"/>
+    <!-- TripAdvisor -->
+    <rect x="0" y="28" width="280" height="48" rx="6" fill="white" fill-opacity="0.9"/>
+    <text x="10" y="52" font-family="Source Sans 3" font-size="12" font-weight="600" fill="#1E3A5F">TripAdvisor</text>
+    <text x="10" y="66" font-family="Source Sans 3" font-size="10" fill="#6B7280">Open, no stay needed</text>
+    <rect x="110" y="36" width="60" height="20" rx="10" fill="#FECACA"/>
+    <text x="120" y="50" font-family="Source Sans 3" font-size="10" font-weight="600" fill="#DC2626">Open</text>
+    <rect x="192" y="36" width="52" height="20" rx="10" fill="#FEE2E2"/>
+    <text x="200" y="50" font-family="Source Sans 3" font-size="10" font-weight="600" fill="#DC2626">Higher</text>
+    <!-- Booking.com -->
+    <rect x="0" y="84" width="280" height="48" rx="6" fill="white" fill-opacity="0.9"/>
+    <text x="10" y="108" font-family="Source Sans 3" font-size="12" font-weight="600" fill="#047857">Booking.com</text>
+    <text x="10" y="122" font-family="Source Sans 3" font-size="10" fill="#6B7280">Verified stays only</text>
+    <rect x="110" y="92" width="60" height="20" rx="10" fill="#D1FAE5"/>
+    <text x="116" y="106" font-family="Source Sans 3" font-size="10" font-weight="600" fill="#047857">Closed</text>
+    <rect x="192" y="92" width="52" height="20" rx="10" fill="#D1FAE5"/>
+    <text x="202" y="106" font-family="Source Sans 3" font-size="10" font-weight="600" fill="#047857">Lower</text>
+    <!-- Google -->
+    <rect x="0" y="140" width="280" height="48" rx="6" fill="white" fill-opacity="0.9"/>
+    <text x="10" y="164" font-family="Source Sans 3" font-size="12" font-weight="600" fill="#B07D2A">Google</text>
+    <text x="10" y="178" font-family="Source Sans 3" font-size="10" fill="#6B7280">Any account, location-linked</text>
+    <rect x="110" y="148" width="60" height="20" rx="10" fill="#FDF6E3"/>
+    <text x="116" y="162" font-family="Source Sans 3" font-size="10" font-weight="600" fill="#B07D2A">Semi</text>
+    <rect x="192" y="148" width="52" height="20" rx="10" fill="#FDF6E3"/>
+    <text x="200" y="162" font-family="Source Sans 3" font-size="10" font-weight="600" fill="#B07D2A">Medium</text>
+  </svg>
+</div>
+<div class="ig-actions"><div class="ig-left-actions"><span class="action-icon heart-icon">♡</span><span class="action-icon comment-icon" aria-hidden="true"></span><span class="action-icon share-icon">↗</span></div><span class="action-icon bookmark-icon" aria-hidden="true"></span></div>
+<div class="ig-likes">874 likes</div>
+<div class="ig-caption"><strong>readbeyondthestars</strong> Booking.com only accepts verified stays. TripAdvisor accepts anyone. That's why the same hotel scores differently. <span class="ig-tags">#HotelReviews #TravelTips #PlatformLiteracy</span></div>
+</div></div>
+<button class="download-btn" onclick="downloadPost('ig-2','ig-post02-platform-structure.png')">↓ Download Post 02</button>
+<div class="alt-text"><strong>Alt text</strong> Instagram post showing a three-row comparison table of TripAdvisor, Booking.com, and Google reviews, indicating access type and manipulation risk level for each platform.</div>
+</article>
+
+<!-- IG POST 3 -->
+<article class="asset-card">
+<p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy);margin-bottom:6px;font-weight:700">Post 03 &nbsp;·&nbsp; Day 8</p>
+<div class="device-shell"><div class="ig-post" id="ig-3">
+<div class="ig-status"><span>9:41</span><span class="ig-status-icons">●●●</span></div>
+<div class="ig-profile"><div class="ig-avatar">RB</div><div class="ig-meta"><p class="ig-handle">readbeyondthestars</p><p class="ig-location">Review literacy tips</p></div><div class="ig-menu">•••</div></div>
+<div class="ig-creative visual-gold">
+  <h2 class="post-title">Read reviews<br>like a <span class="gold">researcher.</span></h2>
+  <p class="post-copy">Three checks before you trust a score.</p>
+  <!-- SVG: numbered checklist with icons -->
+  <svg width="100%" height="230" viewBox="0 0 280 230" aria-hidden="true" style="margin-top:6px">
+    <!-- Step 1 -->
+    <rect x="0" y="0" width="280" height="66" rx="10" fill="white" fill-opacity="0.92"/>
+    <circle cx="28" cy="33" r="18" fill="#1E3A5F"/>
+    <text x="24" y="38" font-family="Lora" font-size="16" font-weight="700" fill="white">1</text>
+    <text x="54" y="24" font-family="Source Sans 3" font-size="13" font-weight="600" fill="#1E3A5F">Cross-check platforms</text>
+    <text x="54" y="40" font-family="Source Sans 3" font-size="11" fill="#6B7280">Gap of 0.5+ stars? Investigate.</text>
+    <text x="54" y="55" font-family="JetBrains Mono" font-size="9" fill="#B07D2A">TA · Booking.com · Google</text>
+    <!-- Step 2 -->
+    <rect x="0" y="76" width="280" height="66" rx="10" fill="white" fill-opacity="0.92"/>
+    <circle cx="28" cy="109" r="18" fill="#B07D2A"/>
+    <text x="24" y="114" font-family="Lora" font-size="16" font-weight="700" fill="white">2</text>
+    <text x="54" y="100" font-family="Source Sans 3" font-size="13" font-weight="600" fill="#1E3A5F">Look for specifics</text>
+    <text x="54" y="116" font-family="Source Sans 3" font-size="11" fill="#6B7280">Names, dates, real incidents.</text>
+    <text x="54" y="131" font-family="JetBrains Mono" font-size="9" fill="#6B7280">Vague praise = red flag.</text>
+    <!-- Step 3 -->
+    <rect x="0" y="152" width="280" height="66" rx="10" fill="white" fill-opacity="0.92"/>
+    <circle cx="28" cy="185" r="18" fill="#047857"/>
+    <text x="24" y="190" font-family="Lora" font-size="16" font-weight="700" fill="white">3</text>
+    <text x="54" y="176" font-family="Source Sans 3" font-size="13" font-weight="600" fill="#1E3A5F">Read how they respond</text>
+    <text x="54" y="192" font-family="Source Sans 3" font-size="11" fill="#6B7280">Specific replies = accountability.</text>
+    <text x="54" y="207" font-family="JetBrains Mono" font-size="9" fill="#6b7280">Generic = trust less.</text>
+  </svg>
+</div>
+<div class="ig-actions"><div class="ig-left-actions"><span class="action-icon heart-icon">♡</span><span class="action-icon comment-icon" aria-hidden="true"></span><span class="action-icon share-icon">↗</span></div><span class="action-icon bookmark-icon" aria-hidden="true"></span></div>
+<div class="ig-likes">1,533 likes</div>
+<div class="ig-caption"><strong>readbeyondthestars</strong> A useful review is specific, recent, and consistent across platforms. Save this before your next hotel booking. <span class="ig-tags">#TravelTips #ReviewLiteracy #Hospitality</span></div>
+</div></div>
+<button class="download-btn" onclick="downloadPost('ig-3','ig-post03-review-literacy.png')">↓ Download Post 03</button>
+<div class="alt-text"><strong>Alt text</strong> Instagram post with three numbered steps for reading reviews critically: cross-check platforms for score gaps, look for specific details, and read how management responds.</div>
+</article>
+
+</div>
 </section>
 
-<div class="divider"></div>
-<!-- RECOMMENDATIONS -->
-<section id="recommendations">
-<div class="section-wrap">
-<div class="reveal">
-<p class="section-tag">Practical Takeaways</p>
-<h2 class="section-title">Recommendations for Hospitality Professionals</h2>
-<p class="section-lead">Click each item to read the evidence behind it. Synthesised from the scholarly literature reviewed in this capstone.</p>
+<!-- IG Posts 4-6 -->
+<section aria-labelledby="ig-data">
+<p class="section-label" id="ig-data">Social Media Posts — Fake Reviews &amp; Data (Posts 4–6)</p>
+<div class="post-grid">
+
+<!-- IG POST 4 -->
+<article class="asset-card">
+<p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy);margin-bottom:6px;font-weight:700">Post 04 &nbsp;·&nbsp; Day 12</p>
+<div class="device-shell"><div class="ig-post" id="ig-4">
+<div class="ig-status"><span>9:41</span><span class="ig-status-icons">●●●</span></div>
+<div class="ig-profile"><div class="ig-avatar">RB</div><div class="ig-meta"><p class="ig-handle">readbeyondthestars</p><p class="ig-location">Fake review types</p></div><div class="ig-menu">•••</div></div>
+<div class="ig-creative visual-danger">
+  <h2 class="post-title">Fake reviews come in <span class="red">three forms.</span></h2>
+  <p class="post-copy">Knowing the difference helps you spot them.</p>
+  <!-- SVG: three fake types as icon cards -->
+  <svg width="100%" height="225" viewBox="0 0 280 225" aria-hidden="true" style="margin-top:4px">
+    <!-- Boosting -->
+    <rect x="0" y="0" width="280" height="64" rx="10" fill="white" fill-opacity="0.9"/>
+    <rect x="0" y="0" width="6" height="64" rx="3" fill="#DC2626"/>
+    <text x="18" y="22" font-family="Source Sans 3" font-size="13" font-weight="700" fill="#DC2626">⚠ Boosting</text>
+    <text x="18" y="39" font-family="Source Sans 3" font-size="11" fill="#374151">Paid farms post sudden 5-star</text>
+    <text x="18" y="54" font-family="Source Sans 3" font-size="11" fill="#374151">clusters. Accounts have no history.</text>
+    <!-- Sabotage -->
+    <rect x="0" y="74" width="280" height="64" rx="10" fill="white" fill-opacity="0.9"/>
+    <rect x="0" y="74" width="6" height="64" rx="3" fill="#B07D2A"/>
+    <text x="18" y="96" font-family="Source Sans 3" font-size="13" font-weight="700" fill="#B07D2A">✕ Sabotage</text>
+    <text x="18" y="113" font-family="Source Sans 3" font-size="11" fill="#374151">Coordinated 1-star attacks on</text>
+    <text x="18" y="128" font-family="Source Sans 3" font-size="11" fill="#374151">competitor properties.</text>
+    <!-- AI Generated -->
+    <rect x="0" y="148" width="280" height="64" rx="10" fill="white" fill-opacity="0.9"/>
+    <rect x="0" y="148" width="6" height="64" rx="3" fill="#1E3A5F"/>
+    <text x="18" y="170" font-family="Source Sans 3" font-size="13" font-weight="700" fill="#1E3A5F">AI AI-Generated</text>
+    <text x="18" y="187" font-family="Source Sans 3" font-size="11" fill="#374151">Perfect grammar, no specifics,</text>
+    <text x="18" y="202" font-family="Source Sans 3" font-size="11" fill="#374151">oddly balanced tone. No real stay.</text>
+    <!-- stat -->
+  </svg>
 </div>
-<div class="rec-list reveal reveal-d1">
-<div class="rec-item">
-<div class="rec-num-col"><div class="rec-num">01</div></div>
-<div class="rec-body">
-<h4>Monitor All Three Platforms Simultaneously <span class="rec-toggle"></span></h4>
-<div class="rec-detail">
-<p>Rating discrepancies between TripAdvisor, Booking.com, and Google Reviews are structural and predictable (<a href="https://doi.org/10.1016/j.ijhm.2023.103647" rel="noopener" target="_blank">Kirilenko et al., 2024</a>; <a href="https://doi.org/10.1016/j.tourman.2016.10.001" rel="noopener" target="_blank">Xiang et al., 2017</a>). Relying on a single platform as a proxy for reputation risks missing divergence that prospective guests will see when they cross-check before booking.</p>
+<div class="ig-actions"><div class="ig-left-actions"><span class="action-icon heart-icon">♡</span><span class="action-icon comment-icon" aria-hidden="true"></span><span class="action-icon share-icon">↗</span></div><span class="action-icon bookmark-icon" aria-hidden="true"></span></div>
+<div class="ig-likes">986 likes</div>
+<div class="ig-caption"><strong>readbeyondthestars</strong> Fake reviews distort consumer trust and create unfair pressure on honest businesses. <span class="ig-tags">#FakeReviews #AIContent #ConsumerTrust</span></div>
+</div></div>
+<button class="download-btn" onclick="downloadPost('ig-4','ig-post04-fake-review-types.png')">↓ Download Post 04</button>
+<div class="alt-text"><strong>Alt text</strong> Instagram post listing three fake review types: review boosting with sudden 5-star clusters, competitor sabotage with coordinated 1-star attacks, and AI-generated reviews with no specific details, including a statistic that 54% of TripAdvisor removals in 2024 were boosting.</div>
+</article>
+
+<!-- IG POST 5 -->
+<article class="asset-card">
+<p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy);margin-bottom:6px;font-weight:700">Post 05 &nbsp;·&nbsp; Day 16</p>
+<div class="device-shell"><div class="ig-post" id="ig-5">
+<div class="ig-status"><span>9:41</span><span class="ig-status-icons">●●●</span></div>
+<div class="ig-profile"><div class="ig-avatar">RB</div><div class="ig-meta"><p class="ig-handle">readbeyondthestars</p><p class="ig-location">Data post</p></div><div class="ig-menu">•••</div></div>
+<div class="ig-creative visual-danger">
+  <h2 class="post-title">AI-generated reviews<br><span class="red">increased 137%</span></h2>
+  <p class="post-copy">From 4.49% in 2019 to 10.70% in 2024. 2020 and 2021 are estimated from the source graph.</p>
+  <!-- SVG: timeline bar chart with ChatGPT marker -->
+  <svg width="100%" height="215" viewBox="0 0 280 215" aria-hidden="true" style="margin-top:6px">
+    <!-- Axis labels -->
+    <text x="0" y="14" font-family="JetBrains Mono" font-size="8" fill="#6B7280">% AI-flagged reviews (TripAdvisor)</text>
+    <!-- Bars: 2019-2024, heights proportional to % -->
+    <!-- 2019: 4.49% → h=30, 2020: ~3.50% → h=34, 2021: ~3.80% → h=39, 2022: 5.57% → h=48, 2023: 4.68% → h=61, 2024: 10.70% → h=72 (max=72 for 10.70%) -->
+    <rect x="6"  y="148" width="32" height="30" rx="4" fill="#FCA5A5"/>
+    <rect x="52" y="154" width="32" height="24" rx="4" fill="#F87171"/>
+    <rect x="98" y="152" width="32" height="26" rx="4" fill="#EF4444"/>
+    <rect x="144" y="140" width="32" height="38" rx="4" fill="#DC2626"/>
+    <rect x="190" y="146" width="32" height="32" rx="4" fill="#B91C1C"/>
+    <rect x="236" y="106" width="32" height="72" rx="4" fill="#991B1B"/>
+    <!-- Value labels -->
+    <text x="14" y="144" font-family="JetBrains Mono" font-size="9" fill="#374151">4.49%</text>
+    <text x="58" y="150" font-family="JetBrains Mono" font-size="9" fill="#374151">~3.50%</text>
+    <text x="104" y="148" font-family="JetBrains Mono" font-size="9" fill="#374151">~3.80%</text>
+    <text x="148" y="136" font-family="JetBrains Mono" font-size="9" fill="#374151">5.57%</text>
+    <text x="194" y="142" font-family="JetBrains Mono" font-size="9" fill="#374151">4.68%</text>
+    <text x="240" y="102" font-family="JetBrains Mono" font-size="9" fill="#DC2626" font-weight="600">10.70%</text>
+    <!-- Year labels -->
+    <text x="8"   y="192" font-family="JetBrains Mono" font-size="9" fill="#6B7280">2019</text>
+    <text x="54"  y="192" font-family="JetBrains Mono" font-size="9" fill="#6B7280">2020</text>
+    <text x="100" y="192" font-family="JetBrains Mono" font-size="9" fill="#6B7280">2021</text>
+    <text x="146" y="192" font-family="JetBrains Mono" font-size="9" fill="#6B7280">2022</text>
+    <text x="192" y="192" font-family="JetBrains Mono" font-size="9" fill="#6B7280">2023</text>
+    <text x="238" y="192" font-family="JetBrains Mono" font-size="9" fill="#DC2626">2024</text>
+    <!-- ChatGPT annotation -->
+    <line x1="160" y1="130" x2="160" y2="200" stroke="#DC2626" stroke-width="1" stroke-dasharray="3,3"/>
+    <rect x="126" y="200" width="88" height="14" rx="3" fill="#FEE2E2"/>
+    <text x="128" y="211" font-family="JetBrains Mono" font-size="8" fill="#DC2626">ChatGPT launch Nov 2022</text>
+  </svg>
 </div>
+<div class="ig-actions"><div class="ig-left-actions"><span class="action-icon heart-icon">♡</span><span class="action-icon comment-icon" aria-hidden="true"></span><span class="action-icon share-icon">↗</span></div><span class="action-icon bookmark-icon" aria-hidden="true"></span></div>
+<div class="ig-likes">2,102 likes</div>
+<div class="ig-caption"><strong>readbeyondthestars</strong> The curve accelerates after ChatGPT launched in 2022. The tools for generating fake content are now widely available. <span class="ig-tags">#AIReviews #DigitalTrust #MediaLiteracy</span></div>
+</div></div>
+<button class="download-btn" onclick="downloadPost('ig-5','ig-post05-ai-review-data.png')">↓ Download Post 05</button>
+<div class="alt-text"><strong>Alt text</strong> Instagram data post showing a bar chart of AI-flagged TripAdvisor reviews from 2019 to 2024, rising from 4.49% to 10.70%, a 137% increase, with a dashed line marking the ChatGPT launch in November 2022.</div>
+</article>
+
+<!-- IG POST 6 -->
+<article class="asset-card">
+<p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy);margin-bottom:6px;font-weight:700">Post 06 &nbsp;·&nbsp; Day 19</p>
+<div class="device-shell"><div class="ig-post" id="ig-6">
+<div class="ig-status"><span>9:41</span><span class="ig-status-icons">●●●</span></div>
+<div class="ig-profile"><div class="ig-avatar">RB</div><div class="ig-meta"><p class="ig-handle">readbeyondthestars</p><p class="ig-location">Spot an AI review</p></div><div class="ig-menu">•••</div></div>
+<div class="ig-creative visual-navy">
+  <h2 class="post-title">Spot an <span class="gold">AI review</span><br>in 10 seconds.</h2>
+  <!-- SVG: real vs AI side by side -->
+  <svg width="100%" height="280" viewBox="0 0 280 280" aria-hidden="true" style="margin-top:8px">
+    <!-- Headers -->
+    <rect x="0" y="0" width="134" height="26" rx="6" fill="#ECFDF5"/>
+    <text x="8" y="17" font-family="JetBrains Mono" font-size="10" fill="#047857">✓ REAL REVIEW</text>
+    <rect x="146" y="0" width="134" height="26" rx="6" fill="#FEF2F2"/>
+    <text x="154" y="17" font-family="JetBrains Mono" font-size="10" fill="#DC2626">✕ AI REVIEW</text>
+    <!-- Real review box -->
+    <rect x="0" y="32" width="134" height="228" rx="8" fill="white" fill-opacity="0.9"/>
+    <text x="8" y="52"  font-family="Source Sans 3" font-size="10" fill="#374151">Names staff:</text>
+    <text x="8" y="65"  font-family="Source Sans 3" font-size="10" fill="#047857" font-weight="600">"Marcus at front desk"</text>
+    <line x1="8" y1="76" x2="126" y2="76" stroke="#E2E6ED" stroke-width="1"/>
+    <text x="8" y="92"  font-family="Source Sans 3" font-size="10" fill="#374151">Specific complaint:</text>
+    <text x="8" y="105" font-family="Source Sans 3" font-size="10" fill="#047857" font-weight="600">"Room 412, cold shower"</text>
+    <line x1="8" y1="116" x2="126" y2="116" stroke="#E2E6ED" stroke-width="1"/>
+    <text x="8" y="132" font-family="Source Sans 3" font-size="10" fill="#374151">Real date/context:</text>
+    <text x="8" y="145" font-family="Source Sans 3" font-size="10" fill="#047857" font-weight="600">"Stayed March 2024"</text>
+    <line x1="8" y1="156" x2="126" y2="156" stroke="#E2E6ED" stroke-width="1"/>
+    <text x="8" y="172" font-family="Source Sans 3" font-size="10" fill="#374151">Mixed opinion:</text>
+    <text x="8" y="185" font-family="Source Sans 3" font-size="10" fill="#047857" font-weight="600">"Breakfast great, parking</text>
+    <text x="8" y="198" font-family="Source Sans 3" font-size="10" fill="#047857" font-weight="600">was a nightmare"</text>
+    <line x1="8" y1="210" x2="126" y2="210" stroke="#E2E6ED" stroke-width="1"/>
+    <rect x="8" y="216" width="118" height="36" rx="6" fill="#ECFDF5"/>
+    <text x="16" y="232" font-family="Source Sans 3" font-size="9.5" fill="#047857" font-weight="600">Imperfect details</text>
+    <text x="16" y="244" font-family="Source Sans 3" font-size="9.5" fill="#047857" font-weight="600">feel authentic.</text>
+    <!-- AI review box -->
+    <rect x="146" y="32" width="134" height="228" rx="8" fill="white" fill-opacity="0.9"/>
+    <text x="154" y="52"  font-family="Source Sans 3" font-size="10" fill="#374151">No names:</text>
+    <text x="154" y="65"  font-family="Source Sans 3" font-size="10" fill="#DC2626" font-weight="600">"The staff were wonderful"</text>
+    <line x1="154" y1="76" x2="272" y2="76" stroke="#E2E6ED" stroke-width="1"/>
+    <text x="154" y="92"  font-family="Source Sans 3" font-size="10" fill="#374151">Vague praise:</text>
+    <text x="154" y="105" font-family="Source Sans 3" font-size="10" fill="#DC2626" font-weight="600">"Exceptional in every way"</text>
+    <line x1="154" y1="116" x2="272" y2="116" stroke="#E2E6ED" stroke-width="1"/>
+    <text x="154" y="132" font-family="Source Sans 3" font-size="10" fill="#374151">No date/account history:</text>
+    <text x="154" y="145" font-family="Source Sans 3" font-size="10" fill="#DC2626" font-weight="600">"First review, 2024"</text>
+    <line x1="154" y1="156" x2="272" y2="156" stroke="#E2E6ED" stroke-width="1"/>
+    <text x="154" y="172" font-family="Source Sans 3" font-size="10" fill="#374151">Perfectly balanced:</text>
+    <text x="154" y="185" font-family="Source Sans 3" font-size="10" fill="#DC2626" font-weight="600">"A minor thing to note</text>
+    <text x="154" y="198" font-family="Source Sans 3" font-size="10" fill="#DC2626" font-weight="600">was quickly resolved"</text>
+    <line x1="154" y1="210" x2="272" y2="210" stroke="#E2E6ED" stroke-width="1"/>
+    <rect x="154" y="216" width="118" height="36" rx="6" fill="#FEF2F2"/>
+    <text x="162" y="232" font-family="Source Sans 3" font-size="9.5" fill="#DC2626" font-weight="600">Too polished?</text>
+    <text x="162" y="244" font-family="Source Sans 3" font-size="9.5" fill="#DC2626" font-weight="600">Question it.</text>
+  </svg>
 </div>
-</div>
-<div class="rec-item">
-<div class="rec-num-col"><div class="rec-num">02</div></div>
-<div class="rec-body">
-<h4>Respond Consistently and Specifically <span class="rec-toggle"></span></h4>
-<div class="rec-detail">
-<p>Target a response rate above 80% on all platforms. Generic responses do not produce the trust-restoration effect documented by <a href="https://doi.org/10.1016/j.tourman.2010.12.011" rel="noopener" target="_blank">Sparks and Browning (2011)</a>. Only responses that name and address the actual concern have a measurable positive effect.</p>
-</div>
-</div>
-</div>
-<div class="rec-item">
-<div class="rec-num-col"><div class="rec-num">03</div></div>
-<div class="rec-body">
-<h4>Flag Suspicious Review Patterns Proactively <span class="rec-toggle"></span></h4>
-<div class="rec-detail">
-<p>Sudden spikes in review volume, clusters of similar language, and extreme bimodal rating patterns are documented signals of manipulation (<a href="https://doi.org/10.1007/s00521-020-04757-2" rel="noopener" target="_blank">Hajek et al., 2020</a>; <a href="https://doi.org/10.1016/j.dss.2020.113280" rel="noopener" target="_blank">Wu et al., 2020</a>). The Coalition for Trusted Reviews, formed by TripAdvisor, Booking.com, and others in 2023, provides additional reporting channels (<a href="https://www.tripadvisor.com/TransparencyReport2025" rel="noopener" target="_blank">TripAdvisor, 2025</a>).</p>
-</div>
-</div>
-</div>
-<div class="rec-item">
-<div class="rec-num-col"><div class="rec-num">04</div></div>
-<div class="rec-body">
-<h4>Encourage Verified Post-Stay Reviews <span class="rec-toggle"></span></h4>
-<div class="rec-detail">
-<p>On open platforms, authentic verified reviews help dilute the influence of fraudulent content and bring rating distributions closer to the moderated patterns seen on closed platforms (<a href="https://doi.org/10.1016/j.ijhm.2023.103647" rel="noopener" target="_blank">Kirilenko et al., 2024</a>). Simple post-stay follow-ups via email consistently increase authentic review volume.</p>
-</div>
-</div>
-</div>
-<div class="rec-item">
-<div class="rec-num-col"><div class="rec-num">05</div></div>
-<div class="rec-body">
-<h4>Align Digital Communication with Service Reality <span class="rec-toggle"></span></h4>
-<div class="rec-detail">
-<p>Digital reputation management complements but cannot replace service quality. Once consumers perceive inauthenticity at the platform level, even genuine positive reviews are discounted (<a href="https://doi.org/10.3389/fcomm.2024.1460321" rel="noopener" target="_blank">Pena-Garcia et al., 2024</a>; <a href="https://doi.org/10.1016/j.tourman.2015.05.007" rel="noopener" target="_blank">Filieri et al., 2015</a>).</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<div class="divider"></div>
-<!-- ACCESSIBILITY -->
-<section id="accessibility">
-<div class="section-wrap alt">
-<p class="site-accessibility-note reveal"><strong>Accessibility note</strong>This website applies accessibility across the full artifact: readable font sizes, high-contrast text, keyboard-focus indicators, a skip-to-content link, semantic section structure, keyboard-accessible sliders, visible labels, ARIA-expanded states for interactive panels, and text feedback that does not rely on colour alone.</p>
+<div class="ig-actions"><div class="ig-left-actions"><span class="action-icon heart-icon">♡</span><span class="action-icon comment-icon" aria-hidden="true"></span><span class="action-icon share-icon">↗</span></div><span class="action-icon bookmark-icon" aria-hidden="true"></span></div>
+<div class="ig-likes">1,741 likes</div>
+<div class="ig-caption"><strong>readbeyondthestars</strong> Real guests remember something specific. AI reviews stay generic. Save this guide before your next booking. <span class="ig-tags">#FakeReviews #TravelSmart #ConsumerTips</span></div>
+</div></div>
+<button class="download-btn" onclick="downloadPost('ig-6','ig-post06-spot-ai-review.png')">↓ Download Post 06</button>
+<div class="alt-text"><strong>Alt text</strong> Instagram post with a side-by-side comparison table contrasting a real review with specific names, dates, and mixed opinions against an AI-generated review with vague praise, no history, and no concrete details.</div>
+</article>
+
 </div>
 </section>
 
-<div class="divider"></div>
-<!-- REFERENCES -->
-<section id="references">
-<div class="section-wrap alt">
-<div class="reveal">
-<p class="section-tag">Academic Sources</p>
-<h2 class="section-title">References</h2>
-<p class="section-lead">All sources cited in this website. Click a DOI or URL to access the original publication.</p>
+<!-- IG Posts 7-9 -->
+<section aria-labelledby="ig-hospitality">
+<p class="section-label" id="ig-hospitality">Social Media Posts — Hospitality Professionals (Posts 7–9)</p>
+<div class="post-grid">
+
+<!-- IG POST 7 -->
+<article class="asset-card">
+<p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy);margin-bottom:6px;font-weight:700">Post 07 &nbsp;·&nbsp; Day 22</p>
+<div class="device-shell"><div class="ig-post" id="ig-7">
+<div class="ig-status"><span>9:41</span><span class="ig-status-icons">●●●</span></div>
+<div class="ig-profile"><div class="ig-avatar">RB</div><div class="ig-meta"><p class="ig-handle">readbeyondthestars</p><p class="ig-location">For hotels</p></div><div class="ig-menu">•••</div></div>
+<div class="ig-creative visual-green">
+  <h2 class="post-title">A good response<br>can <span style="color:#047857">protect trust.</span></h2>
+  <p class="post-copy">Research by Sparks et al. (2016) shows management responses affect trust independently of the review itself.</p>
+  <!-- SVG: Good vs bad response -->
+  <svg width="100%" height="230" viewBox="0 0 280 230" aria-hidden="true" style="margin-top:6px">
+    <!-- Bad response -->
+    <rect x="0" y="0" width="280" height="96" rx="8" fill="white" fill-opacity="0.92"/>
+    <rect x="0" y="0" width="5" height="96" rx="3" fill="#DC2626"/>
+    <text x="14" y="18" font-family="JetBrains Mono" font-size="9" fill="#DC2626">✕ INEFFECTIVE</text>
+    <text x="14" y="36" font-family="Source Sans 3" font-size="11" fill="#374151" font-style="italic">"Sorry you had a bad experience.</text>
+    <text x="14" y="51" font-family="Source Sans 3" font-size="11" fill="#374151" font-style="italic">We hope to see you again."</text>
+    <line x1="14" y1="62" x2="268" y2="62" stroke="#E2E6ED" stroke-width="1"/>
+    <text x="14" y="77" font-family="Source Sans 3" font-size="10" fill="#DC2626">No issue named. No action taken.</text>
+    <text x="14" y="90" font-family="Source Sans 3" font-size="10" fill="#DC2626">Consumers trust the bad review more.</text>
+    <!-- Good response -->
+    <rect x="0" y="112" width="280" height="106" rx="8" fill="white" fill-opacity="0.92"/>
+    <rect x="0" y="112" width="5" height="106" rx="3" fill="#047857"/>
+    <text x="14" y="130" font-family="JetBrains Mono" font-size="9" fill="#047857">✓ EFFECTIVE</text>
+    <text x="14" y="148" font-family="Source Sans 3" font-size="11" fill="#374151" font-style="italic">"Hi Sarah, thank you for flagging</text>
+    <text x="14" y="163" font-family="Source Sans 3" font-size="11" fill="#374151" font-style="italic">the noise on Floor 6. We've moved</text>
+    <text x="14" y="178" font-family="Source Sans 3" font-size="11" fill="#374151" font-style="italic">those guests and added soundproofing."</text>
+    <line x1="14" y1="189" x2="268" y2="189" stroke="#E2E6ED" stroke-width="1"/>
+    <text x="14" y="204" font-family="Source Sans 3" font-size="10" fill="#047857">Named issue. Showed action. Built trust.</text>
+  </svg>
 </div>
-<div class="ref-list reveal reveal-d1">
-<div class="ref-entry">
-<p class="ref-text">Chen, Y.-F., and Law, R. (2016). A review of research on electronic word-of-mouth in hospitality and tourism management. <em>International Journal of Hospitality and Tourism Administration, 17</em>(4), 347-372. <a href="https://doi.org/10.1080/15256480.2016.1226150" rel="noopener" target="_blank">https://doi.org/10.1080/15256480.2016.1226150</a></p>
+<div class="ig-actions"><div class="ig-left-actions"><span class="action-icon heart-icon">♡</span><span class="action-icon comment-icon" aria-hidden="true"></span><span class="action-icon share-icon">↗</span></div><span class="action-icon bookmark-icon" aria-hidden="true"></span></div>
+<div class="ig-likes">1,088 likes</div>
+<div class="ig-caption"><strong>readbeyondthestars</strong> Ethical reputation management is not about hiding bad reviews. It is about accountable communication. <span class="ig-tags">#HotelMarketing #ReputationManagement #Hospitality</span></div>
+</div></div>
+<button class="download-btn" onclick="downloadPost('ig-7','ig-post07-management-response.png')">↓ Download Post 07</button>
+<div class="alt-text"><strong>Alt text</strong> Instagram post contrasting an ineffective generic hotel response, "Sorry you had a bad experience," with an effective specific response naming the guest, the issue on Floor 6, and the corrective action taken.</div>
+</article>
+
+<!-- IG POST 8 -->
+<article class="asset-card">
+<p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy);margin-bottom:6px;font-weight:700">Post 08 &nbsp;·&nbsp; Day 26</p>
+<div class="device-shell"><div class="ig-post" id="ig-8">
+<div class="ig-status"><span>9:41</span><span class="ig-status-icons">●●●</span></div>
+<div class="ig-profile"><div class="ig-avatar">RB</div><div class="ig-meta"><p class="ig-handle">readbeyondthestars</p><p class="ig-location">Hospitality action plan</p></div><div class="ig-menu">•••</div></div>
+<div class="ig-creative visual-navy">
+  <h2 class="post-title" style="color:white;">4 steps for<br><span class="gold">ethical reputation</span><br>management.</h2>
+  <!-- SVG: 4-step numbered list -->
+  <svg width="100%" height="245" viewBox="0 0 280 245" aria-hidden="true" style="margin-top:6px">
+    <rect x="0" y="0" width="280" height="52" rx="8" fill="rgba(30,58,95,0.08)"/>
+    <circle cx="26" cy="26" r="16" fill="#B07D2A"/>
+    <text x="22" y="31" font-family="Lora" font-size="14" font-weight="700" fill="#1E3A5F">1</text>
+    <text x="50" y="18" font-family="Source Sans 3" font-size="12" font-weight="600" fill="#1E3A5F">Daily review monitoring</text>
+    <text x="50" y="34" font-family="Source Sans 3" font-size="10" fill="#374151">Dashboard across all 3 platforms.</text>
+
+    <rect x="0" y="60" width="280" height="52" rx="8" fill="rgba(30,58,95,0.08)"/>
+    <circle cx="26" cy="86" r="16" fill="#B07D2A"/>
+    <text x="22" y="91" font-family="Lora" font-size="14" font-weight="700" fill="#1E3A5F">2</text>
+    <text x="50" y="78" font-family="Source Sans 3" font-size="12" font-weight="600" fill="#1E3A5F">Respond within 24 hours</text>
+    <text x="50" y="94" font-family="Source Sans 3" font-size="10" fill="#374151">Always specific. Never copy-paste.</text>
+
+    <rect x="0" y="120" width="280" height="52" rx="8" fill="rgba(30,58,95,0.08)"/>
+    <circle cx="26" cy="146" r="16" fill="#B07D2A"/>
+    <text x="22" y="151" font-family="Lora" font-size="14" font-weight="700" fill="#1E3A5F">3</text>
+    <text x="50" y="138" font-family="Source Sans 3" font-size="12" font-weight="600" fill="#1E3A5F">Post-stay review request</text>
+    <text x="50" y="154" font-family="Source Sans 3" font-size="10" fill="#374151">Email 24h after checkout. Direct link.</text>
+
+    <rect x="0" y="180" width="280" height="52" rx="8" fill="rgba(30,58,95,0.08)"/>
+    <circle cx="26" cy="206" r="16" fill="#B07D2A"/>
+    <text x="22" y="211" font-family="Lora" font-size="14" font-weight="700" fill="#1E3A5F">4</text>
+    <text x="50" y="198" font-family="Source Sans 3" font-size="12" font-weight="600" fill="#1E3A5F">Report suspicious patterns</text>
+    <text x="50" y="214" font-family="Source Sans 3" font-size="10" fill="#374151">Use platform dispute mechanisms.</text>
+  </svg>
 </div>
-<div class="ref-entry">
-<p class="ref-text">Elmedulan, A. J., Jr. (2025). Impact of online customer reviews on booking intentions and customer trust among hotels in Region X. <em>International Journal of Research Studies in Management, 14</em>(1). <a href="https://doi.org/10.5861/ijrsm.2025.25014" rel="noopener" target="_blank">https://doi.org/10.5861/ijrsm.2025.25014</a></p>
+<div class="ig-actions"><div class="ig-left-actions"><span class="action-icon heart-icon">♡</span><span class="action-icon comment-icon" aria-hidden="true"></span><span class="action-icon share-icon">↗</span></div><span class="action-icon bookmark-icon" aria-hidden="true"></span></div>
+<div class="ig-likes">1,322 likes</div>
+<div class="ig-caption"><strong>readbeyondthestars</strong> Proactive reputation management protects honest businesses from fake review inflation. Save this for your team. <span class="ig-tags">#HotelManagement #EthicalMarketing #ReviewStrategy</span></div>
+</div></div>
+<button class="download-btn" onclick="downloadPost('ig-8','ig-post08-hospitality-action-plan.png')">↓ Download Post 08</button>
+<div class="alt-text"><strong>Alt text</strong> Instagram post on a dark navy background listing four steps for ethical reputation management: daily review monitoring, responding within 24 hours specifically, sending a post-stay review request, and reporting suspicious patterns.</div>
+</article>
+
+<!-- IG POST 9 -->
+<article class="asset-card">
+<p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy);margin-bottom:6px;font-weight:700">Post 09 &nbsp;·&nbsp; Day 30</p>
+<div class="device-shell"><div class="ig-post" id="ig-9">
+<div class="ig-status"><span>9:41</span><span class="ig-status-icons">●●●</span></div>
+<div class="ig-profile"><div class="ig-avatar">RB</div><div class="ig-meta"><p class="ig-handle">readbeyondthestars</p><p class="ig-location">Campaign closing</p></div><div class="ig-menu">•••</div></div>
+<div class="ig-creative visual-navy">
+  <!-- SVG: closing visual - trust infrastructure -->
+  <svg width="100%" height="400" viewBox="0 0 280 400" aria-hidden="true">
+    <!-- Large central text -->
+    <text x="140" y="70" font-family="Lora" font-size="38" font-weight="700" fill="#1E3A5F" text-anchor="middle">Trust</text>
+    <text x="140" y="108" font-family="Lora" font-size="38" font-weight="700" fill="#B07D2A" text-anchor="middle">is the</text>
+    <text x="140" y="146" font-family="Lora" font-size="38" font-weight="700" fill="#1E3A5F" text-anchor="middle">product.</text>
+    <!-- Divider -->
+    <line x1="40" y1="162" x2="240" y2="162" stroke="rgba(30,58,95,0.25)" stroke-width="1"/>
+    <!-- Three pillars -->
+    <rect x="0" y="174" width="86" height="80" rx="8" fill="rgba(30,58,95,0.08)"/>
+    <text x="43" y="205" font-family="Source Sans 3" font-size="11" font-weight="600" fill="#1E3A5F" text-anchor="middle">Authentic</text>
+    <text x="43" y="220" font-family="Source Sans 3" font-size="11" font-weight="600" fill="#1E3A5F" text-anchor="middle">reviews</text>
+    <text x="43" y="240" font-family="Source Sans 3" font-size="9" fill="#374151" text-anchor="middle">for consumers</text>
+
+    <rect x="97" y="174" width="86" height="80" rx="8" fill="#FDF6E3"/>
+    <text x="140" y="205" font-family="Source Sans 3" font-size="11" font-weight="600" fill="#B07D2A" text-anchor="middle">Honest</text>
+    <text x="140" y="220" font-family="Source Sans 3" font-size="11" font-weight="600" fill="#B07D2A" text-anchor="middle">responses</text>
+    <text x="140" y="240" font-family="Source Sans 3" font-size="9" fill="#374151" text-anchor="middle">for hotels</text>
+
+    <rect x="194" y="174" width="86" height="80" rx="8" fill="rgba(30,58,95,0.08)"/>
+    <text x="237" y="205" font-family="Source Sans 3" font-size="11" font-weight="600" fill="#1E3A5F" text-anchor="middle">Fair</text>
+    <text x="237" y="220" font-family="Source Sans 3" font-size="11" font-weight="600" fill="#1E3A5F" text-anchor="middle">competition</text>
+    <text x="237" y="240" font-family="Source Sans 3" font-size="9" fill="#374151" text-anchor="middle">for the industry</text>
+
+    <!-- Bottom stat -->
+    <rect x="0" y="272" width="280" height="48" rx="8" fill="rgba(30,58,95,0.08)"/>
+    <text x="140" y="294" font-family="JetBrains Mono" font-size="9" fill="#374151" text-anchor="middle">TripAdvisor removed in 2024:</text>
+    <text x="140" y="312" font-family="Lora" font-size="18" font-weight="700" fill="#B07D2A" text-anchor="middle">2.7 million fake reviews</text>
+
+    <text x="140" y="352" font-family="Source Sans 3" font-size="11" fill="#374151" text-anchor="middle">Fake inflation creates short-term visibility.</text>
+    <text x="140" y="368" font-family="Source Sans 3" font-size="11" fill="#374151" text-anchor="middle">It damages the ecosystem everyone</text>
+    <text x="140" y="384" font-family="Source Sans 3" font-size="11" fill="#374151" text-anchor="middle">in hospitality depends on.</text>
+  </svg>
 </div>
-<div class="ref-entry">
-<p class="ref-text">Filieri, R., Alguezaui, S., and McLeay, F. (2015). Why do travelers trust TripAdvisor? Antecedents of trust towards consumer-generated media. <em>Tourism Management, 51</em>, 174-185. <a href="https://doi.org/10.1016/j.tourman.2015.05.007" rel="noopener" target="_blank">https://doi.org/10.1016/j.tourman.2015.05.007</a></p>
-</div>
-<div class="ref-entry">
-<p class="ref-text">Hajek, P., Barushka, A., and Munk, M. (2020). Fake consumer review detection using deep neural networks integrating word embeddings and emotion mining. <em>Neural Computing and Applications, 32</em>, 17259-17274. <a href="https://doi.org/10.1007/s00521-020-04757-2" rel="noopener" target="_blank">https://doi.org/10.1007/s00521-020-04757-2</a></p>
-</div>
-<div class="ref-entry">
-<p class="ref-text">Ismagilova, E., Slade, E. L., Rana, N. P., and Dwivedi, Y. K. (2020). The effect of electronic word of mouth on consumer decision making: A meta-analysis. <em>Information Systems Frontiers, 22</em>, 1203-1226. <a href="https://doi.org/10.1007/s10796-019-09924-y" rel="noopener" target="_blank">https://doi.org/10.1007/s10796-019-09924-y</a></p>
-</div>
-<div class="ref-entry">
-<p class="ref-text">Kirilenko, A., Stepchenkova, S., Gromoll, R., and Jo, Y. (2024). Comprehensive examination of online reviews divergence over time and platform types. <em>International Journal of Hospitality Management, 117</em>, 103647. <a href="https://doi.org/10.1016/j.ijhm.2023.103647" rel="noopener" target="_blank">https://doi.org/10.1016/j.ijhm.2023.103647</a></p>
-</div>
-<div class="ref-entry">
-<p class="ref-text">Ladhari, R., and Michaud, M. (2015). eWOM effects on hotel booking intentions, attitudes, trust, and website perceptions. <em>International Journal of Hospitality Management, 46</em>, 36-45. <a href="https://doi.org/10.1016/j.ijhm.2015.01.010" rel="noopener" target="_blank">https://doi.org/10.1016/j.ijhm.2015.01.010</a></p>
-</div>
-<div class="ref-entry">
-<p class="ref-text">Originality.AI. (2024). Fake AI TripAdvisor reviews increased by 137% from 2019 to 2024. <a href="https://originality.ai/blog/ai-tripadvisor-reviews-study" rel="noopener" target="_blank">https://originality.ai/blog/ai-tripadvisor-reviews-study</a></p>
-</div>
-<div class="ref-entry">
-<p class="ref-text">Pena-Garcia, N., Losada-Otalora, M., Auza, D. P., and Cruz, M. P. (2024). Reviews, trust, and customer experience in online marketplaces: The case of Mercado Libre Colombia. <em>Frontiers in Communication, 9</em>, Article 1460321. <a href="https://doi.org/10.3389/fcomm.2024.1460321" rel="noopener" target="_blank">https://doi.org/10.3389/fcomm.2024.1460321</a></p>
-</div>
-<div class="ref-entry">
-<p class="ref-text">PhocusWire. (2025, March 19). Tripadvisor continues fight against fraudulent reviews as incidences increase. <a href="https://www.phocuswire.com/tripadvisor-fraudulent-reviews-2145479969" rel="noopener" target="_blank">https://www.phocuswire.com/tripadvisor-fraudulent-reviews-2145479969</a></p>
-</div>
-<div class="ref-entry">
-<p class="ref-text">Sparks, B. A., and Browning, V. (2011). The impact of online reviews on hotel booking intentions and perception of trust. <em>Tourism Management, 32</em>(6), 1310-1323. <a href="https://doi.org/10.1016/j.tourman.2010.12.011" rel="noopener" target="_blank">https://doi.org/10.1016/j.tourman.2010.12.011</a></p>
-</div>
-<div class="ref-entry">
-<p class="ref-text">Sparks, B. A., So, K. K. F., and Bradley, G. L. (2016). Responding to negative online reviews: The effects of hotel responses on customer inferences of trust and concern. <em>Tourism Management, 53</em>, 74-85. <a href="https://doi.org/10.1016/j.tourman.2015.09.011" rel="noopener" target="_blank">https://doi.org/10.1016/j.tourman.2015.09.011</a></p>
-</div>
-<div class="ref-entry">
-<p class="ref-text">TripAdvisor. (2025). Tripadvisor transparency report 2025. <a href="https://www.tripadvisor.com/TransparencyReport2025" rel="noopener" target="_blank">https://www.tripadvisor.com/TransparencyReport2025</a></p>
-</div>
-<div class="ref-entry">
-<p class="ref-text">Wu, Y., Ngai, E. W., Wu, P., and Wu, C. (2020). Fake online reviews: Literature review, synthesis, and directions for future research. <em>Decision Support Systems, 132</em>, 113280. <a href="https://doi.org/10.1016/j.dss.2020.113280" rel="noopener" target="_blank">https://doi.org/10.1016/j.dss.2020.113280</a></p>
-</div>
-<div class="ref-entry">
-<p class="ref-text">Xiang, Z., Du, Q., Ma, Y., and Fan, W. (2017). A comparative analysis of major online review platforms: Implications for social media analytics in hospitality and tourism. <em>Tourism Management, 58</em>, 51-65. <a href="https://doi.org/10.1016/j.tourman.2016.10.001" rel="noopener" target="_blank">https://doi.org/10.1016/j.tourman.2016.10.001</a></p>
-</div>
-</div>
+<div class="ig-actions"><div class="ig-left-actions"><span class="action-icon heart-icon">♡</span><span class="action-icon comment-icon" aria-hidden="true"></span><span class="action-icon share-icon">↗</span></div><span class="action-icon bookmark-icon" aria-hidden="true"></span></div>
+<div class="ig-likes">1,794 likes</div>
+<div class="ig-caption"><strong>readbeyondthestars</strong> Ethical reviews help consumers choose better and help honest businesses compete fairly. <span class="ig-tags">#Trust #EthicalMarketing #Hospitality #ReadBeyondTheStars</span></div>
+</div></div>
+<button class="download-btn" onclick="downloadPost('ig-9','ig-post09-trust-is-the-product.png')">↓ Download Post 09</button>
+<div class="alt-text"><strong>Alt text</strong> Instagram closing post on a dark navy background with large text saying "Trust is the product," three pillars showing authentic reviews for consumers, honest responses for hotels, and fair competition for the industry, and a statistic that TripAdvisor removed 2.7 million fake reviews in 2024.</div>
+</article>
+
 </div>
 </section>
-<!-- FOOTER -->
-<footer>
-<div class="footer-inner">
-<div>
-<div class="footer-title">Rating Discrepancies and Consumer Trust</div>
-<div class="footer-sub">
-        DMGC 699 Capstone • Spring 2026 • University of Niagara Falls Canada<br/>
-        Multimedia Deliverable 1 of 6 • Week 5 • Research-Based Website
-      </div>
+
+<!-- ========== LINKEDIN ========== -->
+<section aria-labelledby="accessibility">
+<p class="section-label" id="accessibility">Accessibility and Inclusion Notes</p>
+<div class="access-grid">
+<div class="access-card"><h3>Readable Design</h3><p>High-contrast colours, large typography, clear hierarchy, and all data conveyed through both visual and text elements.</p></div>
+<div class="access-card"><h3>Alt Text Included</h3><p>Each post includes descriptive alt text communicating the message and data, not just visual appearance. SVG graphics have aria-hidden="true" with text equivalents in captions.</p></div>
+<div class="access-card"><h3>Downloadable Assets</h3><p>Each button exports the platform post card only. Post numbers are labelled consistently across the social media series from Post 01 to Post 09.</p></div>
 </div>
-<div class="footer-identity">
-<div class="footer-id-cell">
-<div class="footer-id-role">Student</div>
-<div class="footer-id-name">Md Ashikur Rahman</div>
-<div class="footer-id-detail">NF1000759</div>
-</div>
-<div class="footer-id-cell">
-<div class="footer-id-role">Supervisor</div>
-<div class="footer-id-name">Raquel Benitez Rojas</div>
-<div class="footer-id-detail">University of Niagara Falls Canada</div>
-</div>
-</div>
-</div>
-<div class="footer-bottom">
-<span class="footer-bottom-left">MA in Digital Media and Global Communications</span>
-<span class="footer-bottom-right">All references link to original publications</span>
-</div>
+</section>
+
+<footer class="footer">
+<div><strong>Md Ashikur Rahman</strong> · NF1000759<br/>MA Digital Media and Global Communications · University of Niagara Falls Canada</div>
+<div>DMGC 699 Capstone · Social Media Posts Series · Spring 2026</div>
 </footer>
+</main>
+
 <script>
-// Scroll reveal
-const revealEls = document.querySelectorAll('.reveal');
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.08 });
-revealEls.forEach(el => obs.observe(el));
+// Cache for base64 font data
+const _fontCache = {};
 
-// RQ toggle
-document.getElementById('rq-header').addEventListener('click', function() {
-  const panel = document.getElementById('rq-panel');
-  panel.classList.toggle('open');
-  this.setAttribute('aria-expanded', panel.classList.contains('open'));
-});
+async function fetchFontAsBase64(url) {
+  if (_fontCache[url]) return _fontCache[url];
+  try {
+    const res = await fetch(url);
+    const buf = await res.arrayBuffer();
+    const b64 = btoa(String.fromCharCode(...new Uint8Array(buf)));
+    const mime = url.endsWith('.woff2') ? 'font/woff2' : 'font/woff';
+    _fontCache[url] = `data:${mime};base64,${b64}`;
+    return _fontCache[url];
+  } catch(e) { return null; }
+}
 
-// Theme accordion
-document.querySelectorAll('.theme-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const item = btn.closest('.theme-item');
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.theme-item').forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
-  });
-});
+async function buildEmbeddedFontCSS() {
+  // Collect all @font-face src URLs already loaded by the browser
+  const fontFaces = [...document.fonts];
+  const rules = [];
+  for (const ff of fontFaces) {
+    // ff.family, ff.weight, ff.style are available
+    // We need the actual URL — extract from the loaded FontFace if possible
+  }
 
-// Platform cards
-document.querySelectorAll('.platform-card').forEach(card => {
-  card.addEventListener('click', () => {
-    card.classList.toggle('open');
-  });
-});
+  // Fallback: re-fetch the Google Fonts CSS from the page's existing <link> and embed each font file
+  const linkEl = document.querySelector('link[href*="fonts.googleapis.com"]');
+  if (!linkEl) return null;
 
-// Recommendations
-document.querySelectorAll('.rec-item').forEach(item => {
-  item.addEventListener('click', () => item.classList.toggle('open'));
-});
+  const cssRes = await fetch(linkEl.href);
+  const cssText = await cssRes.text();
 
-// Bar chart on scroll
-const chart = document.getElementById('bar-chart');
-let animated = false;
-const barObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting && !animated) {
-      animated = true;
-      document.querySelectorAll('.bar-fill').forEach((bar, i) => {
-        setTimeout(() => { bar.style.width = bar.dataset.width + '%'; }, i * 140);
-      });
+  // Find all url(...) references
+  const urlMatches = [...cssText.matchAll(/url\((https:\/\/fonts\.gstatic\.com[^)]+)\)/g)];
+  let embeddedCss = cssText;
+
+  for (const match of urlMatches) {
+    const fontUrl = match[1];
+    const dataUri = await fetchFontAsBase64(fontUrl);
+    if (dataUri) {
+      embeddedCss = embeddedCss.replace(fontUrl, dataUri);
+    }
+  }
+  return embeddedCss;
+}
+
+let _embeddedFontCSS = null;
+
+async function downloadPost(id, filename) {
+  const post = document.getElementById(id);
+  const creative = post.querySelector('.ig-creative');
+
+  await document.fonts.ready;
+
+  // Build embedded font CSS once
+  if (!_embeddedFontCSS) {
+    _embeddedFontCSS = await buildEmbeddedFontCSS();
+  }
+
+  const canvas = await html2canvas(creative, {
+    scale: 3,
+    backgroundColor: null,
+    useCORS: true,
+    allowTaint: true,
+    logging: false,
+    onclone: (clonedDoc) => {
+      // Inject embedded fonts into the cloned document
+      if (_embeddedFontCSS) {
+        const style = clonedDoc.createElement('style');
+        style.textContent = _embeddedFontCSS;
+        clonedDoc.head.insertBefore(style, clonedDoc.head.firstChild);
+      }
+      const clonedEl = clonedDoc.querySelector('.ig-creative');
+      if (clonedEl) {
+        clonedEl.style.borderRadius = '0';
+        clonedEl.style.overflow = 'hidden';
+      }
     }
   });
-}, { threshold: 0.3 });
-if (chart) barObs.observe(chart);
-</script>
-<script>
-document.querySelectorAll('.stat-card').forEach(card=>{
-  card.addEventListener('click', ()=>{
-    card.classList.toggle('open');
-  });
-});
 
-
-// Trust decision tool
-const trustInputs = ['ratingGap', 'aiRisk', 'reviewVolume', 'responseQuality'];
-function updateTrustTool() {
-  const gap = parseFloat(document.getElementById('ratingGap').value);
-  const ai = parseFloat(document.getElementById('aiRisk').value);
-  const volume = parseFloat(document.getElementById('reviewVolume').value);
-  const response = parseFloat(document.getElementById('responseQuality').value);
-  const gapRisk = Math.round((gap / 2) * 100);
-  const G = gap / 2;
-  const F = ai / 100;
-  const V = volume / 100;
-  const M = response / 100;
-  const score = Math.max(0, Math.min(100, Math.round(72 - 32 * G - 28 * F + 16 * V + 24 * M)));
-  document.getElementById('ratingGapValue').textContent = gap.toFixed(1) + ' stars';
-  document.getElementById('aiRiskValue').textContent = ai + '%';
-  document.getElementById('reviewVolumeValue').textContent = volume + '%';
-  document.getElementById('responseQualityValue').textContent = response + '%';
-  document.getElementById('trustScore').textContent = score;
-  document.getElementById('gapBar').style.width = gapRisk + '%';
-  document.getElementById('aiBar').style.width = ai + '%';
-  document.getElementById('responseBar').style.width = response + '%';
-  document.getElementById('gapRiskText').textContent = gapRisk + '%';
-  document.getElementById('aiRiskText').textContent = ai + '%';
-  document.getElementById('responseText').textContent = response + '%';
-  let status = 'Moderate confidence';
-  let message = 'Consumers may still book, but they are likely to cross-check platforms and read recent negative reviews before deciding.';
-  if (score >= 75) {
-    status = 'High confidence';
-    message = 'Signals are consistent enough that consumers are more likely to trust the property and move toward booking.';
-  } else if (score < 45) {
-    status = 'Low confidence';
-    message = 'Large discrepancies or authenticity concerns make booking feel risky. Managers should prioritise verified reviews and specific responses.';
-  }
-  document.getElementById('trustStatus').textContent = status;
-  document.getElementById('trustText').textContent = message;
+  const link = document.createElement("a");
+  link.download = filename;
+  link.href = canvas.toDataURL("image/png");
+  link.click();
 }
-trustInputs.forEach(id => {
-  const input = document.getElementById(id);
-  if (input) input.addEventListener('input', updateTrustTool);
-});
-if (document.getElementById('trustScore')) updateTrustTool();
-
-
-// Formula disclosure
-const formulaDisclosure = document.getElementById('formulaDisclosure');
-if (formulaDisclosure) {
-  const formulaBtn = formulaDisclosure.querySelector('.tool-disclosure-btn');
-  formulaBtn.addEventListener('click', () => {
-    const open = formulaDisclosure.classList.toggle('open');
-    formulaBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-}
-
-// Keyboard and ARIA support
-const rqHeader = document.getElementById('rq-header');
-if (rqHeader) {
-  rqHeader.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); rqHeader.click(); }
-  });
-}
-document.querySelectorAll('.theme-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    setTimeout(() => btn.setAttribute('aria-expanded', btn.closest('.theme-item').classList.contains('open')), 0);
-  });
-});
-
-</script><script>
-// Hamburger nav toggle
-const navToggle = document.getElementById('nav-toggle');
-const navLinks = document.getElementById('nav-links');
-navToggle.addEventListener('click', () => {
-  const open = navLinks.classList.toggle('open');
-  navToggle.classList.toggle('open', open);
-  navToggle.setAttribute('aria-expanded', open);
-});
-// Close nav on link click (mobile)
-navLinks.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-    navToggle.classList.remove('open');
-    navToggle.setAttribute('aria-expanded', 'false');
-  });
-});
 </script>
 </body>
 </html>
