@@ -872,14 +872,89 @@ svg {
 </main>
 
 <script>
-function downloadPost(id, filename){
-  const node = document.getElementById(id);
-  html2canvas(node, {scale:3, backgroundColor:"#ffffff", useCORS:true}).then(canvas => {
-    const link = document.createElement("a");
-    link.download = filename;
-    link.href = canvas.toDataURL("image/png");
-    link.click();
+// Cache for base64 font data
+const _fontCache = {};
+
+async function fetchFontAsBase64(url) {
+  if (_fontCache[url]) return _fontCache[url];
+  try {
+    const res = await fetch(url);
+    const buf = await res.arrayBuffer();
+    const b64 = btoa(String.fromCharCode(...new Uint8Array(buf)));
+    const mime = url.endsWith('.woff2') ? 'font/woff2' : 'font/woff';
+    _fontCache[url] = `data:${mime};base64,${b64}`;
+    return _fontCache[url];
+  } catch(e) { return null; }
+}
+
+async function buildEmbeddedFontCSS() {
+  // Collect all @font-face src URLs already loaded by the browser
+  const fontFaces = [...document.fonts];
+  const rules = [];
+  for (const ff of fontFaces) {
+    // ff.family, ff.weight, ff.style are available
+    // We need the actual URL — extract from the loaded FontFace if possible
+  }
+
+  // Fallback: re-fetch the Google Fonts CSS from the page's existing <link> and embed each font file
+  const linkEl = document.querySelector('link[href*="fonts.googleapis.com"]');
+  if (!linkEl) return null;
+
+  const cssRes = await fetch(linkEl.href);
+  const cssText = await cssRes.text();
+
+  // Find all url(...) references
+  const urlMatches = [...cssText.matchAll(/url\((https:\/\/fonts\.gstatic\.com[^)]+)\)/g)];
+  let embeddedCss = cssText;
+
+  for (const match of urlMatches) {
+    const fontUrl = match[1];
+    const dataUri = await fetchFontAsBase64(fontUrl);
+    if (dataUri) {
+      embeddedCss = embeddedCss.replace(fontUrl, dataUri);
+    }
+  }
+  return embeddedCss;
+}
+
+let _embeddedFontCSS = null;
+
+async function downloadPost(id, filename) {
+  const post = document.getElementById(id);
+  const creative = post.querySelector('.ig-creative');
+
+  await document.fonts.ready;
+
+  // Build embedded font CSS once
+  if (!_embeddedFontCSS) {
+    _embeddedFontCSS = await buildEmbeddedFontCSS();
+  }
+
+  const canvas = await html2canvas(creative, {
+    scale: 3,
+    backgroundColor: null,
+    useCORS: true,
+    allowTaint: true,
+    logging: false,
+    onclone: (clonedDoc) => {
+      // Inject embedded fonts into the cloned document
+      if (_embeddedFontCSS) {
+        const style = clonedDoc.createElement('style');
+        style.textContent = _embeddedFontCSS;
+        clonedDoc.head.insertBefore(style, clonedDoc.head.firstChild);
+      }
+      const clonedEl = clonedDoc.querySelector('.ig-creative');
+      if (clonedEl) {
+        clonedEl.style.borderRadius = '0';
+        clonedEl.style.overflow = 'hidden';
+      }
+    }
   });
+
+  const link = document.createElement("a");
+  link.download = filename;
+  link.href = canvas.toDataURL("image/png");
+  link.click();
 }
 </script>
 </body>
