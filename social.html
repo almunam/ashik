@@ -37,7 +37,7 @@ h1 em{color:var(--gold);font-style:italic}
 .strategy-card,.access-card{background:white;padding:22px 20px}
 .strategy-card strong,.access-card h3{display:block;color:var(--navy);font-family:"Lora",serif;font-size:16px;margin-bottom:6px}
 .strategy-card p,.access-card p{font-size:13px;color:var(--mid)}
-.post-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:stretch}
+.post-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:start}
 .asset-card{display:flex;flex-direction:column;gap:12px}
 .download-btn{border:0;background:var(--navy);color:#fff;padding:10px 14px;border-radius:8px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;cursor:pointer}
 .download-btn:hover,.download-btn:focus{background:#142D4A;outline:3px solid var(--goldl)}
@@ -106,7 +106,6 @@ svg{display:block;position:relative;z-index:2}
 @media(max-width:980px){.strategy-grid,.post-grid,.linkedin-grid,.access-grid{grid-template-columns:1fr}h1{font-size:32px}.device-shell{max-width:420px;margin:0 auto;width:100%}}
 
 /* FINAL ALIGNMENT + COLOR CLEANUP */
-.post-grid { align-items: stretch; }
 .asset-card { height: 100%; }
 .device-shell { height: 810px; display: flex; }
 .ig-post { height: 100%; width: 100%; }
@@ -171,12 +170,9 @@ svg{display:block;position:relative;z-index:2}
 
 
 /* FINAL FIX ROUND 2 */
-.post-grid {
-  align-items: stretch !important;
-}
 .asset-card {
-  display: grid !important;
-  grid-template-rows: auto auto 1fr !important;
+  display: flex !important;
+  flex-direction: column !important;
   height: 100% !important;
 }
 .device-shell {
@@ -200,7 +196,12 @@ svg{display:block;position:relative;z-index:2}
 }
 .download-btn {
   align-self: stretch !important;
-  margin-top: 0 !important;
+  margin-top: 8px !important;
+  flex-shrink: 0 !important;
+}
+.alt-text {
+  margin-top: 8px !important;
+  flex-shrink: 0 !important;
 }
 .alt-text {
   align-self: start !important;
@@ -362,7 +363,6 @@ svg {
 <p class="eyebrow">DMGC 699 Capstone · Spring 2026 · Multimedia Deliverable · Social Media Posts Series / Campaign</p>
 <h1><em>Read Beyond the Stars</em></h1>
 <p class="subtitle">A social media posts series for Instagram, Facebook, and LinkedIn promoting ethical review practices for consumers and hospitality businesses.</p>
-<p class="source-note">Primary sources: Xiang et al. (2017) · Kirilenko et al. (2024) · Wu et al. (2020) · TripAdvisor (2025) · Originality.AI (2024)</p>
 </header>
 
 <section class="campaign-box" aria-labelledby="campaign-overview">
@@ -373,10 +373,45 @@ svg {
 <section aria-labelledby="strategy">
 <p class="section-label" id="strategy">Campaign Architecture</p>
 <div class="strategy-grid">
-<div class="strategy-card"><strong>Audience</strong><p>Travellers, hotel managers, tourism marketers, and digital communication practitioners.</p></div>
-<div class="strategy-card"><strong>Purpose</strong><p>Build review literacy while discouraging fake review inflation and manipulative reputation practices.</p></div>
+<div class="strategy-card"><strong>Primary Audience</strong><p><em>Consumers:</em> Millennial and Gen Z travellers (ages 22–42) who rely on online reviews when booking accommodation. Active on Instagram and Facebook.<br><br><em>Professionals:</em> Hotel managers, tourism marketers, and digital communication practitioners seeking ethical reputation management guidance. Active on LinkedIn.</p></div>
+<div class="strategy-card"><strong>Campaign Purpose</strong><p>Translate capstone research findings into publicly accessible, platform-native content that (1) builds review literacy among everyday travellers, (2) discourages fake review inflation and manipulative reputation practices, and (3) demonstrates the academic value of the capstone research to a broader audience.</p></div>
 <div class="strategy-card"><strong>Platforms</strong><p>Social media posts for public education and professional awareness across Instagram, Facebook, LinkedIn, and other visual-first platforms.</p></div>
 <div class="strategy-card"><strong>Core Message</strong><p>Ratings are not neutral. Platform structure, fake reviews, and management responses shape trust.</p></div>
+</div>
+</section>
+
+<!-- ========== KPIs ========== -->
+<section aria-labelledby="kpis">
+<p class="section-label" id="kpis">Estimated KPIs &amp; Performance Targets</p>
+<div class="campaign-box" style="margin-bottom:16px">
+<h2>Benchmark Sources</h2>
+<p>Targets are based on 2025 industry benchmarks: Instagram median engagement 1.0–3.0% for educational content (RivalIQ / Sprout Social 2025); LinkedIn education sector engagement 3.0–3.6% (Closely 2025). A new account without paid promotion is expected to perform at or slightly above median.</p>
+</div>
+<div class="strategy-grid" style="grid-template-columns:repeat(3,1fr)">
+<div class="strategy-card" style="border-top:3px solid var(--navy)">
+<strong>Reach per Post</strong>
+<p><span style="font-family:'Lora',serif;font-size:22px;color:var(--navy);font-weight:700">500–1,000</span><br>impressions per post across all platforms combined. Organic baseline for a new educational account with no prior following.</p>
+</div>
+<div class="strategy-card" style="border-top:3px solid var(--gold)">
+<strong>Engagement Rate</strong>
+<p><span style="font-family:'Lora',serif;font-size:22px;color:var(--gold);font-weight:700">1.0–3.0%</span> Instagram / Facebook<br><span style="font-family:'Lora',serif;font-size:22px;color:var(--navy);font-weight:700">3.0–3.6%</span> LinkedIn<br>Likes + comments + shares divided by reach. Educational image posts benchmark: ~1.05% (top 25%) on IG.</p>
+</div>
+<div class="strategy-card" style="border-top:3px solid var(--green)">
+<strong>Saves &amp; Shares</strong>
+<p><span style="font-family:'Lora',serif;font-size:22px;color:var(--green);font-weight:700">5–15</span> saves or shares per post on Instagram. Saves signal high-value educational content and improve algorithmic reach over time.</p>
+</div>
+<div class="strategy-card" style="border-top:3px solid var(--navy)">
+<strong>Follower Growth</strong>
+<p><span style="font-family:'Lora',serif;font-size:22px;color:var(--navy);font-weight:700">+50–100</span> net new followers across all platforms by campaign close (Day 30). Benchmark: 3.3% monthly growth rate for small accounts.</p>
+</div>
+<div class="strategy-card" style="border-top:3px solid var(--gold)">
+<strong>Profile Visits</strong>
+<p><span style="font-family:'Lora',serif;font-size:22px;color:var(--gold);font-weight:700">200+</span> total profile visits across Instagram and LinkedIn over the 19-day campaign. Indicates interest beyond a single post.</p>
+</div>
+<div class="strategy-card" style="border-top:3px solid var(--danger)">
+<strong>Link Clicks / Bio Visits</strong>
+<p><span style="font-family:'Lora',serif;font-size:22px;color:var(--danger);font-weight:700">2–5%</span> click-through rate on posts that include a call-to-action directing audiences to a bio link or capstone resource. Baseline for educational CTAs.</p>
+</div>
 </div>
 </section>
 
@@ -387,11 +422,11 @@ svg {
 
 <!-- IG POST 1 -->
 <article class="asset-card">
+<p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy);margin-bottom:6px;font-weight:700">Post 01 &nbsp;·&nbsp; Day 1</p>
 <div class="device-shell"><div class="ig-post" id="ig-1">
 <div class="ig-status"><span>9:41</span><span class="ig-status-icons">●●●</span></div>
 <div class="ig-profile"><div class="ig-avatar">RB</div><div class="ig-meta"><p class="ig-handle">readbeyondthestars</p><p class="ig-location">Hospitality review literacy</p></div><div class="ig-menu">•••</div></div>
 <div class="ig-creative visual-navy">
-  <span class="post-badge">Post 01</span>
   <h2 class="post-title">Same hotel.<br><span class="gold">Three ratings.</span></h2>
   <p class="post-copy">Sheraton Fallsview, Niagara Falls. One stay. Three platforms. Three different scores. Here's why.</p>
   <!-- SVG: platform comparison bars -->
@@ -430,11 +465,11 @@ svg {
 
 <!-- IG POST 2 -->
 <article class="asset-card">
+<p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy);margin-bottom:6px;font-weight:700">Post 02 &nbsp;·&nbsp; Day 4</p>
 <div class="device-shell"><div class="ig-post" id="ig-2">
 <div class="ig-status"><span>9:41</span><span class="ig-status-icons">●●●</span></div>
 <div class="ig-profile"><div class="ig-avatar">RB</div><div class="ig-meta"><p class="ig-handle">readbeyondthestars</p><p class="ig-location">Platform structure explained</p></div><div class="ig-menu">•••</div></div>
 <div class="ig-creative visual-navy">
-  <span class="post-badge">Post 02</span>
   <h2 class="post-title">Not all platforms are <span class="gold">built the same.</span></h2>
   <p class="post-copy">Who can review changes everything.</p>
   <!-- SVG: platform open/closed spectrum -->
@@ -480,11 +515,11 @@ svg {
 
 <!-- IG POST 3 -->
 <article class="asset-card">
+<p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy);margin-bottom:6px;font-weight:700">Post 03 &nbsp;·&nbsp; Day 8</p>
 <div class="device-shell"><div class="ig-post" id="ig-3">
 <div class="ig-status"><span>9:41</span><span class="ig-status-icons">●●●</span></div>
 <div class="ig-profile"><div class="ig-avatar">RB</div><div class="ig-meta"><p class="ig-handle">readbeyondthestars</p><p class="ig-location">Review literacy tips</p></div><div class="ig-menu">•••</div></div>
 <div class="ig-creative visual-gold">
-  <span class="post-badge">Post 03</span>
   <h2 class="post-title">Read reviews<br>like a <span class="gold">researcher.</span></h2>
   <p class="post-copy">Three checks before you trust a score.</p>
   <!-- SVG: numbered checklist with icons -->
@@ -530,11 +565,11 @@ svg {
 
 <!-- IG POST 4 -->
 <article class="asset-card">
+<p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy);margin-bottom:6px;font-weight:700">Post 04 &nbsp;·&nbsp; Day 12</p>
 <div class="device-shell"><div class="ig-post" id="ig-4">
 <div class="ig-status"><span>9:41</span><span class="ig-status-icons">●●●</span></div>
 <div class="ig-profile"><div class="ig-avatar">RB</div><div class="ig-meta"><p class="ig-handle">readbeyondthestars</p><p class="ig-location">Fake review types</p></div><div class="ig-menu">•••</div></div>
 <div class="ig-creative visual-danger">
-  <span class="post-badge">Post 04</span>
   <h2 class="post-title">Fake reviews come in <span class="red">three forms.</span></h2>
   <p class="post-copy">Knowing the difference helps you spot them.</p>
   <!-- SVG: three fake types as icon cards -->
@@ -570,11 +605,11 @@ svg {
 
 <!-- IG POST 5 -->
 <article class="asset-card">
+<p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy);margin-bottom:6px;font-weight:700">Post 05 &nbsp;·&nbsp; Day 16</p>
 <div class="device-shell"><div class="ig-post" id="ig-5">
 <div class="ig-status"><span>9:41</span><span class="ig-status-icons">●●●</span></div>
 <div class="ig-profile"><div class="ig-avatar">RB</div><div class="ig-meta"><p class="ig-handle">readbeyondthestars</p><p class="ig-location">Data post</p></div><div class="ig-menu">•••</div></div>
 <div class="ig-creative visual-danger">
-  <span class="post-badge">Post 05</span>
   <h2 class="post-title">AI-generated reviews<br><span class="red">increased 137%</span></h2>
   <p class="post-copy">From 4.49% in 2019 to 10.70% in 2024. 2020 and 2021 are estimated from the source graph.</p>
   <!-- SVG: timeline bar chart with ChatGPT marker -->
@@ -619,11 +654,11 @@ svg {
 
 <!-- IG POST 6 -->
 <article class="asset-card">
+<p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy);margin-bottom:6px;font-weight:700">Post 06 &nbsp;·&nbsp; Day 19</p>
 <div class="device-shell"><div class="ig-post" id="ig-6">
 <div class="ig-status"><span>9:41</span><span class="ig-status-icons">●●●</span></div>
 <div class="ig-profile"><div class="ig-avatar">RB</div><div class="ig-meta"><p class="ig-handle">readbeyondthestars</p><p class="ig-location">Spot an AI review</p></div><div class="ig-menu">•••</div></div>
 <div class="ig-creative visual-navy">
-  <span class="post-badge">Post 06</span>
   <h2 class="post-title">Spot an <span class="gold">AI review</span><br>in 10 seconds.</h2>
   <!-- SVG: real vs AI side by side -->
   <svg width="100%" height="280" viewBox="0 0 280 280" aria-hidden="true" style="margin-top:8px">
@@ -688,11 +723,11 @@ svg {
 
 <!-- IG POST 7 -->
 <article class="asset-card">
+<p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy);margin-bottom:6px;font-weight:700">Post 07 &nbsp;·&nbsp; Day 22</p>
 <div class="device-shell"><div class="ig-post" id="ig-7">
 <div class="ig-status"><span>9:41</span><span class="ig-status-icons">●●●</span></div>
 <div class="ig-profile"><div class="ig-avatar">RB</div><div class="ig-meta"><p class="ig-handle">readbeyondthestars</p><p class="ig-location">For hotels</p></div><div class="ig-menu">•••</div></div>
 <div class="ig-creative visual-green">
-  <span class="post-badge">Post 07</span>
   <h2 class="post-title">A good response<br>can <span style="color:#047857">protect trust.</span></h2>
   <p class="post-copy">Research by Sparks et al. (2016) shows management responses affect trust independently of the review itself.</p>
   <!-- SVG: Good vs bad response -->
@@ -727,11 +762,11 @@ svg {
 
 <!-- IG POST 8 -->
 <article class="asset-card">
+<p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy);margin-bottom:6px;font-weight:700">Post 08 &nbsp;·&nbsp; Day 26</p>
 <div class="device-shell"><div class="ig-post" id="ig-8">
 <div class="ig-status"><span>9:41</span><span class="ig-status-icons">●●●</span></div>
 <div class="ig-profile"><div class="ig-avatar">RB</div><div class="ig-meta"><p class="ig-handle">readbeyondthestars</p><p class="ig-location">Hospitality action plan</p></div><div class="ig-menu">•••</div></div>
 <div class="ig-creative visual-navy">
-  <span class="post-badge">Post 08</span>
   <h2 class="post-title" style="color:white;">4 steps for<br><span class="gold">ethical reputation</span><br>management.</h2>
   <!-- SVG: 4-step numbered list -->
   <svg width="100%" height="245" viewBox="0 0 280 245" aria-hidden="true" style="margin-top:6px">
@@ -770,11 +805,11 @@ svg {
 
 <!-- IG POST 9 -->
 <article class="asset-card">
+<p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy);margin-bottom:6px;font-weight:700">Post 09 &nbsp;·&nbsp; Day 30</p>
 <div class="device-shell"><div class="ig-post" id="ig-9">
 <div class="ig-status"><span>9:41</span><span class="ig-status-icons">●●●</span></div>
 <div class="ig-profile"><div class="ig-avatar">RB</div><div class="ig-meta"><p class="ig-handle">readbeyondthestars</p><p class="ig-location">Campaign closing</p></div><div class="ig-menu">•••</div></div>
 <div class="ig-creative visual-navy">
-  <span class="post-badge">Post 09</span>
   <!-- SVG: closing visual - trust infrastructure -->
   <svg width="100%" height="400" viewBox="0 0 280 400" aria-hidden="true">
     <!-- Large central text -->
@@ -830,19 +865,6 @@ svg {
 </div>
 </section>
 
-<section aria-labelledby="refs">
-<p class="section-label" id="refs">References</p>
-<div class="refs">
-<p>Filieri, R., Alguezaui, S., &amp; McLeay, F. (2015). Why do travelers trust TripAdvisor? <em>Tourism Management, 51</em>, 174-185.</p>
-<p>Kirilenko, A., Stepchenkova, S., Gromoll, R., &amp; Jo, Y. (2024). Comprehensive examination of online reviews divergence over time and platform types. <em>International Journal of Hospitality Management, 117</em>, 103647.</p>
-<p>Originality.AI. (2024). Fake AI TripAdvisor reviews increased by 137% from 2019 to 2024.</p>
-<p>Sparks, B. A., So, K. K. F., &amp; Bradley, G. L. (2016). Responding to negative online reviews. <em>Tourism Management, 53</em>, 74-85.</p>
-<p>TripAdvisor. (2025). <em>Tripadvisor transparency report 2025</em>.</p>
-<p>Wu, Y., Ngai, E. W., Wu, P., &amp; Wu, C. (2020). Fake online reviews: Literature review, synthesis, and directions for future research. <em>Decision Support Systems, 132</em>, 113280.</p>
-<p>Xiang, Z., Du, Q., Ma, Y., &amp; Fan, W. (2017). A comparative analysis of major online review platforms. <em>Tourism Management, 58</em>, 51-65.</p>
-</div>
-</section>
-
 <footer class="footer">
 <div><strong>Md Ashikur Rahman</strong> · NF1000759<br/>MA Digital Media and Global Communications · University of Niagara Falls Canada</div>
 <div>DMGC 699 Capstone · Social Media Posts Series · Spring 2026</div>
@@ -850,51 +872,89 @@ svg {
 </main>
 
 <script>
-async function downloadPost(id, filename){
-  const post = document.getElementById(id);
-  const node = post ? post.querySelector(".ig-creative") || post : null;
+// Cache for base64 font data
+const _fontCache = {};
 
-  if (!node) {
-    alert("Could not find the post to download.");
-    return;
-  }
-
-  if (typeof html2canvas !== "function") {
-    alert("The image download library did not load. Please refresh the page and try again.");
-    return;
-  }
-
-  if (document.fonts && document.fonts.ready) {
-    await document.fonts.ready;
-  }
-
+async function fetchFontAsBase64(url) {
+  if (_fontCache[url]) return _fontCache[url];
   try {
-    const canvas = await html2canvas(node, {
-      scale: 3,
-      backgroundColor: "#ffffff",
-      useCORS: true,
-      logging: false
-    });
+    const res = await fetch(url);
+    const buf = await res.arrayBuffer();
+    const b64 = btoa(String.fromCharCode(...new Uint8Array(buf)));
+    const mime = url.endsWith('.woff2') ? 'font/woff2' : 'font/woff';
+    _fontCache[url] = `data:${mime};base64,${b64}`;
+    return _fontCache[url];
+  } catch(e) { return null; }
+}
 
-    canvas.toBlob(blob => {
-      if (!blob) {
-        alert("The post image could not be generated. Please try again.");
-        return;
-      }
-
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.download = filename;
-      link.href = url;
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      URL.revokeObjectURL(url);
-    }, "image/png");
-  } catch (error) {
-    console.error("Post download failed:", error);
-    alert("The post image could not be downloaded. Please refresh the page and try again.");
+async function buildEmbeddedFontCSS() {
+  // Collect all @font-face src URLs already loaded by the browser
+  const fontFaces = [...document.fonts];
+  const rules = [];
+  for (const ff of fontFaces) {
+    // ff.family, ff.weight, ff.style are available
+    // We need the actual URL — extract from the loaded FontFace if possible
   }
+
+  // Fallback: re-fetch the Google Fonts CSS from the page's existing <link> and embed each font file
+  const linkEl = document.querySelector('link[href*="fonts.googleapis.com"]');
+  if (!linkEl) return null;
+
+  const cssRes = await fetch(linkEl.href);
+  const cssText = await cssRes.text();
+
+  // Find all url(...) references
+  const urlMatches = [...cssText.matchAll(/url\((https:\/\/fonts\.gstatic\.com[^)]+)\)/g)];
+  let embeddedCss = cssText;
+
+  for (const match of urlMatches) {
+    const fontUrl = match[1];
+    const dataUri = await fetchFontAsBase64(fontUrl);
+    if (dataUri) {
+      embeddedCss = embeddedCss.replace(fontUrl, dataUri);
+    }
+  }
+  return embeddedCss;
+}
+
+let _embeddedFontCSS = null;
+
+async function downloadPost(id, filename) {
+  const post = document.getElementById(id);
+  const creative = post.querySelector('.ig-creative');
+
+  await document.fonts.ready;
+
+  // Build embedded font CSS once
+  if (!_embeddedFontCSS) {
+    _embeddedFontCSS = await buildEmbeddedFontCSS();
+  }
+
+  const canvas = await html2canvas(creative, {
+    scale: 3,
+    backgroundColor: null,
+    useCORS: true,
+    allowTaint: true,
+    logging: false,
+    onclone: (clonedDoc) => {
+      // Inject embedded fonts into the cloned document
+      if (_embeddedFontCSS) {
+        const style = clonedDoc.createElement('style');
+        style.textContent = _embeddedFontCSS;
+        clonedDoc.head.insertBefore(style, clonedDoc.head.firstChild);
+      }
+      const clonedEl = clonedDoc.querySelector('.ig-creative');
+      if (clonedEl) {
+        clonedEl.style.borderRadius = '0';
+        clonedEl.style.overflow = 'hidden';
+      }
+    }
+  });
+
+  const link = document.createElement("a");
+  link.download = filename;
+  link.href = canvas.toDataURL("image/png");
+  link.click();
 }
 </script>
 </body>
