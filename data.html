@@ -1,0 +1,2262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rating Discrepancies & Consumer Trust - Interactive Data Visualisation | DMGC 699</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+/* ── TOKENS ── */
+:root {
+  --navy:      #1E3A5F;
+  --navy-dark: #0D1F35;
+  --navy-mid:  #2D5282;
+  --navy-light:#EBF2FA;
+  --white:     #FFFFFF;
+  --off-white: #F7F8FA;
+  --border:    #E2E8F0;
+  --ink:       #111827;
+  --ink-mid:   #374151;
+  --ink-light: #6B7280;
+  --red:       #C0392B;
+  --red-light: #FEF2F2;
+  --teal:      #0B7A75;
+  --teal-light:#E6F5F4;
+  --amber:     #B45309;
+  --amber-light:#FDF6E3;
+  --green:     #00AA6C;
+  --booking:   #003580;
+  --google:    #EA4335;
+  --gold:      #F5D78E;
+}
+
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+
+body {
+  font-family:'Source Sans 3', sans-serif;
+  background:var(--white);
+  color:var(--ink);
+  overflow-x:hidden;
+}
+
+/* ── SKIP LINK ── */
+#skip-link {
+  position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
+}
+#skip-link:focus {
+  position:fixed; top:0; left:0; width:auto; height:auto; padding:12px 20px;
+  background:var(--navy); color:var(--white); z-index:9999; font-size:14px;
+}
+
+/* ── PROGRESS BAR ── */
+#progress-bar {
+  position:fixed; top:0; left:0; height:3px; background:var(--red);
+  width:0%; z-index:100; transition:width 0.1s linear;
+}
+
+/* ── NAV ── */
+nav {
+  position:fixed; top:3px; left:0; right:0;
+  background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--border);
+  z-index:90;
+  padding:0 24px;
+  display:flex; align-items:center; justify-content:space-between; height:52px;
+}
+
+.nav-brand {
+  font-family:'JetBrains Mono', monospace;
+  font-size:10px; letter-spacing:2px; text-transform:uppercase;
+  color:var(--ink-light);
+}
+
+.nav-links {
+  display:flex; gap:4px; list-style:none;
+}
+
+.nav-links a {
+  font-family:'JetBrains Mono', monospace;
+  font-size:9px; letter-spacing:1.5px; text-transform:uppercase;
+  color:var(--ink-light); text-decoration:none;
+  padding:6px 10px; border-radius:2px;
+  transition:background 0.2s, color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active { background:var(--navy-light); color:var(--navy); }
+
+/* ── SECTIONS ── */
+section {
+  min-height:100vh;
+  padding:100px 0 80px;
+  position:relative;
+}
+
+.container {
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 40px;
+}
+
+/* ── HERO ── */
+#hero {
+  background:var(--navy-dark);
+  display:flex; align-items:center;
+  min-height:100vh;
+  padding:100px 0;
+}
+
+.hero-eyebrow {
+  font-family:'JetBrains Mono', monospace;
+  font-size:10px; letter-spacing:3px; text-transform:uppercase;
+  color:rgba(255,255,255,0.4); margin-bottom:24px;
+}
+
+.hero-title {
+  font-family:'Lora', serif;
+  font-size:clamp(36px, 5vw, 64px);
+  font-weight:700; color:var(--white);
+  line-height:1.1; margin-bottom:16px;
+}
+
+.hero-title em { font-style:italic; color:var(--gold); }
+
+.hero-subtitle {
+  font-size:18px; color:rgba(255,255,255,0.65);
+  max-width:560px; line-height:1.7; margin-bottom:48px;
+}
+
+.hero-scroll {
+  display:flex; align-items:center; gap:12px;
+  font-family:'JetBrains Mono', monospace;
+  font-size:10px; letter-spacing:2px; text-transform:uppercase;
+  color:rgba(255,255,255,0.35);
+  animation:bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%,100% { transform:translateY(0); }
+  50% { transform:translateY(6px); }
+}
+
+.hero-stats {
+  display:grid; grid-template-columns:repeat(4,1fr);
+  gap:1px; background:rgba(255,255,255,0.1);
+  border:1px solid rgba(255,255,255,0.1);
+  margin-top:64px;
+}
+
+.hero-stat {
+  background:rgba(255,255,255,0.04);
+  padding:28px 24px; text-align:center;
+}
+
+.hero-stat-num {
+  font-family:'Lora', serif;
+  font-size:42px; font-weight:700;
+  color:var(--gold); line-height:1;
+  margin-bottom:8px;
+}
+
+.hero-stat-label {
+  font-size:13px; color:rgba(255,255,255,0.55);
+  line-height:1.5;
+}
+
+.hero-stat-src {
+  font-family:'JetBrains Mono', monospace;
+  font-size:9px; color:rgba(255,255,255,0.25);
+  letter-spacing:0.5px; margin-top:6px;
+}
+
+/* ── SECTION HEADERS ── */
+.section-eyebrow {
+  font-family:'JetBrains Mono', monospace;
+  font-size:10px; letter-spacing:3px; text-transform:uppercase;
+  color:var(--ink-light); margin-bottom:16px;
+  display:flex; align-items:center; gap:12px;
+}
+
+.section-eyebrow::after {
+  content:''; flex:1; max-width:60px; height:1px; background:var(--border);
+}
+
+.section-title {
+  font-family:'Lora', serif;
+  font-size:clamp(28px, 3.5vw, 42px);
+  font-weight:700; color:var(--navy);
+  line-height:1.2; margin-bottom:16px;
+}
+
+.section-title em { font-style:italic; color:var(--red); }
+
+.section-lead {
+  font-size:17px; color:var(--ink-mid);
+  max-width:640px; line-height:1.7; margin-bottom:56px;
+}
+
+/* ── REVEAL ANIMATIONS ── */
+.reveal {
+  opacity:0; transform:translateY(32px);
+  transition:opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity:1; transform:translateY(0);
+}
+
+.reveal-delay-1 { transition-delay:0.1s; }
+.reveal-delay-2 { transition-delay:0.2s; }
+.reveal-delay-3 { transition-delay:0.3s; }
+.reveal-delay-4 { transition-delay:0.4s; }
+.reveal-delay-5 { transition-delay:0.5s; }
+
+/* ── SECTION 1: PLATFORM RATINGS ── */
+#platforms { background:var(--off-white); }
+
+.platform-tabs {
+  display:flex; gap:2px; margin-bottom:32px;
+  background:var(--border); padding:3px; border-radius:4px;
+  width:fit-content;
+}
+
+.platform-tab {
+  padding:8px 20px; border:none; background:transparent;
+  font-family:'JetBrains Mono', monospace;
+  font-size:10px; letter-spacing:1.5px; text-transform:uppercase;
+  color:var(--ink-light); cursor:pointer; border-radius:2px;
+  transition:all 0.2s;
+}
+
+.platform-tab.active {
+  background:var(--white); color:var(--navy); font-weight:500;
+  box-shadow:0 1px 4px rgba(0,0,0,0.08);
+}
+
+.tab-content { display:none; }
+.tab-content.active { display:block; }
+
+/* Rating comparison chart */
+.rating-chart {
+  background:var(--white); border:1px solid var(--border);
+  padding:32px; margin-bottom:32px;
+}
+
+.rating-chart-title {
+  font-family:'Lora', serif; font-size:18px;
+  color:var(--navy); margin-bottom:8px;
+}
+
+.rating-chart-sub {
+  font-family:'JetBrains Mono', monospace;
+  font-size:10px; color:var(--ink-light);
+  letter-spacing:1px; margin-bottom:28px;
+}
+
+.rating-bars { display:flex; flex-direction:column; gap:16px; }
+
+.r-row {
+  display:grid;
+  grid-template-columns:140px 1fr 80px;
+  align-items:center; gap:16px;
+}
+
+.r-label {
+  font-family:'JetBrains Mono', monospace;
+  font-size:11px; color:var(--ink-mid);
+}
+
+.r-track {
+  height:28px; background:var(--off-white);
+  border-radius:2px; overflow:hidden; position:relative;
+}
+
+.r-fill {
+  height:100%; border-radius:2px;
+  width:0%; transition:width 1.4s cubic-bezier(0.4,0,0.2,1);
+  display:flex; align-items:center; padding-left:10px;
+}
+
+.r-val {
+  font-family:'JetBrains Mono', monospace;
+  font-size:13px; font-weight:500; color:var(--navy);
+  text-align:right;
+}
+
+/* Scale indicator */
+.scale-note {
+  font-size:12px; color:var(--ink-light);
+  font-style:italic; margin-top:16px;
+  padding-top:16px; border-top:1px solid var(--border);
+}
+
+/* Distribution chart */
+.dist-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:24px;
+  margin-top:32px;
+}
+
+.dist-card {
+  background:var(--white); border:1px solid var(--border);
+  padding:24px;
+}
+
+.dist-card-title {
+  font-family:'Lora', serif; font-size:15px;
+  font-weight:600; color:var(--navy); margin-bottom:4px;
+}
+
+.dist-card-sub {
+  font-family:'JetBrains Mono', monospace; font-size:9px;
+  color:var(--ink-light); letter-spacing:1px;
+  text-transform:uppercase; margin-bottom:16px;
+}
+
+.dist-bars {
+  display:flex; align-items:flex-end;
+  gap:4px; height:72px; margin-bottom:10px;
+}
+
+.dist-bar {
+  flex:1; border-radius:2px 2px 0 0; min-height:4px;
+}
+
+.dist-xlabels {
+  display:flex; justify-content:space-between;
+  font-family:'JetBrains Mono', monospace;
+  font-size:9px; color:var(--ink-light);
+  margin-bottom:10px;
+}
+
+.dist-desc {
+  font-size:12px; color:var(--ink-mid); line-height:1.6;
+}
+
+/* ── SECTION 2: FAKE REVIEWS ── */
+#fakereviews { background:var(--white); }
+
+/* Animated counter */
+.counter-grid {
+  display:grid; grid-template-columns:repeat(4,1fr);
+  gap:1px; background:var(--border);
+  border:1px solid var(--border);
+  margin-bottom:56px;
+}
+
+.counter-card {
+  background:var(--white); padding:28px 20px; text-align:center;
+}
+
+.counter-num {
+  font-family:'Lora', serif; font-size:38px;
+  font-weight:700; line-height:1;
+  margin-bottom:8px; color:var(--navy);
+}
+
+.counter-label {
+  font-size:13px; color:var(--ink-mid); line-height:1.5;
+  margin-bottom:6px;
+}
+
+.counter-src {
+  font-family:'JetBrains Mono', monospace; font-size:9px;
+  color:var(--ink-light); letter-spacing:0.5px;
+}
+
+/* Donut / breakdown */
+.breakdown-section {
+  display:grid; grid-template-columns:1fr 1fr; gap:48px;
+  align-items:start;
+}
+
+.breakdown-title {
+  font-family:'Lora', serif; font-size:20px;
+  color:var(--navy); margin-bottom:24px;
+}
+
+.breakdown-row {
+  margin-bottom:16px;
+}
+
+.breakdown-row-header {
+  display:flex; justify-content:space-between;
+  margin-bottom:6px;
+}
+
+.breakdown-label {
+  font-size:13px; color:var(--ink-mid);
+}
+
+.breakdown-pct {
+  font-family:'JetBrains Mono', monospace;
+  font-size:13px; font-weight:500; color:var(--navy);
+}
+
+.breakdown-track {
+  height:10px; background:var(--off-white);
+  border-radius:5px; overflow:hidden;
+}
+
+.breakdown-fill {
+  height:100%; border-radius:5px;
+  width:0%; transition:width 1.6s ease;
+}
+
+/* Timeline */
+.timeline { position:relative; padding-left:28px; }
+.timeline::before {
+  content:''; position:absolute; left:8px; top:0; bottom:0;
+  width:2px; background:var(--border);
+}
+
+.tl-item {
+  position:relative; padding:0 0 28px 24px;
+}
+
+.tl-item::before {
+  content:''; position:absolute; left:-20px; top:6px;
+  width:10px; height:10px; border-radius:50%;
+  background:var(--navy); border:2px solid var(--white);
+  box-shadow:0 0 0 2px var(--navy);
+}
+
+.tl-item.danger::before { background:var(--red); box-shadow:0 0 0 2px var(--red); }
+
+.tl-year {
+  font-family:'JetBrains Mono', monospace; font-size:11px;
+  color:var(--ink-light); letter-spacing:1px; margin-bottom:4px;
+}
+
+.tl-event { font-size:14px; color:var(--ink-mid); line-height:1.5; }
+.tl-event strong { color:var(--navy); }
+
+/* ── SECTION 3: AI GROWTH CHART ── */
+#aigrowth { background:var(--off-white); }
+
+.bar-chart-wrap {
+  background:var(--white); border:1px solid var(--border);
+  padding:32px; margin-bottom:32px;
+}
+
+.bcw-title { font-family:'Lora', serif; font-size:18px; color:var(--navy); margin-bottom:4px; }
+.bcw-sub { font-family:'JetBrains Mono', monospace; font-size:10px; color:var(--ink-light); letter-spacing:1px; margin-bottom:28px; }
+
+.bar-chart-main { display:flex; flex-direction:column; gap:14px; }
+
+.bc-row {
+  display:grid;
+  grid-template-columns:56px 1fr 80px;
+  align-items:center; gap:16px;
+}
+
+.bc-year {
+  font-family:'JetBrains Mono', monospace; font-size:12px;
+  color:var(--ink-mid); font-weight:500; text-align:right;
+}
+
+.bc-track {
+  height:32px; background:var(--off-white); border-radius:2px;
+  overflow:hidden; position:relative;
+}
+
+.bc-fill {
+  height:100%; border-radius:2px;
+  transition:width 1.5s cubic-bezier(0.4,0,0.2,1);
+  width:0%;
+}
+
+.bc-actual { background:var(--navy); }
+.bc-estimate { background:#94A3B8; }
+.bc-spike { background:var(--red); }
+
+.bc-meta {
+  font-family:'JetBrains Mono', monospace; font-size:12px;
+  font-weight:500; color:var(--navy);
+}
+.bc-meta.spike { color:var(--red); font-weight:700; }
+
+.bc-legend {
+  display:flex; gap:24px; margin-top:20px;
+  padding-top:16px; border-top:1px solid var(--border);
+  flex-wrap:wrap;
+}
+
+.bc-legend-item {
+  display:flex; align-items:center; gap:8px;
+  font-size:12px; color:var(--ink-mid);
+}
+
+.bc-legend-dot {
+  width:14px; height:14px; border-radius:2px; flex-shrink:0;
+}
+
+.bc-note {
+  font-size:12px; color:var(--ink-light);
+  font-style:italic; margin-top:16px; line-height:1.6;
+}
+
+/* GPT marker */
+.gpt-marker {
+  background:var(--amber-light); border:1px solid #FCD34D;
+  padding:10px 16px; margin:16px 0;
+  font-size:13px; color:#92400E;
+  display:flex; align-items:center; gap:10px;
+}
+
+/* Insight card */
+.insight-box {
+  border:2px solid var(--navy); padding:24px 32px;
+  margin-bottom:32px; position:relative;
+}
+
+.insight-label {
+  position:absolute; top:-10px; left:20px;
+  background:var(--off-white); padding:0 8px;
+  font-family:'JetBrains Mono', monospace;
+  font-size:9px; letter-spacing:2px; text-transform:uppercase;
+  color:var(--navy); font-weight:500;
+}
+
+.insight-text {
+  font-family:'Lora', serif; font-size:16px;
+  line-height:1.7; color:var(--ink);
+}
+
+.insight-text em { color:var(--navy); font-style:italic; }
+
+/* ── SECTION 4: MANAGEMENT RESPONSES ── */
+#responses { background:var(--white); }
+
+.response-compare {
+  display:grid; grid-template-columns:1fr 1fr; gap:24px;
+  margin-bottom:40px;
+}
+
+.resp-card {
+  border:1px solid var(--border); padding:24px;
+}
+
+.resp-header {
+  padding:10px 16px; margin:-24px -24px 20px;
+  font-family:'JetBrains Mono', monospace;
+  font-size:9px; letter-spacing:2px; text-transform:uppercase;
+  font-weight:500; color:var(--white);
+}
+
+.resp-bad .resp-header { background:var(--red); }
+.resp-good .resp-header { background:var(--teal); }
+
+.resp-quote {
+  font-family:'Lora', serif; font-size:14px;
+  color:var(--ink); font-style:italic; line-height:1.6;
+  margin-bottom:16px; padding-bottom:16px;
+  border-bottom:1px solid var(--border);
+}
+
+.resp-why { font-size:13px; color:var(--ink-mid); line-height:1.6; }
+
+/* Trust impact bars */
+.trust-impact { margin-top:40px; }
+
+.ti-title {
+  font-family:'Lora', serif; font-size:20px;
+  color:var(--navy); margin-bottom:24px;
+}
+
+.ti-row { margin-bottom:20px; }
+
+.ti-row-header {
+  display:flex; justify-content:space-between;
+  align-items:center; margin-bottom:8px;
+}
+
+.ti-label { font-size:14px; color:var(--ink-mid); }
+
+.ti-pct {
+  font-family:'JetBrains Mono', monospace;
+  font-size:13px; font-weight:500;
+}
+
+.ti-track {
+  height:14px; background:var(--off-white);
+  border-radius:7px; overflow:hidden;
+}
+
+.ti-fill {
+  height:100%; border-radius:7px;
+  width:0%; transition:width 1.6s ease;
+}
+
+.ti-src {
+  font-size:11px; color:var(--ink-light);
+  font-style:italic; margin-top:4px;
+}
+
+/* ── SECTION 5: TRUST TOOL SUMMARY ── */
+#trusttool { background:var(--navy-dark); }
+
+#trusttool .section-eyebrow { color:rgba(255,255,255,0.4); }
+#trusttool .section-eyebrow::after { background:rgba(255,255,255,0.15); }
+#trusttool .section-title { color:var(--white); }
+#trusttool .section-title em { color:var(--gold); }
+#trusttool .section-lead { color:rgba(255,255,255,0.6); }
+
+.tool-formula {
+  background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);
+  padding:32px; margin-bottom:32px; font-family:'JetBrains Mono', monospace;
+  font-size:15px; color:var(--gold); text-align:center; letter-spacing:1px;
+}
+
+.formula-note {
+  font-size:11px; color:rgba(255,255,255,0.35);
+  margin-top:12px; letter-spacing:0;
+  font-family:'Source Sans 3', sans-serif;
+}
+
+.trust-factors {
+  display:grid; grid-template-columns:repeat(4,1fr);
+  gap:1px; background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.08);
+  margin-bottom:48px;
+}
+
+.tf-card {
+  background:rgba(255,255,255,0.04); padding:24px 20px; text-align:center;
+}
+
+.tf-icon {
+  font-size:22px; margin-bottom:10px;
+}
+
+.tf-label {
+  font-family:'Lora', serif; font-size:14px;
+  color:var(--white); font-weight:600; margin-bottom:8px;
+}
+
+.tf-desc { font-size:12px; color:rgba(255,255,255,0.5); line-height:1.5; }
+
+.tool-cta {
+  text-align:center; padding:40px;
+  background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1);
+}
+
+.tool-cta p {
+  font-size:16px; color:rgba(255,255,255,0.65);
+  line-height:1.7; margin-bottom:24px; max-width:520px; margin-left:auto; margin-right:auto;
+}
+
+.tool-cta a {
+  display:inline-block; padding:14px 32px;
+  background:var(--navy-mid); color:var(--white);
+  font-family:'JetBrains Mono', monospace;
+  font-size:11px; letter-spacing:2px; text-transform:uppercase;
+  text-decoration:none; border:1px solid rgba(255,255,255,0.2);
+  transition:background 0.2s;
+}
+
+.tool-cta a:hover { background:var(--navy); }
+
+/* ── FOOTER ── */
+footer {
+  background:var(--navy); padding:40px;
+  text-align:center;
+}
+
+.footer-ref { font-size:13px; color:rgba(255,255,255,0.4); line-height:1.8; }
+.footer-ref a { color:rgba(255,255,255,0.55); text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.2); }
+
+/* ── ACCESSIBILITY ── */
+.a11y-note {
+  background:var(--navy-light); border-left:3px solid var(--navy);
+  padding:12px 16px; font-size:12px; color:var(--ink-mid); margin-bottom:40px;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width:768px) {
+  .hero-stats { grid-template-columns:1fr; }
+  .counter-grid { grid-template-columns:repeat(2,1fr); }
+  .breakdown-section { grid-template-columns:1fr; }
+  .dist-grid { grid-template-columns:1fr; }
+  .response-compare { grid-template-columns:1fr; }
+  .trust-factors { grid-template-columns:repeat(2,1fr); }
+  .nav-links { display:none; }
+  .r-row { grid-template-columns:90px 1fr 60px; }
+  .bc-row { grid-template-columns:44px 1fr 64px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { transition:none; }
+  .r-fill, .bc-fill, .breakdown-fill, .ti-fill { transition:none; }
+}
+
+
+/* ── UPGRADE: SCROLLY + INTERACTIVE TOOL + SOURCE CONFIDENCE ── */
+.confidence-row { display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 34px; }
+.conf-chip { font-family:'JetBrains Mono', monospace; font-size:9px; letter-spacing:1.4px; text-transform:uppercase; padding:5px 9px; border-radius:999px; border:1px solid var(--border); background:var(--white); color:var(--ink-light); }
+.conf-chip.reported { background:var(--teal-light); color:var(--teal); border-color:#B7E1DE; }
+.conf-chip.estimated { background:var(--amber-light); color:var(--amber); border-color:#F5D296; }
+.conf-chip.illustrative { background:#F3E8FF; color:#6D28D9; border-color:#DDD6FE; }
+.data-method { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin-bottom:40px; }
+.data-method-card { background:var(--white); padding:20px; }
+.data-method-card h3 { font-family:'Lora', serif; font-size:16px; color:var(--navy); margin-bottom:6px; }
+.data-method-card p { font-size:13px; color:var(--ink-mid); line-height:1.6; }
+.scrolly-band { margin:42px 0; display:grid; grid-template-columns:.85fr 1.15fr; gap:28px; align-items:start; }
+.scrolly-copy { position:sticky; top:86px; background:var(--white); border:1px solid var(--border); padding:24px; border-left:4px solid var(--navy); }
+.scrolly-copy h3 { font-family:'Lora', serif; color:var(--navy); font-size:22px; margin-bottom:8px; }
+.scrolly-copy p { color:var(--ink-mid); font-size:14px; line-height:1.75; }
+.scrolly-steps { display:flex; flex-direction:column; gap:18px; }
+.step-card { background:var(--white); border:1px solid var(--border); padding:20px; transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.step-card:hover { transform:translateY(-3px); box-shadow:0 10px 28px rgba(17,24,39,.08); border-color:var(--border-strong); }
+.step-num { font-family:'JetBrains Mono', monospace; color:var(--navy); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+.step-card h4 { font-size:15px; color:var(--ink); margin-bottom:6px; }
+.step-card p { font-size:13px; color:var(--ink-mid); line-height:1.6; }
+.calc-grid { display:grid; grid-template-columns:1fr .85fr; gap:32px; align-items:start; margin-top:32px; }
+.calc-panel { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); padding:28px; }
+.slider-row { margin-bottom:22px; }
+.slider-top { display:flex; justify-content:space-between; gap:16px; margin-bottom:8px; }
+.slider-label { font-size:14px; color:rgba(255,255,255,.82); }
+.slider-val { font-family:'JetBrains Mono', monospace; color:var(--gold); font-size:12px; }
+input[type=range] { width:100%; accent-color:var(--gold); }
+.score-ring { width:210px; height:210px; border-radius:50%; margin:0 auto 22px; display:grid; place-items:center; background:conic-gradient(var(--gold) 0deg, var(--gold) 250deg, rgba(255,255,255,.10) 250deg); }
+.score-inner { width:154px; height:154px; border-radius:50%; display:grid; place-items:center; background:var(--navy-dark); }
+.score-number { font-family:'Lora', serif; font-size:54px; font-weight:700; color:var(--gold); line-height:1; }
+.score-label { font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:1.8px; text-transform:uppercase; color:rgba(255,255,255,.45); margin-top:6px; }
+.calc-status { font-family:'Lora', serif; font-size:22px; color:var(--white); margin-bottom:8px; text-align:center; }
+.calc-text { color:rgba(255,255,255,.65); font-size:14px; line-height:1.7; text-align:center; }
+.calc-disclaimer { color:rgba(255,255,255,.38); font-size:12px; line-height:1.6; margin-top:18px; }
+.source-quality-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:30px; }
+.source-quality-card { background:var(--white); border:1px solid var(--border); padding:20px; }
+.source-quality-card h3 { font-family:'Lora', serif; font-size:17px; color:var(--navy); margin-bottom:8px; }
+.source-quality-card p { font-size:13px; color:var(--ink-mid); line-height:1.65; }
+.source-quality-card .tag { font-family:'JetBrains Mono', monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--ink-light); margin-bottom:8px; }
+.tooltip-term { border-bottom:1px dotted currentColor; cursor:help; position:relative; }
+.tooltip-term:hover::after, .tooltip-term:focus::after { content:attr(data-tip); position:absolute; left:0; top:1.6em; width:240px; background:var(--navy-dark); color:var(--white); padding:10px 12px; font-size:12px; line-height:1.4; z-index:10; box-shadow:0 8px 20px rgba(0,0,0,.18); }
+@media (max-width:768px) { .data-method, .scrolly-band, .calc-grid, .source-quality-grid { grid-template-columns:1fr; } .scrolly-copy { position:static; } }
+
+
+/* TRUST TOOL EXPLANATION + LINKED REFERENCES */
+.calc-help {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.help-card {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  padding: 18px;
+}
+.help-card h3 {
+  font-family: "Lora", serif;
+  font-size: 17px;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.help-card p,
+.help-card li {
+  font-size: 13px;
+  color: rgba(255,255,255,.68);
+  line-height: 1.65;
+}
+.help-card ul {
+  padding-left: 18px;
+  margin-top: 8px;
+}
+.example-box {
+  margin-top: 20px;
+  background: rgba(245,215,142,.10);
+  border: 1px solid rgba(245,215,142,.30);
+  border-radius: 12px;
+  padding: 18px;
+}
+.example-box h3 {
+  font-family: "Lora", serif;
+  font-size: 18px;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.example-box p {
+  font-size: 13px;
+  color: rgba(255,255,255,.72);
+  line-height: 1.7;
+}
+.ref-list {
+  display: grid;
+  gap: 12px;
+}
+.ref-item {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.ref-item p {
+  font-size: 13px;
+  color: var(--mid);
+  line-height: 1.55;
+}
+.ref-item a {
+  color: var(--navy);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-strong);
+}
+.ref-item a:hover,
+.ref-item a:focus {
+  color: var(--red);
+  border-bottom-color: var(--red);
+}
+.ref-note {
+  font-size: 12px;
+  color: var(--light);
+  font-style: italic;
+  margin-top: 18px;
+}
+@media(max-width:860px){
+  .calc-help { grid-template-columns: 1fr; }
+}
+
+
+/* TRUST TOOL SCORING GUIDE */
+.score-guide {
+  margin-top: 26px;
+  display: grid;
+  gap: 18px;
+}
+.scoring-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.scoring-table th,
+.scoring-table td {
+  border: 1px solid rgba(255,255,255,.13);
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+.scoring-table th {
+  color: var(--gold);
+  background: rgba(255,255,255,.08);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+.scoring-table td {
+  color: rgba(255,255,255,.72);
+}
+.calc-mini-formula {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: var(--gold);
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 9px;
+  padding: 10px 12px;
+  margin-top: 10px;
+}
+.quick-rule {
+  display: inline-block;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(245,215,142,.35);
+  border-radius: 999px;
+  padding: 4px 8px;
+  margin-bottom: 8px;
+}
+
+
+/* TRUST TOOL EXPLANATION VISIBLE FIX */
+.calc-help {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.help-card {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  padding: 18px;
+}
+.help-card h3 {
+  font-family: "Lora", serif;
+  font-size: 17px;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.help-card p,
+.help-card li {
+  font-size: 13px;
+  color: rgba(255,255,255,.70);
+  line-height: 1.65;
+}
+.help-card ul {
+  padding-left: 18px;
+  margin-top: 8px;
+}
+.example-box {
+  margin-top: 22px;
+  background: rgba(245,215,142,.10);
+  border: 1px solid rgba(245,215,142,.32);
+  border-radius: 12px;
+  padding: 18px;
+}
+.example-box h3 {
+  font-family: "Lora", serif;
+  font-size: 18px;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.example-box p {
+  font-size: 13px;
+  color: rgba(255,255,255,.74);
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+.scoring-guide-box {
+  margin-top: 22px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  padding: 18px;
+}
+.scoring-guide-box h3 {
+  font-family: "Lora", serif;
+  font-size: 18px;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.scoring-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.scoring-table th,
+.scoring-table td {
+  border: 1px solid rgba(255,255,255,.14);
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+.scoring-table th {
+  color: var(--gold);
+  background: rgba(255,255,255,.08);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.scoring-table td {
+  color: rgba(255,255,255,.72);
+}
+.quick-rule {
+  display: inline-block;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(245,215,142,.35);
+  border-radius: 999px;
+  padding: 4px 8px;
+  margin-bottom: 8px;
+}
+@media(max-width:860px){
+  .calc-help { grid-template-columns: 1fr; }
+  .scoring-table { display:block; overflow-x:auto; }
+}
+
+
+/* INTERACTION + ANIMATION UPGRADE */
+.hero-orbit {
+  position:absolute;
+  inset:auto 8% 12% auto;
+  width:280px;
+  height:280px;
+  border:1px solid rgba(245,215,142,.22);
+  border-radius:50%;
+  opacity:.65;
+  animation: orbitPulse 6s ease-in-out infinite;
+  pointer-events:none;
+}
+.hero-orbit::before,
+.hero-orbit::after {
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  background:rgba(245,215,142,.16);
+  border:1px solid rgba(245,215,142,.24);
+}
+.hero-orbit::before {
+  width:70px;
+  height:70px;
+  left:28px;
+  top:36px;
+  animation: floatMini 5s ease-in-out infinite;
+}
+.hero-orbit::after {
+  width:42px;
+  height:42px;
+  right:38px;
+  bottom:58px;
+  animation: floatMini 4s ease-in-out infinite reverse;
+}
+@keyframes orbitPulse {
+  0%,100% { transform:scale(1) rotate(0deg); opacity:.45; }
+  50% { transform:scale(1.08) rotate(8deg); opacity:.8; }
+}
+@keyframes floatMini {
+  0%,100% { transform:translateY(0); }
+  50% { transform:translateY(-14px); }
+}
+.pulse-dot {
+  display:inline-block;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--red);
+  margin-right:8px;
+  box-shadow:0 0 0 rgba(192,57,43,.5);
+  animation:pulseDot 1.8s infinite;
+}
+@keyframes pulseDot {
+  0% { box-shadow:0 0 0 0 rgba(192,57,43,.5); }
+  70% { box-shadow:0 0 0 10px rgba(192,57,43,0); }
+  100% { box-shadow:0 0 0 0 rgba(192,57,43,0); }
+}
+.chart-card,
+.counter-card,
+.dist-card,
+.source-card,
+.resp-card,
+.help-card {
+  transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.chart-card:hover,
+.counter-card:hover,
+.dist-card:hover,
+.source-card:hover,
+.resp-card:hover,
+.help-card:hover {
+  transform:translateY(-4px);
+  box-shadow:0 18px 42px rgba(17,24,39,.08);
+  border-color:var(--border-strong);
+}
+.tooltip {
+  position:relative;
+  cursor:help;
+  border-bottom:1px dotted currentColor;
+}
+.tooltip[data-tip]:hover::after,
+.tooltip[data-tip]:focus::after {
+  content:attr(data-tip);
+  position:absolute;
+  left:0;
+  top:140%;
+  width:260px;
+  background:var(--navy-dark);
+  color:white;
+  padding:10px 12px;
+  border-radius:8px;
+  font-size:12px;
+  line-height:1.45;
+  z-index:20;
+  box-shadow:0 12px 28px rgba(17,24,39,.20);
+}
+.mode-toggle {
+  display:flex;
+  gap:4px;
+  background:var(--border);
+  padding:4px;
+  width:fit-content;
+  border-radius:8px;
+  margin:0 0 18px;
+}
+.mode-btn {
+  border:0;
+  background:transparent;
+  padding:8px 12px;
+  border-radius:6px;
+  font-family:"JetBrains Mono",monospace;
+  font-size:9px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:var(--light);
+  cursor:pointer;
+}
+.mode-btn.active {
+  background:white;
+  color:var(--navy);
+  box-shadow:0 2px 7px rgba(17,24,39,.08);
+}
+.interpret-box {
+  margin-top:18px;
+  display:none;
+  background:var(--navy-light);
+  border-left:4px solid var(--navy);
+  padding:14px 16px;
+  border-radius:8px;
+  font-size:13px;
+  color:var(--mid);
+  line-height:1.65;
+}
+.interpret-box.visible {
+  display:block;
+  animation:fadeUp .35s ease;
+}
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(8px); }
+  to { opacity:1; transform:translateY(0); }
+}
+.explain-btn {
+  margin-top:14px;
+  border:1px solid var(--navy);
+  background:white;
+  color:var(--navy);
+  padding:9px 13px;
+  border-radius:8px;
+  font-family:"JetBrains Mono",monospace;
+  font-size:9px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  cursor:pointer;
+}
+.explain-btn:hover,
+.explain-btn:focus {
+  background:var(--navy);
+  color:white;
+}
+.risk-checker {
+  margin-top:28px;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:24px;
+}
+.risk-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-top:16px;
+}
+.risk-item {
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:12px;
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  cursor:pointer;
+  transition:background .2s ease, border-color .2s ease;
+}
+.risk-item input { margin-top:3px; accent-color:var(--red); }
+.risk-item:has(input:checked) {
+  background:var(--red-light);
+  border-color:#FCA5A5;
+}
+.risk-result {
+  margin-top:16px;
+  padding:16px;
+  border-radius:10px;
+  background:var(--off);
+  border:1px solid var(--border);
+}
+.risk-meter {
+  height:12px;
+  background:var(--border);
+  border-radius:999px;
+  overflow:hidden;
+  margin:10px 0;
+}
+.risk-meter-fill {
+  height:100%;
+  width:0%;
+  background:var(--red);
+  border-radius:999px;
+  transition:width .4s ease;
+}
+.quiz-wrap {
+  margin-top:28px;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:24px;
+}
+.quiz-options {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:14px;
+}
+.quiz-btn {
+  border:1px solid var(--border);
+  background:var(--off);
+  color:var(--mid);
+  padding:12px 14px;
+  border-radius:9px;
+  text-align:left;
+  cursor:pointer;
+}
+.quiz-btn:hover,
+.quiz-btn:focus {
+  border-color:var(--navy);
+  background:var(--navy-light);
+}
+.quiz-feedback {
+  margin-top:14px;
+  padding:12px;
+  border-radius:8px;
+  display:none;
+  font-size:13px;
+}
+.quiz-feedback.visible {
+  display:block;
+  animation:fadeUp .25s ease;
+}
+.quiz-feedback.good {
+  background:var(--teal-light);
+  color:var(--teal);
+}
+.quiz-feedback.bad {
+  background:var(--red-light);
+  color:var(--red);
+}
+.calc-preset-row {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:0 0 22px;
+}
+.preset-btn {
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.06);
+  color:rgba(255,255,255,.76);
+  padding:8px 11px;
+  border-radius:999px;
+  font-family:"JetBrains Mono",monospace;
+  font-size:9px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  cursor:pointer;
+}
+.preset-btn:hover,
+.preset-btn:focus {
+  background:rgba(245,215,142,.16);
+  color:var(--gold);
+}
+#calculator .help-card {
+  position:relative;
+  overflow:hidden;
+}
+#calculator .help-card::after {
+  content:"";
+  position:absolute;
+  right:-30px;
+  bottom:-30px;
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  background:rgba(245,215,142,.07);
+}
+@media(max-width:860px){
+  .risk-grid,.quiz-options { grid-template-columns:1fr; }
+  .hero-orbit { display:none; }
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-orbit,.hero-orbit::before,.hero-orbit::after,.pulse-dot { animation:none!important; }
+  .chart-card:hover,.counter-card:hover,.dist-card:hover,.source-card:hover,.resp-card:hover,.help-card:hover { transform:none; }
+}
+
+
+/* V7 VERIFIED INTERACTION + ANIMATION PATCH */
+.hero-orbit {
+  position:absolute; right:8%; bottom:12%; width:280px; height:280px;
+  border:1px solid rgba(245,215,142,.22); border-radius:50%;
+  opacity:.65; animation:orbitPulse 6s ease-in-out infinite; pointer-events:none;
+}
+.hero-orbit::before,.hero-orbit::after{content:"";position:absolute;border-radius:50%;background:rgba(245,215,142,.16);border:1px solid rgba(245,215,142,.24)}
+.hero-orbit::before{width:70px;height:70px;left:28px;top:36px;animation:floatMini 5s ease-in-out infinite}
+.hero-orbit::after{width:42px;height:42px;right:38px;bottom:58px;animation:floatMini 4s ease-in-out infinite reverse}
+@keyframes orbitPulse{0%,100%{transform:scale(1) rotate(0deg);opacity:.45}50%{transform:scale(1.08) rotate(8deg);opacity:.8}}
+@keyframes floatMini{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.pulse-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:8px;box-shadow:0 0 0 rgba(192,57,43,.5);animation:pulseDot 1.8s infinite}
+@keyframes pulseDot{0%{box-shadow:0 0 0 0 rgba(192,57,43,.5)}70%{box-shadow:0 0 0 10px rgba(192,57,43,0)}100%{box-shadow:0 0 0 0 rgba(192,57,43,0)}}
+.rating-chart,.counter-card,.dist-card,.resp-card,.tf-card,.help-card,.source-card{transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease}
+.rating-chart:hover,.counter-card:hover,.dist-card:hover,.resp-card:hover,.tf-card:hover,.help-card:hover,.source-card:hover{transform:translateY(-4px);box-shadow:0 18px 42px rgba(17,24,39,.08);border-color:var(--border)}
+.mode-toggle{display:flex;gap:4px;background:var(--border);padding:4px;width:fit-content;border-radius:6px;margin:0 0 24px}
+.mode-btn{border:0;background:transparent;padding:8px 12px;border-radius:4px;font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-light);cursor:pointer}
+.mode-btn.active{background:white;color:var(--navy);box-shadow:0 2px 7px rgba(17,24,39,.08)}
+.explain-btn{margin-top:14px;border:1px solid var(--navy);background:white;color:var(--navy);padding:9px 13px;border-radius:4px;font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;cursor:pointer}
+.explain-btn:hover,.explain-btn:focus{background:var(--navy);color:white}
+.interpret-box{margin-top:16px;display:none;background:var(--navy-light);border-left:4px solid var(--navy);padding:14px 16px;border-radius:6px;font-size:13px;color:var(--ink-mid);line-height:1.65}
+.interpret-box.visible{display:block;animation:fadeUp .35s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.risk-checker,.quiz-wrap{margin-top:32px;background:white;border:1px solid var(--border);padding:24px;border-radius:8px}
+.risk-grid,.quiz-options{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:16px}
+.risk-item{border:1px solid var(--border);border-radius:8px;padding:12px;display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:13px;color:var(--ink-mid)}
+.risk-item input{margin-top:3px;accent-color:var(--red)}
+.risk-item:has(input:checked){background:var(--red-light);border-color:#FCA5A5}
+.risk-result{margin-top:16px;padding:16px;border-radius:8px;background:var(--off-white);border:1px solid var(--border);font-size:13px;color:var(--ink-mid)}
+.risk-meter{height:12px;background:var(--border);border-radius:999px;overflow:hidden;margin:10px 0}
+.risk-meter-fill{height:100%;width:0;background:var(--red);border-radius:999px;transition:width .4s ease}
+.quiz-btn{border:1px solid var(--border);background:var(--off-white);color:var(--ink-mid);padding:12px 14px;border-radius:8px;text-align:left;cursor:pointer;font-size:13px}
+.quiz-btn:hover,.quiz-btn:focus{border-color:var(--navy);background:var(--navy-light)}
+.quiz-feedback{margin-top:14px;padding:12px;border-radius:8px;display:none;font-size:13px;line-height:1.55}
+.quiz-feedback.visible{display:block;animation:fadeUp .25s ease}.quiz-feedback.good{background:var(--teal-light);color:var(--teal)}.quiz-feedback.bad{background:var(--red-light);color:var(--red)}
+.calc-preset-row{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+.preset-btn{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:rgba(255,255,255,.76);padding:8px 11px;border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;cursor:pointer}
+.preset-btn:hover,.preset-btn:focus{background:rgba(245,215,142,.16);color:var(--gold)}
+.tooltip{position:relative;cursor:help;border-bottom:1px dotted currentColor}
+.tooltip[data-tip]:hover::after,.tooltip[data-tip]:focus::after{content:attr(data-tip);position:absolute;left:0;top:140%;width:260px;background:var(--navy-dark);color:white;padding:10px 12px;border-radius:8px;font-size:12px;line-height:1.45;z-index:20;box-shadow:0 12px 28px rgba(17,24,39,.20)}
+.calc-help{margin-top:28px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.help-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:18px}
+.help-card h3{font-family:"Lora",serif;font-size:17px;color:var(--gold);margin-bottom:8px}.help-card p,.help-card li{font-size:13px;color:rgba(255,255,255,.70);line-height:1.65}.help-card ul{padding-left:18px;margin-top:8px}
+.example-box,.scoring-guide-box{margin-top:22px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:18px}
+.example-box{background:rgba(245,215,142,.10);border-color:rgba(245,215,142,.32)}
+.example-box h3,.scoring-guide-box h3{font-family:"Lora",serif;font-size:18px;color:var(--gold);margin-bottom:8px}.example-box p{font-size:13px;color:rgba(255,255,255,.74);line-height:1.7;margin-bottom:8px}
+.scoring-table{width:100%;border-collapse:collapse}.scoring-table th,.scoring-table td{border:1px solid rgba(255,255,255,.14);padding:10px 12px;text-align:left;vertical-align:top;font-size:12.5px;line-height:1.45}.scoring-table th{color:var(--gold);background:rgba(255,255,255,.08);font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase}.scoring-table td{color:rgba(255,255,255,.72)}
+.quick-rule{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(245,215,142,.35);border-radius:999px;padding:4px 8px;margin-bottom:8px}
+.source-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.source-card{background:white;border:1px solid var(--border);border-radius:8px;padding:18px}.source-card h3{font-family:"Lora",serif;font-size:17px;color:var(--navy);margin-bottom:8px}.source-card p{font-size:13px;color:var(--ink-mid);line-height:1.65}.source-card .kind{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink-light);margin-bottom:8px}
+.ref-list{display:grid;gap:12px}.ref-item{background:white;border:1px solid var(--border);border-radius:8px;padding:14px 16px}.ref-item p{font-size:13px;color:var(--ink-mid);line-height:1.55}.ref-item a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--border)}
+.ref-note{font-size:12px;color:var(--ink-light);font-style:italic;margin-top:18px}
+@media(max-width:768px){.risk-grid,.quiz-options,.calc-help,.source-grid{grid-template-columns:1fr}.hero-orbit{display:none}.scoring-table{display:block;overflow-x:auto}}
+@media(prefers-reduced-motion:reduce){.hero-orbit,.hero-orbit::before,.hero-orbit::after,.pulse-dot{animation:none!important}.rating-chart:hover,.counter-card:hover,.dist-card:hover,.resp-card:hover,.tf-card:hover,.help-card:hover,.source-card:hover{transform:none}}
+
+</style>
+</head>
+<body>
+
+<a href="#main-content" id="skip-link">Skip to main content</a>
+<div id="progress-bar" role="progressbar" aria-label="Page scroll progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+<!-- NAV -->
+<nav role="navigation" aria-label="Section navigation">
+  <span class="nav-brand">DMGC 699 · Data Visualisation</span>
+  <ul class="nav-links">
+    <li><a href="#platforms">Platforms</a></li>
+    <li><a href="#fakereviews">Fake Reviews</a></li>
+    <li><a href="#aigrowth">AI Growth</a></li>
+    <li><a href="#responses">Responses</a></li>
+    <li><a href="#trusttool">Trust Tool</a></li>
+  </ul>
+</nav>
+
+<main id="main-content">
+
+<!-- ── HERO ── -->
+<section id="hero" aria-labelledby="hero-heading">
+  <div class="hero-orbit" aria-hidden="true"></div>
+  <div class="container">
+    <p class="hero-eyebrow reveal">DMGC 699 Capstone · Spring 2026 · Multimedia Deliverable 4</p>
+    <h1 class="hero-title reveal reveal-delay-1" id="hero-heading">
+      Rating Discrepancies<br>& <em>Consumer Trust</em>
+    </h1>
+    <p class="hero-subtitle reveal reveal-delay-2">
+      An interactive exploration of the data behind multi-platform hotel rating divergence, fake review proliferation, and the collapse of digital trust in hospitality.
+    </p>
+    <div class="hero-scroll reveal reveal-delay-3" aria-hidden="true">
+      <span class="pulse-dot" aria-hidden="true"></span>scroll to explore
+    </div>
+
+    <div class="hero-stats reveal reveal-delay-4" role="list" aria-label="Key statistics">
+      <div class="hero-stat" role="listitem">
+        <div class="hero-stat-num" data-target="90" data-suffix="%+" aria-label="90% plus">0%</div>
+        <div class="hero-stat-label">travellers read reviews before booking</div>
+        <div class="hero-stat-src">Kirilenko et al., 2024</div>
+      </div>
+      <div class="hero-stat" role="listitem">
+        <div class="hero-stat-num" data-target="2.7" data-suffix="M" aria-label="2.7 million">0M</div>
+        <div class="hero-stat-label">fake reviews removed by TripAdvisor in 2024</div>
+        <div class="hero-stat-src">TripAdvisor, 2025</div>
+      </div>
+      <div class="hero-stat" role="listitem">
+        <div class="hero-stat-num" data-target="137" data-suffix="%" aria-label="137 percent">0%</div>
+        <div class="hero-stat-label">increase in likely AI reviews 2019-2024</div>
+        <div class="hero-stat-src">Originality.AI, 2024</div>
+      </div>
+      <div class="hero-stat" role="listitem">
+        <div class="hero-stat-num" data-target="4.5" data-suffix="M" aria-label="4.5 million">0M</div>
+        <div class="hero-stat-label">fake reviews removed by Trustpilot in 2024</div>
+        <div class="hero-stat-src">Trustpilot, 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 1: PLATFORMS ── -->
+<section id="platforms" aria-labelledby="platforms-heading">
+  <div class="container">
+    <p class="section-eyebrow reveal">Sub-Question 1</p>
+    <h2 class="section-title reveal reveal-delay-1" id="platforms-heading">
+      Same hotel. Three platforms.<br><em>Three different scores.</em>
+    </h2>
+    <p class="section-lead reveal reveal-delay-2">
+      Platform architecture - not hotel quality - explains most of the divergence. Each platform's verification model, rating scale, and audience produces structurally different scores for identical properties (Xiang et al., 2017; Kirilenko et al., 2024).
+    </p>
+
+    <aside class="a11y-note reveal" aria-label="Accessibility note">
+      All chart data is presented in text and numerical form. Tab navigation supported throughout.
+    </aside>
+
+    <div class="confidence-row reveal" aria-label="Data confidence legend">
+      <span class="conf-chip reported">Reported data</span>
+      <span class="conf-chip estimated">Estimated from source graph</span>
+      <span class="conf-chip illustrative">Illustrative scenario</span>
+    </div>
+
+    <div class="data-method reveal">
+      <div class="data-method-card"><h3>Reported</h3><p>Platform transparency figures and published values are used directly when available.</p></div>
+      <div class="data-method-card"><h3>Estimated</h3><p>Only 2020 and 2021 AI-rate values are estimated from the Originality.AI chart and clearly labelled.</p></div>
+      <div class="data-method-card"><h3>Illustrative</h3><p>Budget, mid-range, luxury, and trust-tool scenarios are teaching examples, not measured hotel outcomes.</p></div>
+    </div>
+
+    <!-- TABS -->
+    <div class="platform-tabs reveal reveal-delay-2" role="tablist" aria-label="Select hotel example">
+      <button class="platform-tab active" role="tab" aria-selected="true" aria-controls="tab-budget" id="tab-btn-budget">Budget</button>
+      <button class="platform-tab" role="tab" aria-selected="false" aria-controls="tab-midrange" id="tab-btn-midrange">Mid-Range</button>
+      <button class="platform-tab" role="tab" aria-selected="false" aria-controls="tab-luxury" id="tab-btn-luxury">Luxury</button>
+      <button class="platform-tab" role="tab" aria-selected="false" aria-controls="tab-niagara" id="tab-btn-niagara">Niagara Example</button>
+    </div>
+
+    <div class="mode-toggle reveal" data-mode-toggle aria-label="Rating display mode">
+      <button class="mode-btn active" data-mode="scaled" type="button">Scaled bars</button>
+      <button class="mode-btn" data-mode="raw" type="button">Raw labels</button>
+    </div>
+
+    <!-- TAB CONTENT: BUDGET -->
+    <div class="tab-content active reveal" id="tab-budget" role="tabpanel" aria-labelledby="tab-btn-budget">
+      <div class="rating-chart">
+        <h3 class="rating-chart-title">Illustrative Budget Property - Rating Divergence</h3>
+        <p class="rating-chart-sub">Consistent with patterns documented by Kirilenko et al. (2024) · Not from a specific property</p>
+        <div class="rating-bars" role="img" aria-label="Bar chart: budget property. TripAdvisor 3.6 out of 5, Booking.com 7.4 out of 10 (equivalent 3.7 of 5), Google Reviews 3.9 out of 5.">
+          <div class="r-row">
+            <span class="r-label">TripAdvisor</span>
+            <div class="r-track"><div class="r-fill" style="background:#00AA6C;" data-width="72"></div></div>
+            <span class="r-val">3.6 / 5</span>
+          </div>
+          <div class="r-row">
+            <span class="r-label">Booking.com</span>
+            <div class="r-track"><div class="r-fill" style="background:#003580;" data-width="74"></div></div>
+            <span class="r-val">7.4 / 10</span>
+          </div>
+          <div class="r-row">
+            <span class="r-label">Google Reviews</span>
+            <div class="r-track"><div class="r-fill" style="background:#EA4335;" data-width="78"></div></div>
+            <span class="r-val">3.9 / 5</span>
+          </div>
+        </div>
+        <p class="scale-note">Note: Booking.com uses a 1–10 scale; bars show equivalent percentage of maximum. Direct comparison is methodologically unjustified (Xiang et al., 2017).</p>
+      </div>
+    </div>
+
+    <!-- TAB CONTENT: MID-RANGE -->
+    <div class="tab-content" id="tab-midrange" role="tabpanel" aria-labelledby="tab-btn-midrange">
+      <div class="rating-chart">
+        <h3 class="rating-chart-title">Illustrative Mid-Range Property - Rating Divergence</h3>
+        <p class="rating-chart-sub">Consistent with patterns documented by Kirilenko et al. (2024) · Not from a specific property</p>
+        <div class="rating-bars" role="img" aria-label="Bar chart: mid-range property. TripAdvisor 4.0 out of 5, Booking.com 8.4 out of 10, Google Reviews 4.2 out of 5.">
+          <div class="r-row">
+            <span class="r-label">TripAdvisor</span>
+            <div class="r-track"><div class="r-fill" style="background:#00AA6C;" data-width="80"></div></div>
+            <span class="r-val">4.0 / 5</span>
+          </div>
+          <div class="r-row">
+            <span class="r-label">Booking.com</span>
+            <div class="r-track"><div class="r-fill" style="background:#003580;" data-width="84"></div></div>
+            <span class="r-val">8.4 / 10</span>
+          </div>
+          <div class="r-row">
+            <span class="r-label">Google Reviews</span>
+            <div class="r-track"><div class="r-fill" style="background:#EA4335;" data-width="84"></div></div>
+            <span class="r-val">4.2 / 5</span>
+          </div>
+        </div>
+        <p class="scale-note">Note: Booking.com uses a 1–10 scale; bars show equivalent percentage of maximum.</p>
+      </div>
+    </div>
+
+    <!-- TAB CONTENT: LUXURY -->
+    <div class="tab-content" id="tab-luxury" role="tabpanel" aria-labelledby="tab-btn-luxury">
+      <div class="rating-chart">
+        <h3 class="rating-chart-title">Illustrative Luxury Property - Rating Divergence</h3>
+        <p class="rating-chart-sub">Consistent with patterns documented by Kirilenko et al. (2024) · Not from a specific property</p>
+        <div class="rating-bars" role="img" aria-label="Bar chart: luxury property. TripAdvisor 4.3 out of 5, Booking.com 9.0 out of 10, Google Reviews 4.4 out of 5.">
+          <div class="r-row">
+            <span class="r-label">TripAdvisor</span>
+            <div class="r-track"><div class="r-fill" style="background:#00AA6C;" data-width="86"></div></div>
+            <span class="r-val">4.3 / 5</span>
+          </div>
+          <div class="r-row">
+            <span class="r-label">Booking.com</span>
+            <div class="r-track"><div class="r-fill" style="background:#003580;" data-width="90"></div></div>
+            <span class="r-val">9.0 / 10</span>
+          </div>
+          <div class="r-row">
+            <span class="r-label">Google Reviews</span>
+            <div class="r-track"><div class="r-fill" style="background:#EA4335;" data-width="88"></div></div>
+            <span class="r-val">4.4 / 5</span>
+          </div>
+        </div>
+        <p class="scale-note">Note: Booking.com uses a 1–10 scale; bars show equivalent percentage of maximum.</p>
+      </div>
+    </div>
+
+    <!-- TAB CONTENT: NIAGARA -->
+    <div class="tab-content" id="tab-niagara" role="tabpanel" aria-labelledby="tab-btn-niagara">
+      <div class="rating-chart">
+        <h3 class="rating-chart-title">Sheraton Fallsview, Niagara Falls - Real Example</h3>
+        <p class="rating-chart-sub">Same property, same week, three different scores</p>
+        <div class="rating-bars" role="img" aria-label="Bar chart: Sheraton Fallsview Niagara Falls. TripAdvisor 4.1 out of 5, Booking.com 8.2 out of 10, Google Reviews 4.3 out of 5.">
+          <div class="r-row">
+            <span class="r-label">TripAdvisor</span>
+            <div class="r-track"><div class="r-fill" style="background:#00AA6C;" data-width="82"></div></div>
+            <span class="r-val">4.1 / 5</span>
+          </div>
+          <div class="r-row">
+            <span class="r-label">Booking.com</span>
+            <div class="r-track"><div class="r-fill" style="background:#003580;" data-width="82"></div></div>
+            <span class="r-val">8.2 / 10</span>
+          </div>
+          <div class="r-row">
+            <span class="r-label">Google Reviews</span>
+            <div class="r-track"><div class="r-fill" style="background:#EA4335;" data-width="86"></div></div>
+            <span class="r-val">4.3 / 5</span>
+          </div>
+        </div>
+        <p class="scale-note">Which one do you trust?</p>
+        <button class="explain-btn" type="button" data-explain="niagaraExplain">Show interpretation</button>
+        <div class="interpret-box" id="niagaraExplain">Interpretation: the percentage-scaled scores look similar, but the platforms do not mean the same thing. Booking.com uses a verified-stay model and a 10-point scale, while Tripadvisor and Google use different access and visibility systems. The safest reading is to compare platform rules, review details, recency, and management responses, not only the average score.</div>
+      </div>
+    </div>
+
+    <!-- Distribution charts -->
+    <div class="dist-grid reveal">
+      <div class="dist-card" aria-label="Open platform bimodal distribution. High bars at 1-star and 5-star extremes, low in the middle. Represents TripAdvisor-type platforms.">
+        <h3 class="dist-card-title">Open Platforms</h3>
+        <p class="dist-card-sub">e.g. TripAdvisor - bimodal</p>
+        <div class="dist-bars" aria-hidden="true">
+          <div class="dist-bar" style="height:82%;background:#00AA6C;opacity:0.9;"></div>
+          <div class="dist-bar" style="height:18%;background:#00AA6C;opacity:0.4;"></div>
+          <div class="dist-bar" style="height:14%;background:#00AA6C;opacity:0.4;"></div>
+          <div class="dist-bar" style="height:20%;background:#00AA6C;opacity:0.4;"></div>
+          <div class="dist-bar" style="height:88%;background:#00AA6C;opacity:0.9;"></div>
+        </div>
+        <div class="dist-xlabels" aria-hidden="true"><span>1★</span><span>2★</span><span>3★</span><span>4★</span><span>5★</span></div>
+        <p class="dist-desc">Highly motivated reviewers dominate. Extreme scores (1★ and 5★) are overrepresented - a U-shape that distorts the true picture (Kirilenko et al., 2024).</p>
+      </div>
+
+      <div class="dist-card" aria-label="Closed platform moderate distribution. Bell-curve shape centred around 4 stars. Represents Booking.com-type platforms.">
+        <h3 class="dist-card-title">Closed Platforms</h3>
+        <p class="dist-card-sub">e.g. Booking.com - moderate</p>
+        <div class="dist-bars" aria-hidden="true">
+          <div class="dist-bar" style="height:14%;background:#003580;opacity:0.5;"></div>
+          <div class="dist-bar" style="height:30%;background:#003580;opacity:0.65;"></div>
+          <div class="dist-bar" style="height:55%;background:#003580;opacity:0.75;"></div>
+          <div class="dist-bar" style="height:78%;background:#003580;opacity:0.9;"></div>
+          <div class="dist-bar" style="height:44%;background:#003580;opacity:0.7;"></div>
+        </div>
+        <div class="dist-xlabels" aria-hidden="true"><span>1</span><span>3</span><span>5</span><span>7</span><span>10</span></div>
+        <p class="dist-desc">Verification filters out the least engaged and most adversarial reviewers. Scores cluster toward the upper-middle - more realistic (Kirilenko et al., 2024).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 2: FAKE REVIEWS ── -->
+<section id="fakereviews" aria-labelledby="fake-heading">
+  <div class="container">
+    <p class="section-eyebrow reveal">Sub-Question 2</p>
+    <h2 class="section-title reveal reveal-delay-1" id="fake-heading">
+      The fake review problem<br>is bigger than most people realise.
+    </h2>
+    <p class="section-lead reveal reveal-delay-2">
+      Fake reviews don't just mislead individual consumers - they erode trust in entire platforms. When trust falls below a threshold, consumers stop acting on any reviews, real or fabricated (Pena-Garcia et al., 2024; Filieri et al., 2015).
+    </p>
+
+    <div class="scrolly-band reveal">
+      <div class="scrolly-copy">
+        <h3>How to read this section</h3>
+        <p>The numbers are platform-reported, but their meaning depends on context. A removal count measures detection and moderation activity, not the true total number of fake reviews that existed.</p>
+      </div>
+      <div class="scrolly-steps">
+        <div class="step-card"><p class="step-num">Step 01</p><h4>Separate removals from prevalence</h4><p>2.7M removals show scale, but not the full size of the hidden fake-review market.</p></div>
+        <div class="step-card"><p class="step-num">Step 02</p><h4>Separate AI text from all fraud</h4><p>214K suspected AI-generated removals are one category within a wider fraud ecosystem.</p></div>
+        <div class="step-card"><p class="step-num">Step 03</p><h4>Connect the numbers to trust</h4><p>Consumers do not only judge individual reviews. They judge whether the platform itself feels reliable.</p></div>
+      </div>
+    </div>
+
+    <!-- Counters -->
+    <div class="counter-grid reveal" role="list" aria-label="Fake review statistics">
+      <div class="counter-card" role="listitem">
+        <div class="counter-num" data-target="2700000" data-display="2.7M" style="color:var(--red);">2.7M</div>
+        <div class="counter-label">fake reviews removed by TripAdvisor in 2024</div>
+        <div class="counter-src">TripAdvisor, 2025</div>
+      </div>
+      <div class="counter-card" role="listitem">
+        <div class="counter-num" data-display="214K" style="color:var(--navy);">214K</div>
+        <div class="counter-label">removed specifically for being AI-generated (2024)</div>
+        <div class="counter-src">TripAdvisor, 2025</div>
+      </div>
+      <div class="counter-card" role="listitem">
+        <div class="counter-num" data-display="54%" style="color:var(--amber);">54%</div>
+        <div class="counter-label">of removals were review boosting by businesses</div>
+        <div class="counter-src">TripAdvisor, 2025</div>
+      </div>
+      <div class="counter-card" role="listitem">
+        <div class="counter-num" data-display="4.5M" style="color:var(--teal);">4.5M</div>
+        <div class="counter-label">fake reviews removed by Trustpilot in 2024</div>
+        <div class="counter-src">Trustpilot, 2025</div>
+      </div>
+    </div>
+
+    <!-- Breakdown + Timeline -->
+    <div class="breakdown-section reveal">
+      <div>
+        <h3 class="breakdown-title">TripAdvisor 2024 Removals - Breakdown</h3>
+        <div class="breakdown-row" aria-label="Review boosting accounts for 54 percent of removals">
+          <div class="breakdown-row-header">
+            <span class="breakdown-label">Review boosting (businesses inflating own ratings)</span>
+            <span class="breakdown-pct">54%</span>
+          </div>
+          <div class="breakdown-track"><div class="breakdown-fill" style="background:var(--red);" data-width="54"></div></div>
+        </div>
+        <div class="breakdown-row" aria-label="Other fraudulent activity accounts for approximately 38 percent">
+          <div class="breakdown-row-header">
+            <span class="breakdown-label">Other fraudulent activity (paid reviews, sabotage)</span>
+            <span class="breakdown-pct">~38%</span>
+          </div>
+          <div class="breakdown-track"><div class="breakdown-fill" style="background:var(--ink-light);" data-width="38"></div></div>
+        </div>
+        <div class="breakdown-row" aria-label="AI-generated content accounts for approximately 8 percent, which is 214 thousand reviews">
+          <div class="breakdown-row-header">
+            <span class="breakdown-label">AI-generated content (214,000 reviews)</span>
+            <span class="breakdown-pct">~8%</span>
+          </div>
+          <div class="breakdown-track"><div class="breakdown-fill" style="background:var(--navy);" data-width="8"></div></div>
+        </div>
+        <p style="font-size:11px;color:var(--ink-light);font-style:italic;margin-top:12px;">Source: TripAdvisor Transparency Report (2025). AI % approximate - 214,000 of 2.7M total.</p>
+      </div>
+
+      <div>
+        <h3 class="breakdown-title">Industry Response Timeline</h3>
+        <div class="timeline" role="list">
+          <div class="tl-item" role="listitem">
+            <p class="tl-year">2022</p>
+            <p class="tl-event">ChatGPT launches - accessible AI lowers the barrier to generating realistic review-style text at scale.</p>
+          </div>
+          <div class="tl-item" role="listitem">
+            <p class="tl-year">2023</p>
+            <p class="tl-event"><strong>Coalition for Trusted Reviews</strong> formed - Tripadvisor, Booking.com, Amazon, Expedia Group, Glassdoor, and Trustpilot collaborate on best practices and fake-review detection methods.</p>
+          </div>
+          <div class="tl-item" role="listitem">
+            <p class="tl-year">2024</p>
+            <p class="tl-event">TripAdvisor removes <strong>2.7 million</strong> fraudulent reviews - up from 2 million the year before. AI-generated removals reach 214,000.</p>
+          </div>
+          <div class="tl-item danger" role="listitem">
+            <p class="tl-year">Now</p>
+            <p class="tl-event">Detection remains difficult because generation methods and detection methods continue to evolve.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 3: AI GROWTH ── -->
+<section id="aigrowth" aria-labelledby="ai-heading">
+  <div class="container">
+    <p class="section-eyebrow reveal">Sub-Question 2 - Continued</p>
+    <h2 class="section-title reveal reveal-delay-1" id="ai-heading">
+      Likely AI reviews grew <em>137%</em><br>in five years.
+    </h2>
+    <p class="section-lead reveal reveal-delay-2">
+      The 2024 spike follows wider public access to generative AI tools. The association is important, but this visualization does not claim a causal estimate.
+    </p>
+
+    <div class="bar-chart-wrap reveal" role="img" aria-label="Bar chart: AI-generated review rate on TripAdvisor by year. 2019: 4.49% (reported). 2020: approximately 3.50% (estimated from source graph). 2021: approximately 3.80% (estimated). 2022: 5.57% (reported). 2023: 4.68% (reported, showing platform detection improvement). 2024: 10.70% (reported, record high). Overall increase 2019 to 2024: 137 percent. Source: Originality.AI 2024.">
+      <h3 class="bcw-title">Likely AI Review Rate on Tripadvisor (2019-2024)</h3>
+      <p class="bcw-sub">Percentage flagged as likely AI-generated · Source: Originality.AI (2024)</p>
+
+      <div class="gpt-marker" aria-label="Context: ChatGPT launched November 2022 - accelerating AI review generation after 2022">
+        ⚡ ChatGPT launched November 2022 - later surge coincides with wider AI access
+      </div>
+
+      <div class="bar-chart-main" aria-hidden="true">
+        <div class="bc-row">
+          <span class="bc-year">2019</span>
+          <div class="bc-track"><div class="bc-fill bc-actual" data-width="42"></div></div>
+          <span class="bc-meta">4.49%</span>
+        </div>
+        <div class="bc-row">
+          <span class="bc-year">2020</span>
+          <div class="bc-track"><div class="bc-fill bc-estimate" data-width="33"></div></div>
+          <span class="bc-meta">~3.50%</span>
+        </div>
+        <div class="bc-row">
+          <span class="bc-year">2021</span>
+          <div class="bc-track"><div class="bc-fill bc-estimate" data-width="36"></div></div>
+          <span class="bc-meta">~3.80%</span>
+        </div>
+        <div class="bc-row">
+          <span class="bc-year">2022</span>
+          <div class="bc-track"><div class="bc-fill bc-actual" data-width="52"></div></div>
+          <span class="bc-meta">5.57%</span>
+        </div>
+        <div class="bc-row">
+          <span class="bc-year">2023</span>
+          <div class="bc-track"><div class="bc-fill bc-actual" data-width="44"></div></div>
+          <span class="bc-meta">4.68%</span>
+        </div>
+        <div class="bc-row">
+          <span class="bc-year">2024</span>
+          <div class="bc-track"><div class="bc-fill bc-spike" data-width="100"></div></div>
+          <span class="bc-meta spike">10.70%</span>
+        </div>
+      </div>
+
+      <div class="bc-legend">
+        <div class="bc-legend-item">
+          <div class="bc-legend-dot" style="background:var(--navy);"></div>
+          <span>Explicitly reported (Originality.AI, 2024)</span>
+        </div>
+        <div class="bc-legend-item">
+          <div class="bc-legend-dot" style="background:#94A3B8;"></div>
+          <span>Estimated from source graph (2020 & 2021 not published)</span>
+        </div>
+        <div class="bc-legend-item">
+          <div class="bc-legend-dot" style="background:var(--red);"></div>
+          <span>Record high</span>
+        </div>
+      </div>
+
+      <p class="bc-note">2020 and 2021 values estimated from the Originality.AI (2024) source graph; these years were not explicitly reported. The 2023 dip is shown without assigning one confirmed cause.</p>
+    </div>
+
+    <div class="insight-box reveal">
+      <span class="insight-label">Research Synthesis</span>
+      <p class="insight-text">
+        The proliferation of AI-generated reviews is not merely a volume problem - it is a <em>trust infrastructure problem</em>. Wu et al. (2020) found detection approaches remain difficult to scale reliably. Pena-Garcia et al. (2024) confirmed that when consumers detect fakeness, trust can decline not only in individual reviews but also in the rating systems hosting them. The 137% increase documented by Originality.AI (2024) suggests this risk may increase.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 4: RESPONSES ── -->
+<section id="responses" aria-labelledby="responses-heading">
+  <div class="container">
+    <p class="section-eyebrow reveal">Sub-Question 3</p>
+    <h2 class="section-title reveal reveal-delay-1" id="responses-heading">
+      How a hotel <em>responds</em> matters<br>as much as the review itself.
+    </h2>
+    <p class="section-lead reveal reveal-delay-2">
+      Management responses have independent effects on consumer trust - over and above the original review content. Timing, tone, and specificity all matter (Sparks & Browning, 2011; Sparks et al., 2016).
+    </p>
+
+    <div class="response-compare reveal">
+      <div class="resp-card resp-bad">
+        <div class="resp-header">Ineffective Response</div>
+        <p class="resp-quote">"We're sorry you had a bad experience. We hope to see you again soon."</p>
+        <p class="resp-why">Generic. Doesn't acknowledge the specific complaint. Signals indifference. Consumers read this and trust the negative review more - not less (Sparks & Browning, 2011).</p>
+      </div>
+      <div class="resp-card resp-good">
+        <div class="resp-header">Effective Response</div>
+        <p class="resp-quote">"Hi Sarah - thank you for flagging the noise issue on Floor 6. We've moved those guests and added soundproofing. Book direct and we'll ensure a quieter room."</p>
+        <p class="resp-why">Specific, personal, shows accountability, offers a remedy. Prospective guests see a property that listens and acts - partially offsetting even severe negative reviews (Sparks et al., 2016).</p>
+      </div>
+    </div>
+
+    <div class="trust-impact reveal">
+      <h3 class="ti-title">Response Quality - Trust Recovery Effect</h3>
+
+      <div class="ti-row" aria-label="Generic apology: 12 percent trust recovery">
+        <div class="ti-row-header">
+          <span class="ti-label">Generic apology ("We're sorry...")</span>
+          <span class="ti-pct" style="color:var(--red);">12%</span>
+        </div>
+        <div class="ti-track"><div class="ti-fill" style="background:var(--red);" data-width="12"></div></div>
+        <p class="ti-src">Trust recovery effect - illustrative, based on Sparks & Browning (2011)</p>
+      </div>
+
+      <div class="ti-row" aria-label="Acknowledges complaint: 38 percent trust recovery">
+        <div class="ti-row-header">
+          <span class="ti-label">Acknowledges specific complaint</span>
+          <span class="ti-pct" style="color:var(--amber);">38%</span>
+        </div>
+        <div class="ti-track"><div class="ti-fill" style="background:var(--amber);" data-width="38"></div></div>
+        <p class="ti-src">Trust recovery effect - illustrative, based on Sparks & Browning (2011)</p>
+      </div>
+
+      <div class="ti-row" aria-label="Specific response with remedy: 74 percent trust recovery">
+        <div class="ti-row-header">
+          <span class="ti-label">Specific response + accountability + remedy</span>
+          <span class="ti-pct" style="color:var(--teal);">74%</span>
+        </div>
+        <div class="ti-track"><div class="ti-fill" style="background:var(--teal);" data-width="74"></div></div>
+        <p class="ti-src">Trust recovery effect - illustrative, based on Sparks et al. (2016)</p>
+      </div>
+
+      <div class="ti-row" aria-label="No response at all: 0 percent trust recovery">
+        <div class="ti-row-header">
+          <span class="ti-label">No response</span>
+          <span class="ti-pct" style="color:var(--ink-light);">0%</span>
+        </div>
+        <div class="ti-track"><div class="ti-fill" style="background:var(--ink-light);" data-width="0"></div></div>
+        <p class="ti-src">No recovery - silence amplifies the negative review</p>
+      </div>
+
+      <p style="font-size:12px;color:var(--ink-light);font-style:italic;margin-top:16px;">
+        Note: Trust recovery percentages are illustrative and directional, derived from the qualitative findings of Sparks & Browning (2011) and Sparks et al. (2016). Not empirical scale values.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 5: TRUST TOOL ── -->
+<section id="trusttool" aria-labelledby="tool-heading">
+  <div class="container">
+    <p class="section-eyebrow reveal">Central Research Question</p>
+    <h2 class="section-title reveal reveal-delay-1" id="tool-heading">
+      Putting it together:<br><em>the Consumer Trust Decision Tool</em>
+    </h2>
+    <p class="section-lead reveal reveal-delay-2">
+      All three sub-questions are operationalised into a single weighted teaching model. Move the sliders for <span class="tooltip" tabindex="0" data-tip="The spread between platform ratings after converting to the same scale.">rating gap</span>, <span class="tooltip" tabindex="0" data-tip="Warning signs such as vague wording, posting bursts, repeated phrases, or suspicious reviewer histories.">fake/AI review risk</span>, <span class="tooltip" tabindex="0" data-tip="Strength of evidence from many recent reviews across multiple platforms.">review volume</span>, and <span class="tooltip" tabindex="0" data-tip="Whether the hotel responds specifically, politely, and with concrete action.">management response quality</span> to see how trust changes.
+    </p>
+
+    <div class="tool-formula reveal" aria-label="Trust score formula: T equals 100 minus beta-1 times G minus beta-2 times F plus beta-3 times V plus beta-4 times M">
+      T = 100 − β₁G − β₂F + β₃V + β₄M
+      <p class="formula-note">T = Trust score (0–100) · G = Rating gap · F = Fake/AI review risk · V = Review volume · M = Management response quality</p>
+    </div>
+
+    <div class="trust-factors reveal" role="list" aria-label="Four trust factors">
+      <div class="tf-card" role="listitem">
+        <div class="tf-icon" aria-hidden="true">G</div>
+        <div class="tf-label">Rating Gap</div>
+        <div class="tf-desc">Discrepancy across platforms. Larger gap = lower trust score. Addresses SQ1.</div>
+      </div>
+      <div class="tf-card" role="listitem">
+        <div class="tf-icon" aria-hidden="true">F</div>
+        <div class="tf-label">Fake/AI Risk</div>
+        <div class="tf-desc">Suspicion of inauthentic content. Higher risk = trust penalty. Addresses SQ2.</div>
+      </div>
+      <div class="tf-card" role="listitem">
+        <div class="tf-icon" aria-hidden="true">V</div>
+        <div class="tf-label">Review Volume</div>
+        <div class="tf-desc">Higher volume dilutes individual fake reviews. Positive trust signal.</div>
+      </div>
+      <div class="tf-card" role="listitem">
+        <div class="tf-icon" aria-hidden="true">M</div>
+        <div class="tf-label">Response Quality</div>
+        <div class="tf-desc">Specific, timely management responses restore trust. Addresses SQ3.</div>
+      </div>
+    </div>
+
+
+    <div class="calc-preset-row reveal" aria-label="Trust tool example presets">
+      <button class="preset-btn" type="button" data-preset="stable">Stable review profile</button>
+      <button class="preset-btn" type="button" data-preset="suspicious">Suspicious review burst</button>
+      <button class="preset-btn" type="button" data-preset="poor-response">Poor response quality</button>
+    </div>
+
+    <div class="calc-grid reveal">
+      <div class="calc-panel">
+        <div class="slider-row">
+          <div class="slider-top"><span class="slider-label">Rating gap across platforms</span><span class="slider-val" id="gapVal">0.4 stars</span></div>
+          <input id="gap" type="range" min="0" max="2" step="0.1" value="0.4" aria-label="Rating gap across platforms">
+        </div>
+        <div class="slider-row">
+          <div class="slider-top"><span class="slider-label">Fake or AI review risk</span><span class="slider-val" id="fakeVal">30%</span></div>
+          <input id="fakeRisk" type="range" min="0" max="100" step="1" value="30" aria-label="Fake or AI review risk">
+        </div>
+        <div class="slider-row">
+          <div class="slider-top"><span class="slider-label">Review volume strength</span><span class="slider-val" id="volumeVal">70%</span></div>
+          <input id="volume" type="range" min="0" max="100" step="1" value="70" aria-label="Review volume strength">
+        </div>
+        <div class="slider-row">
+          <div class="slider-top"><span class="slider-label">Management response quality</span><span class="slider-val" id="responseVal">65%</span></div>
+          <input id="responseQuality" type="range" min="0" max="100" step="1" value="65" aria-label="Management response quality">
+        </div>
+        <p class="calc-disclaimer">Teaching model only. This is not a validated predictive model.</p>
+      </div>
+      <div class="calc-panel">
+        <div class="score-ring" id="scoreRing"><div class="score-inner"><div><div class="score-number" id="scoreNum">74</div><div class="score-label">Trust score</div></div></div></div>
+        <p class="calc-status" id="scoreStatus">Moderate trust</p>
+        <p class="calc-text" id="scoreText">The profile is usable, but consumers should cross-check platforms and read recent review details before booking.</p>
+      </div>
+    </div>
+</div>
+
+    <div class="calc-help reveal">
+      <div class="help-card">
+        <span class="quick-rule">Domain 1</span>
+        <h3>Rating gap across platforms (G)</h3>
+        <p><strong>What it means:</strong> how far apart the same hotel’s ratings are across platforms after converting them to the same 5-point scale.</p>
+        <ul>
+          <li>Tripadvisor and Google are already usually out of 5.</li>
+          <li>Booking.com is out of 10, so divide by 2 to convert it to a 5-point scale.</li>
+          <li>Formula: rating gap = highest converted rating - lowest converted rating.</li>
+        </ul>
+        <p><strong>Tripadvisor-Google example:</strong> Tripadvisor = 4.1 / 5 and Google = 4.3 / 5. Rating gap = 4.3 - 4.1 = <strong>0.2 stars</strong>.</p>
+      </div>
+
+      <div class="help-card">
+        <span class="quick-rule">Domain 2</span>
+        <h3>Fake or AI review risk (F)</h3>
+        <p><strong>What it means:</strong> a quick judgement of whether the review profile shows warning signs of manipulation, review boosting, sabotage, or AI-generated language.</p>
+        <ul>
+          <li><strong>0-25% low risk:</strong> specific, varied, recent reviews from different reviewer histories.</li>
+          <li><strong>26-60% moderate risk:</strong> some vague praise, repeated phrases, sudden clusters, or uneven reviewer histories.</li>
+          <li><strong>61-100% high risk:</strong> many reviews look templated, overly polished, posted in bursts, or lack details about rooms, staff, dates, or incidents.</li>
+        </ul>
+      </div>
+
+      <div class="help-card">
+        <span class="quick-rule">Domain 3</span>
+        <h3>Review volume strength (V)</h3>
+        <p><strong>What it means:</strong> how much confidence the total review volume gives you. More recent and diverse reviews make one suspicious review less influential.</p>
+        <ul>
+          <li><strong>0-30% weak:</strong> few reviews, old reviews, or only one platform has meaningful volume.</li>
+          <li><strong>31-70% moderate:</strong> enough reviews to see patterns, but volume is uneven or not recent.</li>
+          <li><strong>71-100% strong:</strong> many recent reviews across multiple platforms with consistent patterns.</li>
+        </ul>
+      </div>
+
+      <div class="help-card">
+        <span class="quick-rule">Domain 4</span>
+        <h3>Management response quality (M)</h3>
+        <p><strong>What it means:</strong> how well the hotel responds to reviews, especially negative ones. Judge specificity, tone, and accountability.</p>
+        <ul>
+          <li><strong>0-30% weak:</strong> no response, defensive tone, or generic copy-paste apology.</li>
+          <li><strong>31-70% moderate:</strong> polite response, but limited detail or unclear corrective action.</li>
+          <li><strong>71-100% strong:</strong> names the issue, thanks the guest, explains what changed, and invites follow-up appropriately.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="example-box reveal">
+      <h3>Worked example: how the sliders translate into a trust score</h3>
+      <p><strong>Step 1, rating gap:</strong> Tripadvisor = 4.1 / 5 and Google = 4.3 / 5, so the gap is 4.3 - 4.1 = 0.2 stars. If Booking.com is included, convert 8.2 / 10 to 4.1 / 5 first, then compare all converted scores.</p>
+      <p><strong>Step 2, fake or AI risk:</strong> if reviews are detailed and varied, choose about 20-30%. If many reviews are vague, repetitive, overly polished, or posted in bursts, choose 60-80%.</p>
+      <p><strong>Step 3, review volume:</strong> if there are only a few reviews, choose 20-30%. If the hotel has many recent reviews across several platforms, choose 75-90%.</p>
+      <p><strong>Step 4, management response quality:</strong> if responses are generic, choose 20-30%. If they name the problem and describe action taken, choose 75-90%.</p>
+      <p><strong>Example score:</strong> gap = 0.2, fake/AI risk = 30%, review volume = 80%, and response quality = 85%. Formula: 100 - 18(0.2) - 0.30(30) + 0.10(80) + 0.20(85) = 112.4, capped at 100. This profile would be interpreted as high trust.</p>
+    </div>
+
+    <div class="scoring-guide-box reveal">
+      <h3>Quick scoring guide</h3>
+      <table class="scoring-table" aria-label="Quick scoring guide for the trust tool">
+        <thead>
+          <tr>
+            <th>Domain</th>
+            <th>Low score</th>
+            <th>Middle score</th>
+            <th>High score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Rating gap</td>
+            <td>0.0-0.3 stars. Platforms mostly agree.</td>
+            <td>0.4-0.8 stars. Noticeable disagreement.</td>
+            <td>0.9+ stars. Strong discrepancy; investigate.</td>
+          </tr>
+          <tr>
+            <td>Fake or AI risk</td>
+            <td>0-25%. Specific, varied, natural reviews.</td>
+            <td>26-60%. Some vague or repetitive patterns.</td>
+            <td>61-100%. Templated, clustered, or suspicious reviews.</td>
+          </tr>
+          <tr>
+            <td>Review volume</td>
+            <td>0-30%. Few or outdated reviews.</td>
+            <td>31-70%. Enough reviews, but uneven or mixed recency.</td>
+            <td>71-100%. Many recent reviews across platforms.</td>
+          </tr>
+          <tr>
+            <td>Response quality</td>
+            <td>0-30%. No response or copy-paste apology.</td>
+            <td>31-70%. Polite but limited detail.</td>
+            <td>71-100%. Specific, accountable, action-oriented.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+</section>
+
+
+<section id="sourcequality" aria-labelledby="sourcequality-heading">
+  <div class="section-wrap alt">
+    <div class="container">
+      <p class="section-eyebrow reveal">Evidence Quality</p>
+      <h2 class="section-title reveal reveal-delay-1" id="sourcequality-heading">What is reported, estimated, and illustrative?</h2>
+      <p class="section-lead reveal reveal-delay-2">This visualization separates verified platform-reported statistics from detector-based estimates and teaching scenarios so that the public-facing design does not overclaim.</p>
+      <div class="source-quality-grid reveal">
+        <div class="source-quality-card"><p class="tag">Reported</p><h3>Platform removals</h3><p>Tripadvisor and Trustpilot removal totals are taken from platform transparency reports. They measure moderation activity, not total hidden fraud.</p></div>
+        <div class="source-quality-card"><p class="tag">Detector-based estimate</p><h3>Likely AI rates</h3><p>Originality.AI values are treated as likely AI classifications from a detection model, not confirmed ground truth for each review.</p></div>
+        <div class="source-quality-card"><p class="tag">Illustrative</p><h3>Trust calculator</h3><p>The calculator turns the research argument into an interactive teaching tool. It is not a validated statistical prediction model.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="sources" aria-labelledby="sources-heading">
+  <div class="container">
+    <p class="section-eyebrow reveal">Evidence Quality</p>
+    <h2 class="section-title reveal reveal-delay-1" id="sources-heading">References and source links</h2>
+    <p class="section-lead reveal reveal-delay-2">All quantitative claims are either reported directly, calculated transparently, estimated from a source graphic, or labelled as illustrative.</p>
+    <div class="source-grid reveal">
+      <div class="source-card"><p class="kind">Reported</p><h3>Platform removals</h3><p>Tripadvisor reports 2.7M fraudulent reviews removed and more than 214K suspected AI-generated reviews removed in 2024.</p></div>
+      <div class="source-card"><p class="kind">Reported estimate</p><h3>Likely AI review rate</h3><p>Originality.AI reports a 137% increase in likely AI-generated Tripadvisor reviews from 2019 to 2024.</p></div>
+      <div class="source-card"><p class="kind">Illustrative</p><h3>Trust calculator</h3><p>The calculator is a teaching model, not a validated prediction model.</p></div>
+    </div>
+    <div class="rating-chart reveal" style="margin-top:26px;">
+      <h3 class="rating-chart-title">Linked references</h3>
+      <p class="rating-chart-sub">Open-access/public pages where available</p>
+      <div class="ref-list">
+        <div class="ref-item"><p>Tripadvisor. (2025). <em>Transparency Report 2025</em>. <a href="https://www.tripadvisor.com/TransparencyReport2025" target="_blank" rel="noopener">Open source</a></p></div>
+        <div class="ref-item"><p>Originality.AI. (2024). <em>Fake AI TripAdvisor Reviews Increased by 137% From 2019 to 2024</em>. <a href="https://originality.ai/blog/ai-tripadvisor-reviews-study" target="_blank" rel="noopener">Open source</a></p></div>
+        <div class="ref-item"><p>Amazon. (2023). Coalition for Trusted Reviews announcement. <a href="https://press.aboutamazon.com/retail/2023/10/amazon-booking-com-expedia-group-glassdoor-tripadvisor-and-trustpilot-launch-first-global-coalition-for-trusted-reviews" target="_blank" rel="noopener">Open source</a></p></div>
+        <div class="ref-item"><p>Trustpilot. (2025). <em>Trust Report 2025</em>. <a href="https://corporate.trustpilot.com/trust/trust-report-2025" target="_blank" rel="noopener">Open source</a></p></div>
+        <div class="ref-item"><p>Xiang, Z., Du, Q., Ma, Y., &amp; Fan, W. (2017). Comparative analysis of major online review platforms. <a href="https://ideas.repec.org/a/eee/touman/v58y2017icp51-65.html" target="_blank" rel="noopener">Open record</a></p></div>
+        <div class="ref-item"><p>Pena-Garcia et al. (2024). Fake review perception and trust in rating systems. <a href="https://www.frontiersin.org/journals/communication/articles/10.3389/fcomm.2024.1460321/full" target="_blank" rel="noopener">Open source</a></p></div>
+        <div class="ref-item"><p>Wu et al. (2020), Filieri et al. (2015), Sparks &amp; Browning (2011), and Sparks et al. (2016) are included as academic context for fake-review detection, consumer trust, and management response effects.</p></div>
+      </div>
+      <p class="ref-note">Some academic references may require institutional access. Public links are included where stable open pages are available.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ── FOOTER ── -->
+<footer role="contentinfo">
+  <p class="footer-ref">
+    <strong style="color:rgba(255,255,255,0.7);">Md Ashikur Rahman</strong> · NF1000759 · MA Digital Media and Global Communications · University of Niagara Falls Canada · Spring 2026<br>
+    DMGC 699 Capstone · Multimedia Deliverable 4 · Supervised by Raquel Benitez Rojas<br><br>
+    Filieri et al. (2015) · Kirilenko et al. (2024) · Originality.AI (2024) · Pena-Garcia et al. (2024) ·
+    Sparks &amp; Browning (2011) · Sparks et al. (2016) · Tripadvisor (2025) · Trustpilot (2025) · Wu et al. (2020) · Xiang et al. (2017)
+  </p>
+</footer>
+
+<script>
+// ── PROGRESS BAR ──
+const bar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = h > 0 ? (window.scrollY / h) * 100 : 0;
+  bar.style.width = pct + '%';
+  bar.setAttribute('aria-valuenow', Math.round(pct));
+});
+
+// ── REVEAL ON SCROLL ──
+const revealEls = document.querySelectorAll('.reveal');
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); }
+  });
+}, { threshold: 0.12 });
+revealEls.forEach(el => revObs.observe(el));
+
+// ── ANIMATE BARS ON SCROLL ──
+const barFills = document.querySelectorAll('.r-fill, .bc-fill, .breakdown-fill, .ti-fill');
+const barObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.width = (e.target.dataset.width || 0) + '%';
+      barObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+barFills.forEach(b => barObs.observe(b));
+
+// ── COUNTER ANIMATION ──
+function animateCounter(el, target, suffix, duration = 1600) {
+  const start = performance.now();
+  const isDecimal = target % 1 !== 0;
+  const update = (now) => {
+    const progress = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    const val = isDecimal ? (target * ease).toFixed(1) : Math.round(target * ease);
+    el.textContent = val + suffix;
+    if (progress < 1) requestAnimationFrame(update);
+    else el.textContent = target + suffix;
+  };
+  requestAnimationFrame(update);
+}
+
+const counterEls = document.querySelectorAll('.hero-stat-num[data-target]');
+const cntObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const target = parseFloat(e.target.dataset.target);
+      const suffix = e.target.dataset.suffix || '';
+      animateCounter(e.target, target, suffix);
+      cntObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+counterEls.forEach(el => cntObs.observe(el));
+
+// ── TABS ──
+document.querySelectorAll('.platform-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const panelId = btn.getAttribute('aria-controls');
+    document.querySelectorAll('.platform-tab').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+    document.querySelectorAll('.tab-content').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected','true');
+    const panel = document.getElementById(panelId);
+    panel.classList.add('active');
+    // Trigger bar animations for newly active tab
+    panel.querySelectorAll('.r-fill').forEach(f => {
+      f.style.width = '0%';
+      setTimeout(() => { f.style.width = (f.dataset.width || 0) + '%'; }, 50);
+    });
+  });
+});
+
+// ── ACTIVE NAV ──
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+const navObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      const link = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+      if (link) link.classList.add('active');
+    }
+  });
+}, { threshold: 0.4 });
+sections.forEach(s => navObs.observe(s));
+
+// ── KEYBOARD TAB SUPPORT ──
+document.querySelectorAll('.platform-tab').forEach((btn, i, btns) => {
+  btn.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') { btns[(i+1)%btns.length].focus(); btns[(i+1)%btns.length].click(); }
+    if (e.key === 'ArrowLeft') { btns[(i-1+btns.length)%btns.length].focus(); btns[(i-1+btns.length)%btns.length].click(); }
+  });
+});
+
+
+// ── INTERACTIVE TRUST CALCULATOR ──
+const gap = document.getElementById('gap');
+const fakeRisk = document.getElementById('fakeRisk');
+const volume = document.getElementById('volume');
+const responseQuality = document.getElementById('responseQuality');
+function updateTrustScore(){
+  if(!gap || !fakeRisk || !volume || !responseQuality) return;
+  const g = parseFloat(gap.value);
+  const f = parseFloat(fakeRisk.value);
+  const v = parseFloat(volume.value);
+  const m = parseFloat(responseQuality.value);
+  document.getElementById('gapVal').textContent = g.toFixed(1) + ' stars';
+  document.getElementById('fakeVal').textContent = Math.round(f) + '%';
+  document.getElementById('volumeVal').textContent = Math.round(v) + '%';
+  document.getElementById('responseVal').textContent = Math.round(m) + '%';
+  let score = 100 - 18*g - 0.30*f + 0.10*v + 0.20*m;
+  score = Math.max(0, Math.min(100, Math.round(score)));
+  const scoreNum = document.getElementById('scoreNum');
+  const scoreRing = document.getElementById('scoreRing');
+  const status = document.getElementById('scoreStatus');
+  const text = document.getElementById('scoreText');
+  scoreNum.textContent = score;
+  const deg = Math.round(score * 3.6);
+  scoreRing.style.background = `conic-gradient(var(--gold) 0deg, var(--gold) ${deg}deg, rgba(255,255,255,.10) ${deg}deg)`;
+  if(score >= 80){
+    status.textContent = 'Higher trust';
+    text.textContent = 'The review profile looks relatively stable, but recent reviews and response quality should still be checked.';
+  } else if(score >= 55){
+    status.textContent = 'Moderate trust';
+    text.textContent = 'The profile is usable, but consumers should cross-check platforms and read recent review details before booking.';
+  } else {
+    status.textContent = 'Lower trust';
+    text.textContent = 'The profile has important warning signs. Consumers should avoid relying on the average rating alone.';
+  }
+}
+[gap, fakeRisk, volume, responseQuality].forEach(el => { if(el) el.addEventListener('input', updateTrustScore); });
+updateTrustScore();
+
+
+// ── V7 EXTRA INTERACTIONS ──
+document.querySelectorAll(".explain-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const box = document.getElementById(btn.dataset.explain);
+    if (!box) return;
+    box.classList.toggle("visible");
+    btn.textContent = box.classList.contains("visible") ? "Hide interpretation" : "Show interpretation";
+  });
+});
+
+document.querySelectorAll(".mode-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".mode-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    const raw = btn.dataset.mode === "raw";
+    document.querySelectorAll(".r-fill").forEach(fill => {
+      fill.style.opacity = raw ? ".55" : "1";
+      fill.style.filter = raw ? "grayscale(25%)" : "none";
+      fill.style.width = (fill.dataset.width || 0) + "%";
+    });
+  });
+});
+
+const riskBoxes = document.querySelectorAll(".risk-box");
+const riskMeter = document.getElementById("riskMeter");
+const riskScore = document.getElementById("riskScore");
+const riskAdvice = document.getElementById("riskAdvice");
+function updateRiskChecker(){
+  if(!riskMeter || !riskScore || !riskAdvice) return;
+  let score = 0;
+  riskBoxes.forEach(b => { if(b.checked) score += parseInt(b.value, 10); });
+  score = Math.min(100, score);
+  riskMeter.style.width = score + "%";
+  riskScore.textContent = "Risk score: " + score + "%";
+  if(score === 0) riskAdvice.textContent = "No warning signs selected yet. Choose any pattern above to estimate risk.";
+  else if(score <= 30) riskAdvice.textContent = "Low risk pattern. Still check recency, platform consistency, and review specificity.";
+  else if(score <= 60) riskAdvice.textContent = "Moderate risk pattern. Do not rely on the average rating alone; cross-check platforms.";
+  else riskAdvice.textContent = "High risk pattern. Look for verified stays, detailed reviews, and management responses before trusting the score.";
+}
+riskBoxes.forEach(b => b.addEventListener("change", updateRiskChecker));
+
+const quizFeedback = document.getElementById("quizFeedback");
+document.querySelectorAll(".quiz-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    if(!quizFeedback) return;
+    quizFeedback.classList.remove("good", "bad");
+    if(btn.dataset.quiz === "good"){
+      quizFeedback.textContent = "Better choice. Specific details, a date/context cue, and mixed experience are stronger authenticity signals.";
+      quizFeedback.classList.add("visible", "good");
+    } else {
+      quizFeedback.textContent = "Weaker signal. It may be real, but the wording is generic and could describe almost any hotel.";
+      quizFeedback.classList.add("visible", "bad");
+    }
+  });
+});
+
+document.querySelectorAll(".preset-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    if(btn.dataset.preset === "stable"){ gap.value = 0.2; fakeRisk.value = 20; volume.value = 85; responseQuality.value = 85; }
+    if(btn.dataset.preset === "suspicious"){ gap.value = 1.0; fakeRisk.value = 75; volume.value = 45; responseQuality.value = 35; }
+    if(btn.dataset.preset === "poor-response"){ gap.value = 0.5; fakeRisk.value = 35; volume.value = 70; responseQuality.value = 20; }
+    updateTrustScore();
+  });
+});
+
+</script>
+</body>
+</html>
