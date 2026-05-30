@@ -1338,6 +1338,198 @@ input[type=range] { width:100%; accent-color:var(--gold); }
 
 #sourcequality, #sources { min-height: auto; }
 
+
+/* FINAL CLEANUP: SIMPLIFIED LABELS + RESPONSE EXAMPLE + AUDIENCE QUIZ */
+.mode-toggle,
+.confidence-row,
+.data-method {
+  display: none !important;
+}
+.response-example-box {
+  border: 1px solid var(--border);
+  background: var(--off-white);
+  padding: 24px;
+  margin: -12px 0 40px;
+}
+.response-example-box h3 {
+  font-family: 'Lora', serif;
+  font-size: 19px;
+  color: var(--navy);
+  margin-bottom: 16px;
+}
+.response-example-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.response-example-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 8px;
+}
+.response-example-label.good {
+  color: var(--teal);
+}
+.response-example-quote {
+  font-family: 'Lora', serif;
+  font-size: 14px;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--ink);
+}
+.response-example-note {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--ink-mid);
+  line-height: 1.6;
+}
+.audience-quiz {
+  margin: 34px 0 56px;
+  border: 1px solid var(--border);
+  background: var(--navy-light);
+  border-left: 4px solid var(--navy);
+  padding: 26px;
+}
+.quiz-kicker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.audience-quiz h3 {
+  font-family: 'Lora', serif;
+  font-size: 21px;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.quiz-prompt {
+  font-size: 14px;
+  color: var(--ink-mid);
+  margin-bottom: 18px;
+}
+.audience-quiz-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.audience-quiz-btn {
+  border: 1px solid var(--border);
+  background: var(--white);
+  color: var(--ink-mid);
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.45;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: border-color .2s ease, background .2s ease, transform .2s ease;
+}
+.audience-quiz-btn:hover,
+.audience-quiz-btn:focus {
+  border-color: var(--navy);
+  transform: translateY(-2px);
+}
+.audience-quiz-btn.correct-choice {
+  border-color: var(--teal);
+  background: var(--teal-light);
+}
+.audience-quiz-btn.wrong-choice {
+  border-color: #FCA5A5;
+  background: var(--red-light);
+}
+.audience-quiz-feedback {
+  display: none;
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.audience-quiz-feedback.visible {
+  display: block;
+}
+.audience-quiz-feedback.good {
+  background: var(--teal-light);
+  color: var(--teal);
+}
+.audience-quiz-feedback.bad {
+  background: var(--red-light);
+  color: var(--red);
+}
+@media (max-width:768px) {
+  .response-example-grid,
+  .audience-quiz-options {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* RESPONSE EXAMPLES CONSISTENCY FIX */
+.response-compare {
+  display: none !important;
+}
+.response-examples-stack {
+  display: grid;
+  gap: 22px;
+  margin-bottom: 40px;
+}
+.response-example-box {
+  border: 1px solid var(--border);
+  background: var(--off-white);
+  padding: 24px;
+  margin: 0;
+}
+.response-example-set h3,
+.response-example-box h3 {
+  font-family: 'Lora', serif;
+  font-size: 19px;
+  color: var(--navy);
+  margin-bottom: 16px;
+}
+.response-example-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.response-example-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 8px;
+}
+.response-example-label.good {
+  color: var(--teal);
+}
+.response-example-quote {
+  font-family: 'Lora', serif;
+  font-size: 14px;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--ink);
+}
+.response-example-note {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--ink-mid);
+  line-height: 1.6;
+}
+@media (max-width:768px) {
+  .response-example-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1413,30 +1605,12 @@ input[type=range] { width:100%; accent-color:var(--gold); }
     <aside class="a11y-note reveal" aria-label="Accessibility note">
       All chart data is presented in text and numerical form. Tab navigation supported throughout.
     </aside>
-
-    <div class="confidence-row reveal" aria-label="Data confidence legend">
-      <span class="conf-chip reported">Reported data</span>
-      <span class="conf-chip estimated">Estimated from source graph</span>
-      <span class="conf-chip illustrative">Illustrative scenario</span>
-    </div>
-
-    <div class="data-method reveal">
-      <div class="data-method-card"><h3>Reported</h3><p>Platform transparency figures and published values are used directly when available.</p></div>
-      <div class="data-method-card"><h3>Estimated</h3><p>Only 2020 and 2021 AI-rate values are estimated from the Originality.AI chart and clearly labelled.</p></div>
-      <div class="data-method-card"><h3>Illustrative</h3><p>Budget, mid-range, luxury, and trust-tool scenarios are teaching examples, not measured hotel outcomes.</p></div>
-    </div>
-
-    <!-- TABS -->
+<!-- TABS -->
     <div class="platform-tabs reveal reveal-delay-2" role="tablist" aria-label="Select hotel example">
       <button class="platform-tab active" role="tab" aria-selected="true" aria-controls="tab-budget" id="tab-btn-budget">Budget</button>
       <button class="platform-tab" role="tab" aria-selected="false" aria-controls="tab-midrange" id="tab-btn-midrange">Mid-Range</button>
       <button class="platform-tab" role="tab" aria-selected="false" aria-controls="tab-luxury" id="tab-btn-luxury">Luxury</button>
       <button class="platform-tab" role="tab" aria-selected="false" aria-controls="tab-niagara" id="tab-btn-niagara">Niagara Example</button>
-    </div>
-
-    <div class="mode-toggle reveal" data-mode-toggle aria-label="Rating display mode">
-      <button class="mode-btn active" data-mode="scaled" type="button">Scaled bars</button>
-      <button class="mode-btn" data-mode="raw" type="button">Raw labels</button>
     </div>
 
     <!-- TAB CONTENT: BUDGET -->
@@ -1626,6 +1800,22 @@ input[type=range] { width:100%; accent-color:var(--gold); }
     </div>
 
     <!-- Breakdown + Timeline -->
+
+    <div class="audience-quiz reveal" id="audience-knowledge-check" aria-labelledby="audience-quiz-title">
+      <p class="quiz-kicker">Audience Check</p>
+      <h3 id="audience-quiz-title">What should you do before trusting a hotel rating?</h3>
+      <p class="quiz-prompt">Choose the best answer. This quick check tests the main lesson from the visualization.</p>
+
+      <div class="audience-quiz-options">
+        <button class="audience-quiz-btn" type="button" data-answer="wrong">Trust the platform with the highest score.</button>
+        <button class="audience-quiz-btn" type="button" data-answer="wrong">Ignore negative reviews if the average rating is above 4 stars.</button>
+        <button class="audience-quiz-btn" type="button" data-answer="correct">Compare platforms, read recent specific reviews, and check management responses.</button>
+        <button class="audience-quiz-btn" type="button" data-answer="wrong">Only read reviews that match what you already expect.</button>
+      </div>
+
+      <div class="audience-quiz-feedback" id="audienceQuizFeedback" aria-live="polite"></div>
+    </div>
+
     <div class="breakdown-section reveal">
       <div>
         <h3 class="breakdown-title">TripAdvisor 2024 Removals - Breakdown</h3>
@@ -1765,23 +1955,42 @@ input[type=range] { width:100%; accent-color:var(--gold); }
       How a hotel <em>responds</em> matters<br>as much as the review itself.
     </h2>
     <p class="section-lead reveal reveal-delay-2">
-      Management responses have independent effects on consumer trust - over and above the original review content. Timing, tone, and specificity all matter (Sparks & Browning, 2011; Sparks et al., 2016).
+      Management responses have independent effects on consumer trust - over and above the original review content. Timing, tone, specificity, and visible corrective action all matter (Sparks & Browning, 2011; Sparks et al., 2016).
     </p>
 
-    <div class="response-compare reveal">
-      <div class="resp-card resp-bad">
-        <div class="resp-header">Ineffective Response</div>
-        <p class="resp-quote">"We're sorry you had a bad experience. We hope to see you again soon."</p>
-        <p class="resp-why">Generic. Doesn't acknowledge the specific complaint. Signals indifference. Consumers read this and trust the negative review more - not less (Sparks & Browning, 2011).</p>
+    <div class="response-examples-stack reveal" aria-label="Management response examples">
+      <div class="response-example-box response-example-set">
+        <h3>Example 1: Noise complaint</h3>
+        <div class="response-example-grid">
+          <div>
+            <p class="response-example-label">Guest complaint</p>
+            <p class="response-example-quote">“The room on Floor 6 was noisy all night, and we could not sleep before an early checkout.”</p>
+          </div>
+          <div>
+            <p class="response-example-label good">Better management response</p>
+            <p class="response-example-quote">“Hi Sarah - thank you for flagging the noise issue on Floor 6. We have reviewed this with our night team, adjusted room assignments near the elevator, and added a quiet-room note to your profile.”</p>
+          </div>
+        </div>
+        <p class="response-example-note">Why it works: it identifies the specific issue, acknowledges the guest, and explains a concrete action.</p>
       </div>
-      <div class="resp-card resp-good">
-        <div class="resp-header">Effective Response</div>
-        <p class="resp-quote">"Hi Sarah - thank you for flagging the noise issue on Floor 6. We've moved those guests and added soundproofing. Book direct and we'll ensure a quieter room."</p>
-        <p class="resp-why">Specific, personal, shows accountability, offers a remedy. Prospective guests see a property that listens and acts - partially offsetting even severe negative reviews (Sparks et al., 2016).</p>
+
+      <div class="response-example-box response-example-set">
+        <h3>Example 2: Check-in and parking complaint</h3>
+        <div class="response-example-grid">
+          <div>
+            <p class="response-example-label">Guest complaint</p>
+            <p class="response-example-quote">“The room was clean, but the check-in line was long and nobody explained the parking fee until checkout.”</p>
+          </div>
+          <div>
+            <p class="response-example-label good">Better management response</p>
+            <p class="response-example-quote">“Thank you for naming both issues. We are adding clearer parking-fee language to pre-arrival emails and assigning an extra front-desk staff member during Friday check-in peaks.”</p>
+          </div>
+        </div>
+        <p class="response-example-note">Why it works: it avoids defensiveness and turns criticism into a visible service-improvement signal.</p>
       </div>
     </div>
 
-    <div class="trust-impact reveal">
+<div class="trust-impact reveal">
       <h3 class="ti-title">Response Quality - Trust Recovery Effect</h3>
 
       <div class="ti-row" aria-label="Generic apology: 12 percent trust recovery">
@@ -2256,6 +2465,31 @@ document.querySelectorAll(".preset-btn").forEach(btn => {
     if(btn.dataset.preset === "suspicious"){ gap.value = 1.0; fakeRisk.value = 75; volume.value = 45; responseQuality.value = 35; }
     if(btn.dataset.preset === "poor-response"){ gap.value = 0.5; fakeRisk.value = 35; volume.value = 70; responseQuality.value = 20; }
     updateTrustScore();
+  });
+});
+
+
+// Audience quiz interaction
+const audienceQuizFeedback = document.getElementById("audienceQuizFeedback");
+document.querySelectorAll(".audience-quiz-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".audience-quiz-btn").forEach(b => {
+      b.classList.remove("correct-choice", "wrong-choice");
+    });
+
+    const isCorrect = btn.dataset.answer === "correct";
+    btn.classList.add(isCorrect ? "correct-choice" : "wrong-choice");
+
+    if (!audienceQuizFeedback) return;
+
+    audienceQuizFeedback.classList.remove("good", "bad");
+    audienceQuizFeedback.classList.add("visible", isCorrect ? "good" : "bad");
+
+    if (isCorrect) {
+      audienceQuizFeedback.textContent = "Correct. A trustworthy reading strategy compares platforms, checks recent specific review details, and treats management responses as part of the trust signal.";
+    } else {
+      audienceQuizFeedback.textContent = "Not quite. A single high rating or familiar expectation is not enough. Cross-check platforms, review specificity, recency, and management responses.";
+    }
   });
 });
 
